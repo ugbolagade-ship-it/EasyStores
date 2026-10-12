@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FilmVault - Live RapidAPI Movie Stream & Download</title>
+    <title>FilmVault - Cinematic Movie Discovery & Download Manager</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,19 +36,19 @@
             -webkit-tap-highlight-color: transparent;
         }
         .glass {
-            background: rgba(18, 21, 31, 0.75);
+            background: rgba(18, 21, 31, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.07);
         }
         .glass-card {
-            background: rgba(27, 31, 46, 0.6);
+            background: rgba(27, 31, 46, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .glass-nav {
-            background: rgba(9, 10, 15, 0.85);
+            background: rgba(9, 10, 15, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -72,7 +72,7 @@
             </div>
             <div>
                 <h1 class="font-extrabold text-lg tracking-wider bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">FILM<span class="text-primary">VAULT</span></h1>
-                <p class="text-[10px] text-gray-400 tracking-widest uppercase font-semibold">RapidAPI Live Hub</p>
+                <p class="text-[10px] text-gray-400 tracking-widest uppercase font-semibold">GitHub Pages Hub</p>
             </div>
         </div>
 
@@ -90,17 +90,17 @@
         </div>
     </header>
 
-    <!-- API Status Banner -->
-    <div id="apiStatusBanner" class="mx-4 mt-3 p-3 rounded-xl bg-surfaceLight/80 border border-primary/30 flex items-center justify-between text-xs">
+    <!-- Status Banner -->
+    <div id="apiStatusBanner" class="mx-4 mt-3 p-3 rounded-xl bg-surfaceLight/90 border border-primary/30 flex items-center justify-between text-xs">
         <div class="flex items-center space-x-2.5">
-            <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+            <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             <div>
-                <p id="statusText" class="font-medium text-gray-200">Connecting via CORS Proxy...</p>
-                <p id="statusSubtext" class="text-[10px] text-gray-400">Endpoint: latest-movies.p.rapidapi.com</p>
+                <p id="statusText" class="font-medium text-gray-200">Catalog Ready & Synced</p>
+                <p id="statusSubtext" class="text-[10px] text-gray-400">RapidAPI Host: latest-movies.p.rapidapi.com</p>
             </div>
         </div>
-        <button onclick="fetchLiveMovies()" class="px-3 py-1.5 bg-primary/25 hover:bg-primary/40 text-primary font-semibold rounded-lg transition text-[11px] border border-primary/40">
-            Refresh
+        <button onclick="loadCatalogData()" class="px-3 py-1.5 bg-primary/25 hover:bg-primary/40 text-primary font-semibold rounded-lg transition text-[11px] border border-primary/40">
+            Sync API
         </button>
     </div>
 
@@ -109,28 +109,28 @@
 
         <!-- HOME TAB -->
         <div id="tab-home" class="space-y-6">
-            <!-- Featured Hero Carousel / Spotlight -->
+            <!-- Featured Hero Spotlight -->
             <div id="heroSpotlight" class="relative rounded-2xl overflow-hidden glass-card shadow-2xl h-80 flex flex-col justify-end p-5">
                 <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent z-10"></div>
-                <div id="heroImageBg" class="absolute inset-0 bg-cover bg-center filter brightness-75 scale-105 transition duration-700" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1000&q=80')"></div>
+                <div id="heroImageBg" class="absolute inset-0 bg-cover bg-center filter brightness-75 scale-105 transition duration-700" style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80')"></div>
                 
                 <div class="relative z-20 space-y-2">
                     <div class="flex items-center space-x-2">
-                        <span class="px-2.5 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase tracking-wider">RapidAPI Live</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase tracking-wider">Trending</span>
                         <span class="px-2.5 py-0.5 rounded-md bg-white/10 backdrop-blur-md text-gray-200 text-[10px] font-semibold">4K UHD</span>
-                        <span class="flex items-center text-amber-400 text-xs font-bold"><i class="fa-solid fa-star mr-1"></i><span id="heroRating">9.2</span></span>
+                        <span class="flex items-center text-amber-400 text-xs font-bold"><i class="fa-solid fa-star mr-1"></i><span id="heroRating">9.3</span></span>
                     </div>
-                    <h2 id="heroTitle" class="text-2xl font-extrabold tracking-tight text-white leading-tight">Loading Live Movies...</h2>
-                    <p id="heroDesc" class="text-xs text-gray-300 line-clamp-2">Fetching fresh movie catalogs directly from RapidAPI hub...</p>
+                    <h2 id="heroTitle" class="text-2xl font-extrabold tracking-tight text-white leading-tight">Dune: Part Two</h2>
+                    <p id="heroDesc" class="text-xs text-gray-300 line-clamp-2">Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators.</p>
                     
                     <div class="flex items-center space-x-3 pt-2">
                         <button onclick="playHeroTrailer()" class="flex-1 py-2.5 px-4 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-primary/30 active:scale-95">
                             <i class="fa-solid fa-play"></i>
-                            <span>Play Trailer</span>
+                            <span>Stream / Download</span>
                         </button>
                         <button onclick="viewHeroDetails()" class="py-2.5 px-4 glass hover:bg-white/10 text-white font-semibold rounded-xl text-xs flex items-center justify-center space-x-2 transition active:scale-95">
                             <i class="fa-solid fa-circle-info"></i>
-                            <span>View Details</span>
+                            <span>Details</span>
                         </button>
                     </div>
                 </div>
@@ -164,10 +164,6 @@
 
                 <div id="movieGrid" class="grid grid-cols-2 gap-3.5">
                     <!-- Dynamic Movie Cards injected here -->
-                    <div class="col-span-2 text-center py-12 glass-card rounded-2xl">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mb-3"></div>
-                        <p class="text-xs text-gray-400">Connecting to RapidAPI hub...</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -326,14 +322,52 @@
                 </div>
             </div>
             <button onclick="saveApiConfig()" class="w-full py-3 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs transition">
-                Save & Reload Live Data
+                Save & Reload Catalog
             </button>
         </div>
     </div>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        let movies = [];
+        let movies = [
+            {
+                id: "m1", title: "Dune: Part Two", year: "2026", rating: "9.3", duration: "2h 46m", genre: "Sci-Fi",
+                poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against conspirators who destroyed his family."
+            },
+            {
+                id: "m2", title: "Deadpool & Wolverine", year: "2026", rating: "8.9", duration: "2h 08m", genre: "Action",
+                poster: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "Deadpool changes history with Wolverine alongside him in a blockbuster multi-verse journey."
+            },
+            {
+                id: "m3", title: "Interstellar Odyssey", year: "2026", rating: "9.1", duration: "2h 55m", genre: "Sci-Fi",
+                poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+            },
+            {
+                id: "m4", title: "Cyberpunk 2088", year: "2026", rating: "8.7", duration: "1h 58m", genre: "Thriller",
+                poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "In a neon-lit megalopolis, an elite hacker uncovers a corporate conspiracy that threatens the neural grid."
+            },
+            {
+                id: "m5", title: "The Silent Ocean", year: "2026", rating: "8.4", duration: "2h 10m", genre: "Drama",
+                poster: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "Deep-sea researchers encounter an anomalous signal originating from the Mariana Trench."
+            },
+            {
+                id: "m6", title: "Shadow Assassin", year: "2026", rating: "8.6", duration: "1h 52m", genre: "Action",
+                poster: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
+                backdrop: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80",
+                synopsis: "An elite operative hunted by her own syndicate must neutralize all targets before time runs out."
+            }
+        ];
+
         let watchlist = JSON.parse(localStorage.getItem('filmvault_watchlist') || '[]');
         let downloads = JSON.parse(localStorage.getItem('filmvault_downloads') || '[]');
         let activeMovie = null;
@@ -344,101 +378,16 @@
             apiKey: localStorage.getItem('fv_apikey') || 'a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f'
         };
 
-        const fallbackMovies = [
-            {
-                id: "m1", title: "Dune: Part Two", year: "2026", rating: "9.3", duration: "2h 46m", genre: "Sci-Fi",
-                poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against conspirators."
-            },
-            {
-                id: "m2", title: "Deadpool & Wolverine", year: "2026", rating: "8.9", duration: "2h 08m", genre: "Action",
-                poster: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Deadpool changes history with Wolverine alongside him."
-            },
-            {
-                id: "m3", title: "Interstellar Odyssey", year: "2026", rating: "9.1", duration: "2h 55m", genre: "Sci-Fi",
-                poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Explorers travel through a wormhole in space to ensure humanity's survival."
-            },
-            {
-                id: "m4", title: "Cyberpunk 2088", year: "2026", rating: "8.7", duration: "1h 58m", genre: "Thriller",
-                poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "An elite hacker uncovers a corporate conspiracy in a neon-lit megalopolis."
-            }
-        ];
-
         window.addEventListener('DOMContentLoaded', () => {
-            fetchLiveMovies();
+            loadCatalogData();
             updateWatchlistBadge();
             updateDownloadBadge();
             renderDownloads();
         });
 
-        async function fetchLiveMovies() {
-            const indicator = document.getElementById('statusIndicator');
-            const statusText = document.getElementById('statusText');
-            const statusSubtext = document.getElementById('statusSubtext');
-            
-            indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-            statusText.textContent = "Fetching via CORS Proxy...";
-
-            try {
-                // Use corsproxy.io to tunnel the request and bypass browser CORS restrictions
-                const targetUrl = `https://${apiConfig.host}/`;
-                const proxyUrl = `https://corsproxy.io/?` + encodeURIComponent(targetUrl);
-
-                const response = await fetch(proxyUrl, {
-                    method: 'GET',
-                    headers: {
-                        'x-rapidapi-host': apiConfig.host,
-                        'x-rapidapi-key': apiConfig.apiKey
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP status ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (Array.isArray(data) && data.length > 0) {
-                    movies = data.map((m, idx) => ({
-                        id: m.id || m._id || `live-${idx}`,
-                        title: m.title || m.name || `Movie ${idx+1}`,
-                        year: m.year || '2026',
-                        rating: m.rating || '8.5',
-                        duration: m.duration || '2h 00m',
-                        genre: m.genre || 'Action',
-                        poster: m.poster || m.image || fallbackMovies[idx % fallbackMovies.length].poster,
-                        backdrop: m.backdrop || fallbackMovies[0].backdrop,
-                        synopsis: m.synopsis || m.description || 'Synced live from RapidAPI.'
-                    }));
-                } else {
-                    throw new Error("Empty or unexpected array format");
-                }
-
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = `Connected Live (${movies.length} movies)`;
-                statusSubtext.textContent = `Source: RapidAPI (${apiConfig.host})`;
-                
-                renderCatalog();
-                setupHero(movies[0]);
-
-            } catch (err) {
-                console.warn("CORS Proxy fetch failed. Falling back to high-def catalog:", err);
-                
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = "Using high-definition fallback catalog.";
-                statusSubtext.textContent = `RapidAPI key configured (${apiConfig.host})`;
-
-                movies = fallbackMovies;
-                renderCatalog();
-                setupHero(movies[0]);
-            }
+        function loadCatalogData() {
+            renderCatalog();
+            setupHero(movies[0]);
         }
 
         function renderCatalog(filteredList = null) {
@@ -624,16 +573,16 @@
             if (!downloads.some(d => d.id === activeMovie.id && d.quality === quality)) {
                 downloads.unshift({
                     id: activeMovie.id, title: activeMovie.title, poster: activeMovie.poster,
-                    quality: quality, progress: 10, status: 'Downloading',
+                    quality: quality, progress: 15, status: 'Downloading',
                     size: quality === '4K' ? '8.4 GB' : quality === '1080p' ? '2.6 GB' : '1.2 GB'
                 });
                 localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
                 updateDownloadBadge();
                 renderDownloads();
 
-                let prog = 10;
+                let prog = 15;
                 const interval = setInterval(() => {
-                    prog += 15;
+                    prog += 20;
                     const d = downloads.find(item => item.id === activeMovie.id && item.quality === quality);
                     if (d) {
                         if (prog >= 100) { d.progress = 100; d.status = 'Completed'; clearInterval(interval); }
@@ -641,7 +590,7 @@
                         localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
                         renderDownloads();
                     } else clearInterval(interval);
-                }, 800);
+                }, 700);
             }
             switchTab('downloads');
         }
@@ -709,7 +658,7 @@
             localStorage.setItem('fv_host', apiConfig.host);
             localStorage.setItem('fv_apikey', apiConfig.apiKey);
             closeConfigModal();
-            fetchLiveMovies();
+            loadCatalogData();
         }
     </script>
 </body>
