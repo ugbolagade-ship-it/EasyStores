@@ -60,13 +60,6 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(244, 63, 94, 0.8); }
-        }
-        .glow-effect {
-            animation: pulse-glow 3s infinite;
-        }
     </style>
 </head>
 <body class="pb-24 min-h-screen flex flex-col justify-between">
@@ -102,12 +95,12 @@
         <div class="flex items-center space-x-2.5">
             <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
             <div>
-                <p id="statusText" class="font-medium text-gray-200">Connecting to RapidAPI Latest Movies...</p>
+                <p id="statusText" class="font-medium text-gray-200">Connecting via CORS Proxy...</p>
                 <p id="statusSubtext" class="text-[10px] text-gray-400">Endpoint: latest-movies.p.rapidapi.com</p>
             </div>
         </div>
-        <button onclick="fetchLiveMovies()" class="px-3 py-1.5 bg-primary/20 hover:bg-primary/30 text-primary font-semibold rounded-lg transition text-[11px] border border-primary/30">
-            Retry / Sync
+        <button onclick="fetchLiveMovies()" class="px-3 py-1.5 bg-primary/25 hover:bg-primary/40 text-primary font-semibold rounded-lg transition text-[11px] border border-primary/40">
+            Refresh
         </button>
     </div>
 
@@ -173,7 +166,7 @@
                     <!-- Dynamic Movie Cards injected here -->
                     <div class="col-span-2 text-center py-12 glass-card rounded-2xl">
                         <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mb-3"></div>
-                        <p class="text-xs text-gray-400">Fetching live movies from RapidAPI server...</p>
+                        <p class="text-xs text-gray-400">Connecting to RapidAPI hub...</p>
                     </div>
                 </div>
             </div>
@@ -182,7 +175,7 @@
         <!-- EXPLORE TAB -->
         <div id="tab-explore" class="space-y-4 hidden">
             <div class="relative">
-                <input type="text" id="exploreSearchInput" oninput="handleSearch(this.value)" placeholder="Search 500+ movies, actors, directors..." class="w-full bg-surfaceLight border border-white/10 rounded-xl px-4 py-3 pl-11 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary transition">
+                <input type="text" id="exploreSearchInput" oninput="handleSearch(this.value)" placeholder="Search movies, actors, directors..." class="w-full bg-surfaceLight border border-white/10 rounded-xl px-4 py-3 pl-11 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary transition">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-xs"></i>
             </div>
             
@@ -195,9 +188,7 @@
                 </select>
             </div>
 
-            <div id="exploreGrid" class="grid grid-cols-2 gap-3.5">
-                <!-- Explore items injected here -->
-            </div>
+            <div id="exploreGrid" class="grid grid-cols-2 gap-3.5"></div>
         </div>
 
         <!-- SEARCH TAB -->
@@ -208,9 +199,7 @@
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-gray-400 text-sm"></i>
             </div>
             <div id="searchResultsGrid" class="grid grid-cols-2 gap-3.5 pt-2">
-                <div class="col-span-2 text-center py-12 text-gray-500 text-xs">
-                    Start typing to search movies from RapidAPI...
-                </div>
+                <div class="col-span-2 text-center py-12 text-gray-500 text-xs">Start typing to search movies...</div>
             </div>
         </div>
 
@@ -220,9 +209,7 @@
                 <h2 class="text-lg font-bold text-white">My Watchlist</h2>
                 <span id="watchlistCount" class="text-xs px-2.5 py-1 rounded-full bg-surfaceLight text-gray-300">0 items</span>
             </div>
-            <div id="watchlistGrid" class="grid grid-cols-2 gap-3.5">
-                <!-- Watchlist items injected here -->
-            </div>
+            <div id="watchlistGrid" class="grid grid-cols-2 gap-3.5"></div>
         </div>
 
         <!-- DOWNLOADS TAB -->
@@ -231,10 +218,7 @@
                 <h2 class="text-lg font-bold text-white">Active & Saved Downloads</h2>
                 <button onclick="clearCompletedDownloads()" class="text-xs text-primary font-medium">Clear Finished</button>
             </div>
-            
-            <div class="space-y-3" id="downloadsList">
-                <!-- Download items injected here -->
-            </div>
+            <div class="space-y-3" id="downloadsList"></div>
         </div>
 
     </main>
@@ -264,7 +248,7 @@
         </button>
     </nav>
 
-    <!-- DETAIL / DOWNLOAD MODAL -->
+    <!-- DETAIL MODAL -->
     <div id="detailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="glass-card w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl p-6 space-y-5 relative animate-in fade-in slide-in-from-bottom-4 duration-300">
             <button onclick="closeDetailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition">
@@ -283,9 +267,7 @@
                         <span class="flex items-center text-amber-400"><i class="fa-solid fa-star mr-1"></i><span id="modalRating">8.5</span></span>
                         <span id="modalDuration"><i class="fa-regular fa-clock mr-1"></i> 2h 12m</span>
                     </div>
-                    <div id="modalGenres" class="flex flex-wrap gap-1.5 pt-1">
-                        <!-- Genre tags -->
-                    </div>
+                    <div id="modalGenres" class="flex flex-wrap gap-1.5 pt-1"></div>
                 </div>
             </div>
 
@@ -326,15 +308,13 @@
         </div>
     </div>
 
-    <!-- CONFIG / API KEY MODAL -->
+    <!-- CONFIG MODAL -->
     <div id="configModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="glass-card w-full max-w-md rounded-2xl p-6 space-y-4 relative">
             <button onclick="closeConfigModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
             <h3 class="text-base font-bold text-white">RapidAPI Configuration</h3>
-            <p class="text-xs text-gray-400">Your RapidAPI Key and Host configuration from MCP setup:</p>
-            
             <div class="space-y-3">
                 <div>
                     <label class="text-[11px] text-gray-300 font-medium">API Host</label>
@@ -344,16 +324,7 @@
                     <label class="text-[11px] text-gray-300 font-medium">API Key</label>
                     <input type="text" id="configApiKey" value="a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f" class="w-full mt-1 bg-surfaceLight border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
                 </div>
-                <div>
-                    <label class="text-[11px] text-gray-300 font-medium">CORS Proxy Mode</label>
-                    <select id="configCorsMode" class="w-full mt-1 bg-surfaceLight border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
-                        <option value="auto">Auto-detect (Proxy + Direct)</option>
-                        <option value="corsproxy">Always Use Public CORS Bridge</option>
-                        <option value="cache">Use High-Def Cached Catalog</option>
-                    </select>
-                </div>
             </div>
-
             <button onclick="saveApiConfig()" class="w-full py-3 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs transition">
                 Save & Reload Live Data
             </button>
@@ -362,91 +333,44 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // State Management
         let movies = [];
         let watchlist = JSON.parse(localStorage.getItem('filmvault_watchlist') || '[]');
         let downloads = JSON.parse(localStorage.getItem('filmvault_downloads') || '[]');
         let activeMovie = null;
         let currentFilter = 'All';
 
-        // Default Config from MCP snippet
         let apiConfig = {
             host: localStorage.getItem('fv_host') || 'latest-movies.p.rapidapi.com',
-            apiKey: localStorage.getItem('fv_apikey') || 'a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f',
-            corsMode: localStorage.getItem('fv_cors') || 'auto'
+            apiKey: localStorage.getItem('fv_apikey') || 'a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f'
         };
 
-        // Fallback rich catalog in case of CORS restriction on static GitHub pages
         const fallbackMovies = [
             {
-                id: "m1",
-                title: "Dune: Part Two",
-                year: "2026",
-                rating: "9.3",
-                duration: "2h 46m",
-                genre: "Sci-Fi",
+                id: "m1", title: "Dune: Part Two", year: "2026", rating: "9.3", duration: "2h 46m", genre: "Sci-Fi",
                 poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
                 backdrop: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family."
+                synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against conspirators."
             },
             {
-                id: "m2",
-                title: "Deadpool & Wolverine",
-                year: "2026",
-                rating: "8.9",
-                duration: "2h 08m",
-                genre: "Action",
+                id: "m2", title: "Deadpool & Wolverine", year: "2026", rating: "8.9", duration: "2h 08m", genre: "Action",
                 poster: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
                 backdrop: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "The irresponsible hero Deadpool will change the history of the MCU with Wolverine alongside him."
+                synopsis: "Deadpool changes history with Wolverine alongside him."
             },
             {
-                id: "m3",
-                title: "Interstellar Odyssey",
-                year: "2026",
-                rating: "9.1",
-                duration: "2h 55m",
-                genre: "Sci-Fi",
+                id: "m3", title: "Interstellar Odyssey", year: "2026", rating: "9.1", duration: "2h 55m", genre: "Sci-Fi",
                 poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
                 backdrop: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+                synopsis: "Explorers travel through a wormhole in space to ensure humanity's survival."
             },
             {
-                id: "m4",
-                title: "Cyberpunk 2088",
-                year: "2026",
-                rating: "8.7",
-                duration: "1h 58m",
-                genre: "Thriller",
+                id: "m4", title: "Cyberpunk 2088", year: "2026", rating: "8.7", duration: "1h 58m", genre: "Thriller",
                 poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
                 backdrop: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "In a neon-lit megalopolis, an elite hacker uncovers a corporate conspiracy that threatens the neural grid."
-            },
-            {
-                id: "m5",
-                title: "The Silent Ocean",
-                year: "2026",
-                rating: "8.4",
-                duration: "2h 10m",
-                genre: "Drama",
-                poster: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Deep-sea researchers encounter an anomalous signal originating from the Mariana Trench."
-            },
-            {
-                id: "m6",
-                title: "Shadow Assassin",
-                year: "2026",
-                rating: "8.6",
-                duration: "1h 52m",
-                genre: "Action",
-                poster: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "An elite operative hunted by her own syndicate must neutralize all targets before time runs out."
+                synopsis: "An elite hacker uncovers a corporate conspiracy in a neon-lit megalopolis."
             }
         ];
 
-        // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
             fetchLiveMovies();
             updateWatchlistBadge();
@@ -454,24 +378,20 @@
             renderDownloads();
         });
 
-        // Fetch Live Movies from RapidAPI with fallback
         async function fetchLiveMovies() {
             const indicator = document.getElementById('statusIndicator');
             const statusText = document.getElementById('statusText');
             const statusSubtext = document.getElementById('statusSubtext');
             
             indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-            statusText.textContent = "Querying RapidAPI Live Hub...";
+            statusText.textContent = "Fetching via CORS Proxy...";
 
             try {
-                // If corsMode is set to cache, skip network request
-                if (apiConfig.corsMode === 'cache') {
-                    throw new Error("Manual cache mode selected.");
-                }
+                // Use corsproxy.io to tunnel the request and bypass browser CORS restrictions
+                const targetUrl = `https://${apiConfig.host}/`;
+                const proxyUrl = `https://corsproxy.io/?` + encodeURIComponent(targetUrl);
 
-                // Attempt fetching from RapidAPI endpoint
-                const url = `https://${apiConfig.host}/`; 
-                const response = await fetch(url, {
+                const response = await fetch(proxyUrl, {
                     method: 'GET',
                     headers: {
                         'x-rapidapi-host': apiConfig.host,
@@ -480,53 +400,40 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP status ${response.status}`);
                 }
 
                 const data = await response.json();
                 
-                // Parse response or map if array format
                 if (Array.isArray(data) && data.length > 0) {
                     movies = data.map((m, idx) => ({
                         id: m.id || m._id || `live-${idx}`,
-                        title: m.title || m.name || `Live Movie ${idx+1}`,
-                        year: m.year || '2026',
-                        rating: m.rating || (7 + Math.random() * 2.5).toFixed(1),
-                        duration: m.duration || '2h 10m',
-                        genre: m.genre || ['Action', 'Sci-Fi', 'Drama'][Math.floor(Math.random()*3)],
-                        poster: m.poster || m.image || fallbackMovies[idx % fallbackMovies.length].poster,
-                        backdrop: m.backdrop || m.banner || fallbackMovies[idx % fallbackMovies.length].backdrop,
-                        synopsis: m.synopsis || m.description || 'Live movie fetched directly from RapidAPI hub with complete streaming and download support.'
-                    }));
-                } else if (data.results && Array.isArray(data.results)) {
-                    movies = data.results.map((m, idx) => ({
-                        id: m.id || `live-${idx}`,
-                        title: m.title || m.name,
+                        title: m.title || m.name || `Movie ${idx+1}`,
                         year: m.year || '2026',
                         rating: m.rating || '8.5',
                         duration: m.duration || '2h 00m',
                         genre: m.genre || 'Action',
-                        poster: m.poster || m.image || fallbackMovies[0].poster,
+                        poster: m.poster || m.image || fallbackMovies[idx % fallbackMovies.length].poster,
                         backdrop: m.backdrop || fallbackMovies[0].backdrop,
-                        synopsis: m.synopsis || m.description || 'No description available.'
+                        synopsis: m.synopsis || m.description || 'Synced live from RapidAPI.'
                     }));
                 } else {
-                    throw new Error("Invalid response structure");
+                    throw new Error("Empty or unexpected array format");
                 }
 
                 indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = `Connected Live (${movies.length} movies loaded)`;
-                statusSubtext.textContent = `Source: ${apiConfig.host} (Active)`;
+                statusText.textContent = `Connected Live (${movies.length} movies)`;
+                statusSubtext.textContent = `Source: RapidAPI (${apiConfig.host})`;
                 
                 renderCatalog();
                 setupHero(movies[0]);
 
             } catch (err) {
-                console.warn("Direct API fetch blocked by CORS or network. Switching to High-Definition Fallback Catalog:", err);
+                console.warn("CORS Proxy fetch failed. Falling back to high-def catalog:", err);
                 
                 indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = "CORS bypass active. Using high-definition catalog.";
-                statusSubtext.textContent = `RapidAPI Configured (${apiConfig.host})`;
+                statusText.textContent = "Using high-definition fallback catalog.";
+                statusSubtext.textContent = `RapidAPI key configured (${apiConfig.host})`;
 
                 movies = fallbackMovies;
                 renderCatalog();
@@ -534,7 +441,6 @@
             }
         }
 
-        // Render Catalog Grid
         function renderCatalog(filteredList = null) {
             const list = filteredList || movies;
             const grid = document.getElementById('movieGrid');
@@ -568,7 +474,7 @@
             if (exploreGrid) exploreGrid.innerHTML = html;
         }
 
-        // Setup Hero Spotlight
+        let activeHeroMovie = null;
         function setupHero(m) {
             if (!m) return;
             document.getElementById('heroTitle').textContent = m.title;
@@ -578,15 +484,9 @@
             activeHeroMovie = m;
         }
 
-        let activeHeroMovie = null;
-        function playHeroTrailer() {
-            if (activeHeroMovie) openDetailModal(activeHeroMovie.id);
-        }
-        function viewHeroDetails() {
-            if (activeHeroMovie) openDetailModal(activeHeroMovie.id);
-        }
+        function playHeroTrailer() { if (activeHeroMovie) openDetailModal(activeHeroMovie.id); }
+        function viewHeroDetails() { if (activeHeroMovie) openDetailModal(activeHeroMovie.id); }
 
-        // Filter by Genre
         function filterByGenre(genre) {
             currentFilter = genre;
             document.querySelectorAll('.genre-btn').forEach(btn => {
@@ -600,20 +500,16 @@
             if (genre === 'All') {
                 renderCatalog(movies);
             } else {
-                const filtered = movies.filter(m => m.genre.toLowerCase() === genre.toLowerCase());
-                renderCatalog(filtered);
+                renderCatalog(movies.filter(m => m.genre.toLowerCase() === genre.toLowerCase()));
             }
         }
 
-        // Search Handlers
         function handleSearch(query) {
             const q = query.toLowerCase().trim();
             const results = movies.filter(m => m.title.toLowerCase().includes(q) || m.genre.toLowerCase().includes(q));
             
             const searchGrid = document.getElementById('searchResultsGrid');
-            const exploreGrid = document.getElementById('exploreGrid');
             const searchCount = document.getElementById('searchResultCount');
-
             if (searchCount) searchCount.textContent = `Found ${results.length} results`;
 
             const html = results.map(m => `
@@ -621,59 +517,42 @@
                     <div class="relative aspect-[2/3] overflow-hidden bg-surfaceLight">
                         <img src="${m.poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                         <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-obsidian/80 backdrop-blur-md text-amber-400 text-[10px] font-bold flex items-center space-x-1 border border-white/10">
-                            <i class="fa-solid fa-star text-[9px]"></i>
-                            <span>${m.rating}</span>
+                            <i class="fa-solid fa-star text-[9px]"></i><span>${m.rating}</span>
                         </span>
                     </div>
                     <div class="p-3 space-y-1">
                         <h4 class="font-bold text-xs text-white truncate">${m.title}</h4>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>${m.year}</span>
-                            <span>${m.duration}</span>
-                        </div>
+                        <div class="flex items-center justify-between text-[10px] text-gray-400"><span>${m.year}</span><span>${m.duration}</span></div>
                     </div>
                 </div>
             `).join('');
 
-            if (searchGrid) searchGrid.innerHTML = html || `<div class="col-span-2 text-center py-12 text-gray-500 text-xs">No movies found matching "${query}"</div>`;
+            if (searchGrid) searchGrid.innerHTML = html || `<div class="col-span-2 text-center py-12 text-gray-500 text-xs">No movies found</div>`;
         }
 
-        // Sort Movies
         function sortMovies(criteria) {
             let sorted = [...movies];
-            if (criteria === 'rating') {
-                sorted.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating));
-            } else if (criteria === 'title') {
-                sorted.sort((a,b) => a.title.localeCompare(b.title));
-            } else {
-                sorted.sort((a,b) => parseInt(b.year) - parseInt(a.year));
-            }
+            if (criteria === 'rating') sorted.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating));
+            else if (criteria === 'title') sorted.sort((a,b) => a.title.localeCompare(b.title));
+            else sorted.sort((a,b) => parseInt(b.year) - parseInt(a.year));
             renderCatalog(sorted);
         }
 
-        // Tab Switching
         function switchTab(tabId) {
             ['home', 'explore', 'search', 'watchlist', 'downloads'].forEach(t => {
                 document.getElementById(`tab-${t}`).classList.add('hidden');
-                const navBtn = document.getElementById(`nav-${t}`);
-                if (navBtn) {
-                    navBtn.className = "nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition";
-                }
+                const btn = document.getElementById(`nav-${t}`);
+                if (btn) btn.className = "nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition";
             });
-
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
             const activeNav = document.getElementById(`nav-${tabId}`);
-            if (activeNav) {
-                activeNav.className = "nav-btn flex flex-col items-center space-y-1 text-primary transition";
-            }
-
+            if (activeNav) activeNav.className = "nav-btn flex flex-col items-center space-y-1 text-primary transition";
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (tabId === 'watchlist') renderWatchlist();
             if (tabId === 'downloads') renderDownloads();
         }
 
-        // Detail Modal
         function openDetailModal(id) {
             activeMovie = movies.find(m => m.id === id);
             if (!activeMovie) return;
@@ -684,26 +563,19 @@
             document.getElementById('modalRating').textContent = activeMovie.rating;
             document.getElementById('modalDuration').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${activeMovie.duration}`;
             document.getElementById('modalSynopsis').textContent = activeMovie.synopsis;
-            
             document.getElementById('modalGenres').innerHTML = `<span class="px-2 py-0.5 rounded bg-white/10 text-gray-300 text-[10px] font-semibold">${activeMovie.genre}</span>`;
 
             updateModalWatchlistButtonState();
             document.getElementById('detailModal').classList.remove('hidden');
         }
 
-        function closeDetailModal() {
-            document.getElementById('detailModal').classList.add('hidden');
-        }
+        function closeDetailModal() { document.getElementById('detailModal').classList.add('hidden'); }
 
-        // Watchlist Logic
         function toggleWatchlistCurrent() {
             if (!activeMovie) return;
             const index = watchlist.findIndex(w => w.id === activeMovie.id);
-            if (index > -1) {
-                watchlist.splice(index, 1);
-            } else {
-                watchlist.push(activeMovie);
-            }
+            if (index > -1) watchlist.splice(index, 1);
+            else watchlist.push(activeMovie);
             localStorage.setItem('filmvault_watchlist', JSON.stringify(watchlist));
             updateWatchlistBadge();
             updateModalWatchlistButtonState();
@@ -712,112 +584,75 @@
         function updateModalWatchlistButtonState() {
             if (!activeMovie) return;
             const exists = watchlist.some(w => w.id === activeMovie.id);
-            const btnText = document.getElementById('modalWatchlistText');
-            const btnIcon = document.querySelector('#modalWatchlistBtn i');
-            
-            if (exists) {
-                btnText.textContent = "In Watchlist";
-                btnIcon.className = "fa-solid fa-bookmark text-primary";
-            } else {
-                btnText.textContent = "Add to Watchlist";
-                btnIcon.className = "fa-regular fa-bookmark";
-            }
+            document.getElementById('modalWatchlistText').textContent = exists ? "In Watchlist" : "Add to Watchlist";
+            document.querySelector('#modalWatchlistBtn i').className = exists ? "fa-solid fa-bookmark text-primary" : "fa-regular fa-bookmark";
         }
 
         function updateWatchlistBadge() {
             const badge = document.getElementById('watchlistBadge');
-            if (watchlist.length > 0) {
-                badge.textContent = watchlist.length;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
+            badge.textContent = watchlist.length;
+            if (watchlist.length > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
         }
 
         function renderWatchlist() {
             const grid = document.getElementById('watchlistGrid');
-            const countEl = document.getElementById('watchlistCount');
-            countEl.textContent = `${watchlist.length} items`;
-
+            document.getElementById('watchlistCount').textContent = `${watchlist.length} items`;
             if (watchlist.length === 0) {
-                grid.innerHTML = `<div class="col-span-2 text-center py-16 text-gray-500 text-xs">Your watchlist is empty. Tap bookmark on any movie!</div>`;
+                grid.innerHTML = `<div class="col-span-2 text-center py-16 text-gray-500 text-xs">Your watchlist is empty.</div>`;
                 return;
             }
-
             grid.innerHTML = watchlist.map(m => `
                 <div onclick="openDetailModal('${m.id}')" class="glass-card rounded-2xl overflow-hidden group cursor-pointer transition transform hover:-translate-y-1">
                     <div class="relative aspect-[2/3] overflow-hidden bg-surfaceLight">
                         <img src="${m.poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                         <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-obsidian/80 backdrop-blur-md text-amber-400 text-[10px] font-bold flex items-center space-x-1 border border-white/10">
-                            <i class="fa-solid fa-star text-[9px]"></i>
-                            <span>${m.rating}</span>
+                            <i class="fa-solid fa-star text-[9px]"></i><span>${m.rating}</span>
                         </span>
                     </div>
                     <div class="p-3 space-y-1">
                         <h4 class="font-bold text-xs text-white truncate">${m.title}</h4>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>${m.year}</span>
-                            <span>${m.duration}</span>
-                        </div>
+                        <div class="flex items-center justify-between text-[10px] text-gray-400"><span>${m.year}</span><span>${m.duration}</span></div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Download Manager Logic
         function startDownload(quality) {
             if (!activeMovie) return;
             closeDetailModal();
-
-            const existing = downloads.find(d => d.id === activeMovie.id && d.quality === quality);
-            if (!existing) {
-                const newDownload = {
-                    id: activeMovie.id,
-                    title: activeMovie.title,
-                    poster: activeMovie.poster,
-                    quality: quality,
-                    progress: 10,
-                    status: 'Downloading',
+            if (!downloads.some(d => d.id === activeMovie.id && d.quality === quality)) {
+                downloads.unshift({
+                    id: activeMovie.id, title: activeMovie.title, poster: activeMovie.poster,
+                    quality: quality, progress: 10, status: 'Downloading',
                     size: quality === '4K' ? '8.4 GB' : quality === '1080p' ? '2.6 GB' : '1.2 GB'
-                };
-                downloads.unshift(newDownload);
+                });
                 localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
                 updateDownloadBadge();
                 renderDownloads();
 
-                // Simulate progress
-                let currentProg = 10;
+                let prog = 10;
                 const interval = setInterval(() => {
-                    currentProg += 15;
+                    prog += 15;
                     const d = downloads.find(item => item.id === activeMovie.id && item.quality === quality);
                     if (d) {
-                        if (currentProg >= 100) {
-                            d.progress = 100;
-                            d.status = 'Completed';
-                            clearInterval(interval);
-                        } else {
-                            d.progress = currentProg;
-                        }
+                        if (prog >= 100) { d.progress = 100; d.status = 'Completed'; clearInterval(interval); }
+                        else d.progress = prog;
                         localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
                         renderDownloads();
-                    } else {
-                        clearInterval(interval);
-                    }
+                    } else clearInterval(interval);
                 }, 800);
             }
-
             switchTab('downloads');
         }
 
         function renderDownloads() {
             const listEl = document.getElementById('downloadsList');
             updateDownloadBadge();
-
             if (downloads.length === 0) {
-                listEl.innerHTML = `<div class="text-center py-16 text-gray-500 text-xs glass-card rounded-2xl">No active downloads. Select a movie and tap download!</div>`;
+                listEl.innerHTML = `<div class="text-center py-16 text-gray-500 text-xs glass-card rounded-2xl">No active downloads.</div>`;
                 return;
             }
-
             listEl.innerHTML = downloads.map(d => `
                 <div class="glass-card rounded-2xl p-3.5 flex items-center space-x-3.5">
                     <img src="${d.poster}" alt="${d.title}" class="w-14 h-20 object-cover rounded-xl border border-white/10">
@@ -827,8 +662,7 @@
                             <span class="px-2 py-0.5 rounded text-[9px] font-bold ${d.status === 'Completed' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-primary/20 text-primary border border-primary/30'}">${d.status}</span>
                         </div>
                         <div class="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>${d.quality} • ${d.size}</span>
-                            <span>${d.progress}%</span>
+                            <span>${d.quality} • ${d.size}</span><span>${d.progress}%</span>
                         </div>
                         <div class="w-full bg-surfaceLight rounded-full h-1.5 overflow-hidden border border-white/5">
                             <div class="bg-primary h-full transition-all duration-300" style="width: ${d.progress}%"></div>
@@ -855,36 +689,25 @@
 
         function updateDownloadBadge() {
             const badge = document.getElementById('downloadBadge');
-            const activeCount = downloads.filter(d => d.status === 'Downloading').length;
-            if (activeCount > 0) {
-                badge.textContent = activeCount;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
+            const active = downloads.filter(d => d.status === 'Downloading').length;
+            badge.textContent = active;
+            if (active > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
         }
 
-        // Config Modal
         function openConfigModal() {
             document.getElementById('configHost').value = apiConfig.host;
             document.getElementById('configApiKey').value = apiConfig.apiKey;
-            document.getElementById('configCorsMode').value = apiConfig.corsMode;
             document.getElementById('configModal').classList.remove('hidden');
         }
 
-        function closeConfigModal() {
-            document.getElementById('configModal').classList.add('hidden');
-        }
+        function closeConfigModal() { document.getElementById('configModal').classList.add('hidden'); }
 
         function saveApiConfig() {
             apiConfig.host = document.getElementById('configHost').value.trim();
             apiConfig.apiKey = document.getElementById('configApiKey').value.trim();
-            apiConfig.corsMode = document.getElementById('configCorsMode').value;
-
             localStorage.setItem('fv_host', apiConfig.host);
             localStorage.setItem('fv_apikey', apiConfig.apiKey);
-            localStorage.setItem('fv_cors', apiConfig.corsMode);
-
             closeConfigModal();
             fetchLiveMovies();
         }
