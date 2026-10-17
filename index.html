@@ -1,687 +1,1993 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FilmVault - Movieera-101 Live Catalog & Downloader</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: '#090a0f',
-                        surface: '#12151f',
-                        surfaceLight: '#1b1f2e',
-                        primary: '#f43f5e',
-                        primaryHover: '#e11d48',
-                        accent: '#8b5cf6'
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #090a0f;
-            color: #f3f4f6;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .glass {
-            background: rgba(18, 21, 31, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-        .glass-card {
-            background: rgba(27, 31, 46, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .glass-nav {
-            background: rgba(9, 10, 15, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>OyoData — Best SME Data &amp; VTU Platform in Nigeria</title>
+  <script src="https://korablobstorage.blob.core.windows.net/modal-bucket/korapay-collections.min.js"></script>
+  <style>
+#view-landing{
+      --bg: #f4f5fa;
+      --card-bg: #ffffff;
+      --text-dark: #1b1834;
+      --text-muted: #726e8d;
+      --input-border: #e3e1ee;
+      --brand-orange: #f4841f;
+      --brand-red: #d9381e;
+      --brand-btn: #1b1834;
+      --brand-accent: #fcf4eb;
+      
+      
+      --foot-bg: #1e1b38;
+      --foot-text: #c5c2de;
+      --foot-head: #ffffff;
+      --foot-highlight: #ffc107;
+      --foot-border: rgba(255, 255, 255, 0.1);
+    }
+#view-landing,#view-landing *{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+#view-landing{ background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; min-height: 100vh; }
+#view-landing a{ text-decoration: none; color: inherit; }
+#view-landing .icon{ width: 20px; height: 20px; fill: currentColor; display: inline-block; vertical-align: middle; }
+#view-landing nav{
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--input-border);
+    }
+#view-landing .nav-wrap{
+      max-width: 1100px; margin: 0 auto;
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative;
+    }
+#view-landing .brand{ display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.4rem; color: var(--brand-red); letter-spacing: -0.5px; }
+#view-landing .brand-logo{ width: 48px; height: auto; display: block; }
+#view-landing .menu-toggle-btn{
+      background: #f0eff6; border: none; border-radius: 12px;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-dark); transition: background 0.2s;
+    }
+#view-landing .menu-toggle-btn:hover{ background: var(--brand-accent); color: var(--brand-orange); }
+#view-landing .mobile-dropdown{
+      display: none; flex-direction: column; gap: 8px;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: #ffffff; border-bottom: 1px solid var(--input-border);
+      padding: 16px 20px; box-shadow: 0 10px 25px rgba(27, 24, 52, 0.08);
+      animation: fadeIn 0.2s ease-out;
+    }
+#view-landing .mobile-dropdown.open{ display: flex; }
+@keyframes fadeIn{ from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+#view-landing .nav-link-item{
+      padding: 12px 16px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;
+      color: var(--text-dark); display: flex; align-items: center; gap: 10px;
+      background: #f7f7f9; transition: all 0.2s;
+    }
+#view-landing .nav-link-item:hover{ background: var(--brand-accent); color: var(--brand-orange); }
+#view-landing .hero{
+      padding: 50px 20px 40px; text-align: center; position: relative;
+      background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, var(--bg) 100%);
+    }
+#view-landing .hero-badge{
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 20px;
+      background: var(--brand-accent); border: 1px solid rgba(244, 132, 31, 0.3);
+      color: var(--brand-orange); font-size: 0.8rem; font-weight: 800; margin-bottom: 20px;
+    }
+#view-landing .hero h1{
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+      color: var(--text-dark); line-height: 1.15; max-width: 820px; margin: 0 auto 18px; letter-spacing: -0.5px;
+    }
+#view-landing .hero h1 span{ color: var(--brand-orange); }
+#view-landing .hero p{
+      font-size: 1.02rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 32px; line-height: 1.6;
+    }
+#view-landing .hero-cta{ display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 380px; margin: 0 auto 36px; width: 100%; }
+#view-landing .btn{
+      width: 100%; padding: 14px 20px; border-radius: 14px; font-weight: 700; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; cursor: pointer; border: none;
+    }
+#view-landing .btn-getstarted{
+      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      color: #ffffff; box-shadow: 0 4px 14px rgba(244, 132, 31, 0.35);
+    }
+#view-landing .btn-getstarted:hover{ opacity: 0.94; transform: translateY(-1px); }
+#view-landing .btn-login{
+      background: var(--brand-btn); color: #ffffff;
+      box-shadow: 0 4px 14px rgba(27, 24, 52, 0.2);
+    }
+#view-landing .btn-login:hover{ background: #2c2754; transform: translateY(-1px); }
+#view-landing .btn-quick{
+      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      color: #ffffff; box-shadow: 0 4px 14px rgba(244, 132, 31, 0.35);
+    }
+#view-landing .btn-quick:hover{ opacity: 0.94; transform: translateY(-1px); }
+#view-landing .trust-strip{
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      padding: 24px 20px; background: #ffffff; border-top: 1px solid var(--input-border); border-bottom: 1px solid var(--input-border);
+    }
+#view-landing .trust-item{ font-size: 0.88rem; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
+#view-landing .trust-item .icon{ color: var(--brand-orange); width: 18px; height: 18px; }
+#view-landing .container{ max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
+#view-landing .stats-card{
+      background: linear-gradient(135deg, #1b1834 0%, #2c2754 100%);
+      color: #ffffff; border-radius: 24px; padding: 32px 24px;
+      box-shadow: 0 12px 30px rgba(27, 24, 52, 0.12);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center;
+      margin-bottom: 60px;
+    }
+#view-landing .stat-num{ font-size: 2rem; font-weight: 800; color: var(--brand-orange); margin-bottom: 2px; }
+#view-landing .stat-lbl{ font-size: 0.78rem; text-transform: uppercase; opacity: 0.85; font-weight: 700; letter-spacing: 0.5px; }
+#view-landing .sec-head{ text-align: center; max-width: 580px; margin: 0 auto 40px; }
+#view-landing .sec-head .tag{ font-size: 0.78rem; font-weight: 800; color: var(--brand-orange); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+#view-landing .sec-head h2{ font-size: 1.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
+#view-landing .services-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+#view-landing .serv-card{
+      background: var(--card-bg); border-radius: 20px; padding: 24px;
+      border: 1px solid rgba(226, 224, 238, 0.8);
+      box-shadow: 0 6px 18px rgba(27, 24, 52, 0.03); transition: all 0.25s ease;
+    }
+#view-landing .serv-card:hover{ transform: translateY(-4px); border-color: var(--brand-orange); }
+#view-landing .serv-icon-box{
+      width: 44px; height: 44px; border-radius: 12px; background: var(--brand-accent);
+      color: var(--brand-orange); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+#view-landing .serv-card h3{ font-size: 1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
+#view-landing .serv-card p{ font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+#view-landing .reseller-cta{
+      background: linear-gradient(135deg, #1b1834 0%, #2c2754 100%);
+      color: #ffffff; border-radius: 24px; padding: 40px 24px; text-align: center;
+      box-shadow: 0 12px 30px rgba(27, 24, 52, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 60px;
+    }
+#view-landing .reseller-cta h2{ font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
+#view-landing .reseller-cta p{ font-size: 0.95rem; opacity: 0.88; max-width: 580px; margin: 0 auto 24px; line-height: 1.6; }
+#view-landing .btn-cta-main{
+      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      color: #ffffff; font-weight: 800; padding: 14px 32px; border-radius: 14px; font-size: 0.95rem; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 18px rgba(244, 132, 31, 0.35);
+    }
+#view-landing footer{
+      background-color: var(--foot-bg);
+      color: var(--foot-text);
+      padding: 56px 24px 32px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+#view-landing .foot-container{
+      max-width: 600px;
+      margin: 0 auto;
+    }
+#view-landing .foot-brand-header{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+#view-landing .foot-brand-title{
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      font-family: Georgia, serif;
+    }
+#view-landing .foot-desc{
+      color: var(--foot-text);
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+#view-landing .foot-desc strong{
+      color: var(--foot-highlight);
+      font-weight: 700;
+    }
+#view-landing .foot-sec-title{
+      color: var(--foot-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      margin-top: 28px;
+    }
+#view-landing .foot-list{
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+#view-landing .foot-list a{
+      color: var(--foot-text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+#view-landing .foot-list a:hover{
+      color: var(--foot-highlight);
+    }
+#view-landing .foot-contact-item{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--foot-text);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+#view-landing .foot-contact-item .icon{
+      width: 18px;
+      height: 18px;
+    }
+#view-landing .foot-divider{
+      height: 1px;
+      background: var(--foot-border);
+      margin: 36px 0 24px 0;
+    }
+#view-landing .foot-bottom-text{
+      font-size: 0.88rem;
+      color: var(--foot-text);
+      opacity: 0.85;
+      text-align: left;
+    }
+#view-landing .foot-bottom-text strong{
+      color: var(--foot-highlight);
+      font-weight: 700;
+    }
+#view-auth{
+      --bg: #f5f4fe;
+      --card-bg: #ffffff;
+      --text-dark: #1b1834;
+      --text-muted: #5e5a7a;
+      --input-border: #e6e4f2;
+      --brand-orange: #f4841f;
+      --brand-red: #d9381e;
+      --error-bg: #fce8e6;
+      --error-text: #c5221f;
+      --success-bg: #e6f4ea;
+      --success-text: #137333;
+    }
+#view-auth,#view-auth *{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+#view-auth{ background-color: var(--bg); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 16px; }
+#view-auth .auth-card{ background: var(--card-bg); width: 100%; max-width: 400px; border-radius: 24px; padding: 32px 28px; box-shadow: 0 10px 30px rgba(27, 24, 52, 0.03); border: 1px solid #f0eef8; }
+#view-auth .brand-link{ text-decoration: none; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; cursor: pointer; }
+#view-auth .brand-logo{ width: 52px; height: auto; display: block; }
+#view-auth .brand-name{ font-size: 1.5rem; font-weight: 800; color: var(--brand-red); letter-spacing: -0.4px; }
+#view-auth h2{ font-size: 1.55rem; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
+#view-auth .subtitle{ font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+#view-auth .form-group{ margin-bottom: 16px; }
+#view-auth .form-group-header{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+#view-auth label{ display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-dark); }
+#view-auth .forgot-link{ font-size: 0.8rem; font-weight: 700; color: var(--brand-orange); text-decoration: none; cursor: pointer; }
+#view-auth .forgot-link:hover{ text-decoration: underline; }
+#view-auth input{ width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid var(--input-border); font-size: 0.95rem; outline: none; }
+#view-auth input:focus{ border-color: var(--brand-orange); }
+#view-auth .btn-submit{ width: 100%; padding: 14px; border: none; border-radius: 14px; background: linear-gradient(90deg, var(--brand-orange), var(--brand-red)); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 8px; }
+#view-auth .btn-submit:disabled{ opacity: 0.6; cursor: not-allowed; }
+#view-auth .status-alert{ margin-top: 16px; padding: 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; display: none; }
+#view-auth .status-alert.error{ display: block; background: var(--error-bg); color: var(--error-text); }
+#view-auth .status-alert.success{ display: block; background: var(--success-bg); color: var(--success-text); }
+#view-auth .toggle-footer{ margin-top: 24px; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+#view-auth .toggle-footer a{ color: var(--brand-red); font-weight: 700; text-decoration: none; }
+#view-auth .copyright-footer{ margin-top: 28px; text-align: center; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+#view-dash{
+      --bg: #f4f5fa;
+      --card-bg: #ffffff;
+      --text-dark: #1b1834;
+      --text-muted: #726e8d;
+      --input-border: #e3e1ee;
+      --brand-orange: #f4841f;
+      --brand-red: #d9381e;
+      --brand-btn: #1b1834;
+      --brand-accent: #fcf4eb;
+      --error-bg: #fce8e6;
+      --error-text: #c5221f;
+      --success-bg: #e6f4ea;
+      --success-text: #137333;
+    }
+#view-dash,#view-dash *{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+#view-dash{ background-color: var(--bg); min-height: 100vh; padding-bottom: 90px; color: var(--text-dark); display: flex; justify-content: center; }
+#view-dash .app-viewport{ width: 100%; max-width: 480px; padding: 16px; position: relative; }
+#view-dash .top-bar{ display: flex; justify-content: space-between; align-items: center; padding: 12px 0 20px 0; }
+#view-dash .brand{ display: flex; align-items: center; gap: 10px; }
+#view-dash .brand-logo{ width: 48px; height: auto; }
+#view-dash .brand-name{ font-size: 1.4rem; font-weight: 800; color: var(--brand-red); letter-spacing: -0.5px; }
+#view-dash .btn-icon-logout{ background: #ffffff; border: 1px solid var(--input-border); padding: 8px 14px; border-radius: 12px; font-weight: 700; color: var(--brand-red); font-size: 0.8rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+#view-dash .wallet-card{
+      background: linear-gradient(135deg, #1b1834 0%, #2c2754 100%);
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(27, 24, 52, 0.15);
+      margin-bottom: 18px;
+    }
+#view-dash .wallet-top{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+#view-dash .wallet-title-group{ display: flex; align-items: center; gap: 8px; }
+#view-dash .wallet-title{ font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; opacity: 0.85; font-weight: 700; }
+#view-dash .eye-btn{
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      cursor: pointer;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      gap: 4px;
+    }
+#view-dash .eye-btn svg{ width: 16px; height: 16px; fill: currentColor; }
+#view-dash .user-tag{ font-size: 0.72rem; background: rgba(255,255,255,0.12); padding: 4px 10px; border-radius: 20px; word-break: break-all; max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#view-dash .wallet-amount{ font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+#view-dash .wallet-actions{ display: flex; gap: 10px; position: relative; z-index: 2; }
+#view-dash .btn-topup{ background: var(--brand-orange); color: #ffffff; border: none; padding: 12px 18px; border-radius: 14px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(244, 132, 31, 0.3); }
+#view-dash .btn-topup svg{ width: 16px; height: 16px; fill: currentColor; }
+#view-dash .btn-resolve{ background: rgba(255, 255, 255, 0.12); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px 14px; border-radius: 14px; font-weight: 600; font-size: 0.82rem; cursor: pointer; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 6px; }
+#view-dash .reseller-banner{ background: linear-gradient(135deg, #f4841f 0%, #d9381e 100%); color: #ffffff; border-radius: 20px; padding: 18px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+#view-dash .reseller-banner-text h4{ font-size: 1rem; font-weight: 800; margin-bottom: 2px; }
+#view-dash .reseller-banner-text p{ font-size: 0.78rem; opacity: 0.9; }
+#view-dash .btn-upgrade-now{ background: #ffffff; color: var(--brand-red); border: none; padding: 10px 16px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
+#view-dash .section-head{ font-size: 1.05rem; font-weight: 800; color: var(--text-dark); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+#view-dash .vtu-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+#view-dash .vtu-item{ background: var(--card-bg); border-radius: 18px; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; border: 1px solid rgba(226, 224, 238, 0.6); box-shadow: 0 4px 12px rgba(27, 24, 52, 0.02); }
+#view-dash .vtu-icon{ width: 44px; height: 44px; border-radius: 14px; background: var(--brand-accent); display: flex; align-items: center; justify-content: center; color: var(--brand-orange); }
+#view-dash .vtu-icon svg{ width: 22px; height: 22px; fill: currentColor; }
+#view-dash .vtu-label{ font-size: 0.75rem; font-weight: 700; color: var(--text-dark); text-align: center; }
+#view-dash .service-screen{ background: var(--card-bg); border-radius: 24px; padding: 22px; border: 1px solid var(--input-border); box-shadow: 0 10px 30px rgba(27, 24, 52, 0.03); }
+#view-dash .form-group{ margin-bottom: 16px; }
+#view-dash .form-group label{ display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+#view-dash .provider-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #f7f7f9; padding: 8px; border-radius: 14px; }
+#view-dash .provider-btn{ background: #ffffff; border: 2px solid transparent; border-radius: 10px; padding: 10px 2px; text-align: center; font-weight: 700; font-size: 0.75rem; color: var(--text-muted); cursor: pointer; }
+#view-dash .provider-btn.selected{ border-color: var(--brand-orange); color: var(--text-dark); box-shadow: 0 2px 8px rgba(244, 132, 31, 0.15); }
+#view-dash select,#view-dash input{ width: 100%; padding: 14px; border-radius: 14px; border: 1.5px solid var(--input-border); font-size: 0.9rem; color: var(--text-dark); outline: none; background: #ffffff; }
+#view-dash .btn-action{ width: 100%; padding: 15px; border: none; border-radius: 14px; background: var(--brand-btn); color: #ffffff; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-top: 8px; }
+#view-dash .btn-secondary{ background: #6c5c53; margin-top: 8px; }
+#view-dash .btn-back{ width: 100%; padding: 12px; background: #f0eff6; border: none; border-radius: 14px; color: var(--text-dark); font-weight: 700; font-size: 0.85rem; cursor: pointer; margin-top: 14px; }
+#view-dash .ref-box{ background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid var(--input-border); margin-bottom: 18px; }
+#view-dash .ref-link-field{ display: flex; gap: 8px; margin-top: 8px; }
+#view-dash .ref-link-field input{ font-size: 0.8rem; background: #f7f7f9; }
+#view-dash .btn-copy{ background: var(--brand-orange); color: #ffffff; border: none; padding: 0 16px; border-radius: 12px; font-weight: 700; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+#view-dash .ref-actions-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+#view-dash .btn-ref-act{ padding: 12px; border-radius: 12px; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer; text-align: center; }
+#view-dash .btn-ref-act.main{ background: var(--brand-orange); color: #ffffff; }
+#view-dash .btn-ref-act.bank{ background: #f0eff6; color: var(--text-dark); }
+#view-dash .tx-list{ display: flex; flex-direction: column; gap: 10px; }
+#view-dash .tx-item{ background: var(--card-bg); border-radius: 16px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(226, 224, 238, 0.6); cursor: pointer; transition: transform 0.15s ease; }
+#view-dash .tx-item:active{ transform: scale(0.98); }
+#view-dash .tx-left{ display: flex; align-items: center; gap: 12px; }
+#view-dash .tx-icon{ width: 40px; height: 40px; border-radius: 12px; background: #f4f5fa; display: flex; align-items: center; justify-content: center; color: var(--brand-orange); }
+#view-dash .tx-icon svg{ width: 20px; height: 20px; fill: currentColor; }
+#view-dash .tx-title{ font-weight: 700; font-size: 0.88rem; color: var(--text-dark); }
+#view-dash .tx-date{ font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+#view-dash .tx-right{ text-align: right; }
+#view-dash .tx-amount{ font-weight: 800; font-size: 0.9rem; }
+#view-dash .tx-amount.debit{ color: var(--brand-red); }
+#view-dash .tx-amount.credit{ color: var(--success-text); }
+#view-dash .tx-badge{ display: inline-block; font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; margin-top: 2px; }
+#view-dash .tx-badge.success{ background: var(--success-bg); color: var(--success-text); }
+#view-dash .tx-badge.failed{ background: var(--error-bg); color: var(--error-text); }
+#view-dash .modal-overlay{ position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(27, 24, 52, 0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: flex-end; z-index: 1000; }
+#view-dash .modal-sheet{ background: var(--card-bg); width: 100%; max-width: 480px; border-radius: 28px 28px 0 0; padding: 24px; animation: slideUp 0.25s ease-out; }
+@keyframes slideUp{ from { transform: translateY(100%); } to { transform: translateY(0); } }
+#view-dash .modal-header{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+#view-dash .modal-title{ font-size: 1.1rem; font-weight: 800; }
+#view-dash .btn-close{ background: #f0eff6; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; }
+#view-dash .receipt-box{ background: #f9f9fc; border: 1px solid var(--input-border); border-radius: 20px; padding: 20px; text-align: center; margin-bottom: 16px; }
+#view-dash .receipt-header-icon{ width: 56px; height: 56px; border-radius: 50%; background: var(--success-bg); color: var(--success-text); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; }
+#view-dash .receipt-header-icon svg{ width: 28px; height: 28px; fill: currentColor; }
+#view-dash .receipt-amount{ font-size: 2rem; font-weight: 800; color: var(--text-dark); margin: 6px 0; }
+#view-dash .receipt-details-list{ border-top: 1px dashed var(--input-border); margin-top: 16px; padding-top: 14px; text-align: left; }
+#view-dash .receipt-row{ display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.85rem; }
+#view-dash .receipt-label{ color: var(--text-muted); font-weight: 600; }
+#view-dash .receipt-val{ font-weight: 700; color: var(--text-dark); word-break: break-all; }
+#view-dash .status-alert{ margin-top: 14px; padding: 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; display: none; }
+#view-dash .status-alert.error{ display: block; background: var(--error-bg); color: var(--error-text); }
+#view-dash .status-alert.success{ display: block; background: var(--success-bg); color: var(--success-text); }
+#view-dash .bottom-nav{
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-top: 1px solid var(--input-border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 10px 0 12px 0;
+      z-index: 900;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    }
+#view-dash .nav-btn{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      line-height: 1;
+    }
+#view-dash .nav-btn.active{ color: var(--brand-orange); }
+#view-dash .nav-icon{ width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
+#view-dash .nav-icon svg{ width: 100%; height: 100%; fill: currentColor; }
+
+html{scroll-behavior:smooth}
+body{margin:0}
+.view[hidden]{display:none!important}
+#view-auth .auth-wrap{display:flex;flex-direction:column;align-items:center;width:100%}
+.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
+
+  </style>
 </head>
-<body class="pb-24 min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Top Header -->
-    <header class="sticky top-0 z-50 glass px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30">
-                <i class="fa-solid fa-film text-white text-sm"></i>
-            </div>
-            <div>
-                <h1 class="font-extrabold text-lg tracking-wider bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">FILM<span class="text-primary">VAULT</span></h1>
-                <p class="text-[10px] text-gray-400 tracking-widest uppercase font-semibold">Movieera-101 Live Hub</p>
-            </div>
-        </div>
+<div class="view" id="v-landing" hidden><div id="view-landing">
+<!-- Navigation Header with Hamburger Button -->
+  <nav>
+    <div class="nav-wrap">
+      <a href="#home" class="brand">
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="brand-logo">
+          <defs>
+            <linearGradient id="oyoGradIndex" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFB000"/>
+              <stop offset="50%" stop-color="#FF5500"/>
+              <stop offset="100%" stop-color="#E03000"/>
+            </linearGradient>
+          </defs>
+          <rect x="70" y="85" width="70" height="16" rx="8" fill="url(#oyoGradIndex)"/>
+          <rect x="40" y="115" width="80" height="16" rx="8" fill="url(#oyoGradIndex)"/>
+          <rect x="58" y="145" width="70" height="16" rx="8" fill="url(#oyoGradIndex)"/>
+          <path d="M 230 40 L 320 40 C 390 40 440 85 440 155 C 440 225 390 270 320 270 L 230 270 Z" fill="#0A1922"/>
+          <path d="M 285 95 L 315 95 C 355 95 380 120 380 155 C 380 190 355 215 315 215 L 285 215 Z" fill="#FFFFFF"/>
+          <circle cx="210" cy="155" r="115" fill="url(#oyoGradIndex)"/>
+          <circle cx="210" cy="155" r="70" fill="#FFFFFF"/>
+          <rect x="180" y="105" width="60" height="100" rx="12" fill="url(#oyoGradIndex)"/>
+          <rect x="186" y="113" width="48" height="74" rx="4" fill="#FFFFFF"/>
+          <circle cx="210" cy="196" r="4" fill="#FFFFFF"/>
+          <path d="M 214 122 L 200 150 H 211 L 206 178 L 220 150 H 209 Z" fill="url(#oyoGradIndex)"/>
+        </svg>
+        OyoData
+      </a>
 
-        <div class="flex items-center space-x-2">
-            <button onclick="openConfigModal()" class="w-9 h-9 rounded-full glass-card flex items-center justify-center text-gray-300 hover:text-white transition active:scale-95" title="API Settings">
-                <i class="fa-solid fa-sliders text-xs"></i>
-            </button>
-            <button onclick="switchTab('search')" class="w-9 h-9 rounded-full glass-card flex items-center justify-center text-gray-300 hover:text-white transition active:scale-95" title="Search">
-                <i class="fa-solid fa-magnifying-glass text-xs"></i>
-            </button>
-            <button onclick="switchTab('watchlist')" class="w-9 h-9 rounded-full glass-card flex items-center justify-center text-gray-300 hover:text-white transition active:scale-95 relative" title="Watchlist">
-                <i class="fa-solid fa-bookmark text-xs"></i>
-                <span id="watchlistBadge" class="absolute -top-1 -right-1 w-4 h-4 bg-primary text-[9px] font-bold rounded-full flex items-center justify-center text-white hidden">0</span>
-            </button>
-        </div>
-    </header>
+      <!-- Three-Line Hamburger Icon -->
+      <button class="menu-toggle-btn" onclick="toggleMenu()" title="Toggle Menu">
+        <svg class="icon" style="width: 24px; height: 24px;" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
 
-    <!-- API Status Banner -->
-    <div id="apiStatusBanner" class="mx-4 mt-3 p-3 rounded-xl bg-surfaceLight/90 border border-primary/30 flex items-center justify-between text-xs">
-        <div class="flex items-center space-x-2.5">
-            <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
-            <div>
-                <p id="statusText" class="font-medium text-gray-200">Connecting to Movieera-101 /trending...</p>
-                <p id="statusSubtext" class="text-[10px] text-gray-400">Host: movieera-101.p.rapidapi.com</p>
-            </div>
-        </div>
-        <button onclick="fetchTrendingMovies()" class="px-3 py-1.5 bg-primary/25 hover:bg-primary/40 text-primary font-semibold rounded-lg transition text-[11px] border border-primary/40">
-            Sync API
-        </button>
+      <!-- Slide-down Menu Dropdown -->
+      <div class="mobile-dropdown" id="navDropdown">
+        <a href="#home" class="nav-link-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Home
+        </a>
+        <a href="#services" class="nav-link-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+          Services
+        </a>
+        <a href="#login" class="nav-link-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm9-14H5c-1.1 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+          Login
+        </a>
+        <a href="#signup" class="nav-link-item" style="color: var(--brand-red);">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          Create Account
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="top">
+    <div class="hero-badge">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      #1 Automated VTU Platform in Nigeria
+    </div>
+    <h1>Cheap &amp; Long-Lasting Data for <span>All Networks</span></h1>
+    <p>Automated SME &amp; CG Data bundles, instant airtime recharge, cable TV subscriptions, and WAEC/NECO result PINs delivered in seconds.</p>
+    
+    <!-- Hero Action Buttons -->
+    <div class="hero-cta">
+      <a href="#signup" class="btn btn-getstarted">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        Get Started
+      </a>
+
+      <a href="#login" class="btn btn-login">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm9-14H5c-1.1 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        Login
+      </a>
+
+      </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+      50,000+ Active Users
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+      5-Second Automated Delivery
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      Bank-Grade Security
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+      24/7 Automated System
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Platform Stats -->
+    <div class="stats-card">
+      <div>
+        <div class="stat-num">50,000+</div>
+        <div class="stat-lbl">Active Resellers</div>
+      </div>
+      <div>
+        <div class="stat-num">1,000,000+</div>
+        <div class="stat-lbl">Orders Processed</div>
+      </div>
+      <div>
+        <div class="stat-num">99.9%</div>
+        <div class="stat-lbl">Instant Success Rate</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-lbl">Automated Support</div>
+      </div>
     </div>
 
-    <!-- Main Content Container -->
-    <main class="flex-1 max-w-md w-full mx-auto px-4 mt-4">
+    <!-- Services Grid -->
+    <section id="services">
+      <div class="sec-head">
+        <span class="tag">OUR SERVICES</span>
+        <h2>Everything You Need in One Place</h2>
+        <p>Top up your devices or start earning daily as an OyoData reseller.</p>
+      </div>
 
-        <!-- HOME TAB -->
-        <div id="tab-home" class="space-y-6">
-            <!-- Featured Hero Spotlight -->
-            <div id="heroSpotlight" class="relative rounded-2xl overflow-hidden glass-card shadow-2xl h-80 flex flex-col justify-end p-5">
-                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent z-10"></div>
-                <div id="heroImageBg" class="absolute inset-0 bg-cover bg-center filter brightness-75 scale-105 transition duration-700" style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80')"></div>
-                
-                <div class="relative z-20 space-y-2">
-                    <div class="flex items-center space-x-2">
-                        <span class="px-2.5 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase tracking-wider">Trending Live</span>
-                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 backdrop-blur-md text-gray-200 text-[10px] font-semibold">4K UHD</span>
-                        <span class="flex items-center text-amber-400 text-xs font-bold"><i class="fa-solid fa-star mr-1"></i><span id="heroRating">9.3</span></span>
-                    </div>
-                    <h2 id="heroTitle" class="text-2xl font-extrabold tracking-tight text-white leading-tight">Loading Trending Movies...</h2>
-                    <p id="heroDesc" class="text-xs text-gray-300 line-clamp-2">Fetching trending titles from Movieera-101 API...</p>
-                    
-                    <div class="flex items-center space-x-3 pt-2">
-                        <button onclick="playHeroTrailer()" class="flex-1 py-2.5 px-4 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-primary/30 active:scale-95">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Stream / Download</span>
-                        </button>
-                        <button onclick="viewHeroDetails()" class="py-2.5 px-4 glass hover:bg-white/10 text-white font-semibold rounded-xl text-xs flex items-center justify-center space-x-2 transition active:scale-95">
-                            <i class="fa-solid fa-circle-info"></i>
-                            <span>Details</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories / Genre Pills -->
-            <div class="space-y-3">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-sm tracking-wide text-gray-200 uppercase">Categories</h3>
-                    <span class="text-xs text-primary font-medium cursor-pointer" onclick="switchTab('explore')">See All</span>
-                </div>
-                <div class="flex space-x-2 overflow-x-auto hide-scrollbar pb-1" id="genreContainer">
-                    <button onclick="filterByGenre('All')" class="genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-primary text-white whitespace-nowrap transition">All Movies</button>
-                    <button onclick="filterByGenre('Action')" class="genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold glass-card text-gray-300 whitespace-nowrap hover:text-white transition">Action</button>
-                    <button onclick="filterByGenre('Sci-Fi')" class="genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold glass-card text-gray-300 whitespace-nowrap hover:text-white transition">Sci-Fi</button>
-                    <button onclick="filterByGenre('Drama')" class="genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold glass-card text-gray-300 whitespace-nowrap hover:text-white transition">Drama</button>
-                    <button onclick="filterByGenre('Thriller')" class="genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold glass-card text-gray-300 whitespace-nowrap hover:text-white transition">Thriller</button>
-                </div>
-            </div>
-
-            <!-- Movie Catalog Grid -->
-            <div class="space-y-3">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-sm tracking-wide text-gray-200 uppercase flex items-center space-x-2">
-                        <i class="fa-solid fa-clapperboard text-primary"></i>
-                        <span>Trending Catalog</span>
-                    </h3>
-                    <span id="catalogCount" class="text-xs text-gray-400 font-medium">0 items loaded</span>
-                </div>
-
-                <div id="movieGrid" class="grid grid-cols-2 gap-3.5">
-                    <div class="col-span-2 text-center py-12 glass-card rounded-2xl">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mb-3"></div>
-                        <p class="text-xs text-gray-400">Loading Movieera-101 /trending data...</p>
-                    </div>
-                </div>
-            </div>
+      <div class="services-grid">
+        <div class="serv-card">
+          <div class="serv-icon-box">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <h3>Cheap SME Data</h3>
+          <p>Instant activation for MTN, Airtel, Glo, and 9mobile at wholesale prices.</p>
         </div>
 
-        <!-- EXPLORE TAB -->
-        <div id="tab-explore" class="space-y-4 hidden">
-            <div class="relative">
-                <input type="text" id="exploreSearchInput" oninput="handleSearch(this.value)" placeholder="Search movies..." class="w-full bg-surfaceLight border border-white/10 rounded-xl px-4 py-3 pl-11 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary transition">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-xs"></i>
-            </div>
-            <div id="exploreGrid" class="grid grid-cols-2 gap-3.5"></div>
+        <div class="serv-card">
+          <div class="serv-icon-box">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <h3>Airtime VTU</h3>
+          <p>Instant airtime topups for all major Nigerian networks with bulk discounts.</p>
         </div>
 
-        <!-- SEARCH TAB -->
-        <div id="tab-search" class="space-y-4 hidden">
-            <h2 class="text-lg font-bold text-white">Movie Search</h2>
-            <div class="relative">
-                <input type="text" id="mainSearchInput" oninput="handleSearch(this.value)" placeholder="Type movie title..." class="w-full bg-surfaceLight border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary transition">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-gray-400 text-sm"></i>
-            </div>
-            <div id="searchResultsGrid" class="grid grid-cols-2 gap-3.5 pt-2">
-                <div class="col-span-2 text-center py-12 text-gray-500 text-xs">Start typing to search...</div>
-            </div>
+        <div class="serv-card">
+          <div class="serv-icon-box">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+          </div>
+          <h3>Cable TV Subscriptions</h3>
+          <p>Instant renewal for DStv, GOtv, and StarTimes with automated smartcard verification.</p>
         </div>
+      </div>
+    </section>
 
-        <!-- WATCHLIST TAB -->
-        <div id="tab-watchlist" class="space-y-4 hidden">
-            <div class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-white">My Watchlist</h2>
-                <span id="watchlistCount" class="text-xs px-2.5 py-1 rounded-full bg-surfaceLight text-gray-300">0 items</span>
-            </div>
-            <div id="watchlistGrid" class="grid grid-cols-2 gap-3.5"></div>
+    <!-- Reseller Banner -->
+    <div class="reseller-cta">
+      <h2>Start Your VTU Business Today and Start Earning</h2>
+      <p>Join over 50,000 smart entrepreneurs leveraging OyoData to resell cheap data, airtime, and bill payments with zero technical experience required.</p>
+      <a href="#signup" class="btn-cta-main">
+        Get Started Now
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- EXACT MATCH FOOTER SECTION -->
+  <footer>
+    <div class="foot-container">
+      <div class="foot-brand-header">
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: auto;">
+          <defs>
+            <linearGradient id="oyoGradFootExact" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFB000"/>
+              <stop offset="50%" stop-color="#FF5500"/>
+              <stop offset="100%" stop-color="#E03000"/>
+            </linearGradient>
+          </defs>
+          <rect x="70" y="85" width="70" height="16" rx="8" fill="url(#oyoGradFootExact)"/>
+          <rect x="40" y="115" width="80" height="16" rx="8" fill="url(#oyoGradFootExact)"/>
+          <rect x="58" y="145" width="70" height="16" rx="8" fill="url(#oyoGradFootExact)"/>
+          <path d="M 230 40 L 320 40 C 390 40 440 85 440 155 C 440 225 390 270 320 270 L 230 270 Z" fill="#FFFFFF"/>
+          <path d="M 285 95 L 315 95 C 355 95 380 120 380 155 C 380 190 355 215 315 215 L 285 215 Z" fill="#1e1b38"/>
+          <circle cx="210" cy="155" r="115" fill="url(#oyoGradFootExact)"/>
+          <circle cx="210" cy="155" r="70" fill="#1e1b38"/>
+          <rect x="180" y="105" width="60" height="100" rx="12" fill="url(#oyoGradFootExact)"/>
+          <rect x="186" y="113" width="48" height="74" rx="4" fill="#1e1b38"/>
+          <circle cx="210" cy="196" r="4" fill="#1e1b38"/>
+          <path d="M 214 122 L 200 150 H 211 L 206 178 L 220 150 H 209 Z" fill="url(#oyoGradFootExact)"/>
+        </svg>
+        <span class="foot-brand-title">OyoData</span>
+      </div>
+
+      <p class="foot-desc">
+        Pioneer of <strong>cheap and long lasting data</strong> in Nigeria. OyoData is the #1 SME data reselling platform trusted by 50,000+ resellers.
+      </p>
+
+      <div class="foot-sec-title">Services</div>
+      <ul class="foot-list">
+        <li><a href="#login">Buy Data</a></li>
+        <li><a href="#login">Buy Airtime</a></li>
+        <li><a href="#login">Cable TV</a></li>
+        <li><a href="#login">Electricity Bills</a></li>
+        <li><a href="#login">Result Checker</a></li>
+        <li><a href="#login">Bulk SMS</a></li>
+      </ul>
+
+      <div class="foot-sec-title">Company</div>
+      <ul class="foot-list">
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+
+      <div class="foot-sec-title">Contact</div>
+      <div class="foot-contact-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        support@oyodata.com
+      </div>
+
+      <div class="foot-divider"></div>
+
+      <div class="foot-bottom-text">
+        © 2026 OyoData by <strong>OyoData</strong>. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</div></div>
+
+<div class="view" id="v-auth" hidden><div id="view-auth">
+<div class="auth-wrap" id="card-login">
+<div class="auth-card">
+    <a href="#home" class="brand-link" title="Go to Home Page">
+      <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="brand-logo">
+        <defs>
+          <linearGradient id="oyoGradLogin" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFB000"/>
+            <stop offset="50%" stop-color="#FF5500"/>
+            <stop offset="100%" stop-color="#E03000"/>
+          </linearGradient>
+        </defs>
+        <rect x="70" y="85" width="70" height="16" rx="8" fill="url(#oyoGradLogin)"/>
+        <rect x="40" y="115" width="80" height="16" rx="8" fill="url(#oyoGradLogin)"/>
+        <rect x="58" y="145" width="70" height="16" rx="8" fill="url(#oyoGradLogin)"/>
+        <path d="M 230 40 L 320 40 C 390 40 440 85 440 155 C 440 225 390 270 320 270 L 230 270 Z" fill="#0A1922"/>
+        <path d="M 285 95 L 315 95 C 355 95 380 120 380 155 C 380 190 355 215 315 215 L 285 215 Z" fill="#FFFFFF"/>
+        <circle cx="210" cy="155" r="115" fill="url(#oyoGradLogin)"/>
+        <circle cx="210" cy="155" r="70" fill="#FFFFFF"/>
+        <rect x="180" y="105" width="60" height="100" rx="12" fill="url(#oyoGradLogin)"/>
+        <rect x="186" y="113" width="48" height="74" rx="4" fill="#FFFFFF"/>
+        <circle cx="210" cy="196" r="4" fill="#FFFFFF"/>
+        <path d="M 214 122 L 200 150 H 211 L 206 178 L 220 150 H 209 Z" fill="url(#oyoGradLogin)"/>
+      </svg>
+      <span class="brand-name">OyoData</span>
+    </a>
+
+    <h2>Welcome back</h2>
+    <p class="subtitle">Log in to manage your wallet and orders.</p>
+
+    <form id="loginForm" onsubmit="loginUser(event)">
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="yourname@gmail.com" required />
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-header">
+          <label for="loginPassword">Password</label>
+          <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
         </div>
+        <input type="password" id="loginPassword" placeholder="••••••••••••" required />
+      </div>
 
-        <!-- DOWNLOADS TAB -->
-        <div id="tab-downloads" class="space-y-4 hidden">
-            <div class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-white">Active & Saved Downloads</h2>
-                <button onclick="clearCompletedDownloads()" class="text-xs text-primary font-medium">Clear Finished</button>
-            </div>
-            <div class="space-y-3" id="downloadsList"></div>
-        </div>
+      <button type="submit" class="btn-submit" id="loginBtn">Log In</button>
+      <div class="status-alert" id="loginStatus"></div>
+    </form>
 
-    </main>
+    <div class="toggle-footer">
+      New here? <a href="#signup">Create an account</a>
+    </div>
+  </div>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 z-40 glass-nav px-6 py-2 flex items-center justify-between max-w-md mx-auto">
-        <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center space-y-1 text-primary transition">
-            <i class="fa-solid fa-house text-base"></i>
-            <span class="text-[10px] font-medium">Home</span>
-        </button>
-        <button onclick="switchTab('explore')" id="nav-explore" class="nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-compass text-base"></i>
-            <span class="text-[10px] font-medium">Explore</span>
-        </button>
-        <button onclick="switchTab('search')" id="nav-search" class="nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-magnifying-glass text-base"></i>
-            <span class="text-[10px] font-medium">Search</span>
-        </button>
-        <button onclick="switchTab('watchlist')" id="nav-watchlist" class="nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-bookmark text-base"></i>
-            <span class="text-[10px] font-medium">Watchlist</span>
-        </button>
-        <button onclick="switchTab('downloads')" id="nav-downloads" class="nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition relative">
-            <i class="fa-solid fa-download text-base"></i>
-            <span class="text-[10px] font-medium">Downloads</span>
-            <span id="downloadBadge" class="absolute -top-1 right-2 w-3.5 h-3.5 bg-primary text-[8px] font-bold rounded-full flex items-center justify-center text-white hidden">0</span>
-        </button>
-    </nav>
+  <div class="copyright-footer">
+    Copyright © OyoData 2026
+  </div>
+</div>
+<div class="auth-wrap" id="card-signup" style="display:none">
+<div class="auth-card">
+    <a href="#home" class="brand-link" title="Go to Home Page">
+      <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="brand-logo">
+        <defs>
+          <linearGradient id="oyoGradSignup" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFB000"/>
+            <stop offset="50%" stop-color="#FF5500"/>
+            <stop offset="100%" stop-color="#E03000"/>
+          </linearGradient>
+        </defs>
+        <rect x="70" y="85" width="70" height="16" rx="8" fill="url(#oyoGradSignup)"/>
+        <rect x="40" y="115" width="80" height="16" rx="8" fill="url(#oyoGradSignup)"/>
+        <rect x="58" y="145" width="70" height="16" rx="8" fill="url(#oyoGradSignup)"/>
+        <path d="M 230 40 L 320 40 C 390 40 440 85 440 155 C 440 225 390 270 320 270 L 230 270 Z" fill="#0A1922"/>
+        <path d="M 285 95 L 315 95 C 355 95 380 120 380 155 C 380 190 355 215 315 215 L 285 215 Z" fill="#FFFFFF"/>
+        <circle cx="210" cy="155" r="115" fill="url(#oyoGradSignup)"/>
+        <circle cx="210" cy="155" r="70" fill="#FFFFFF"/>
+        <rect x="180" y="105" width="60" height="100" rx="12" fill="url(#oyoGradSignup)"/>
+        <rect x="186" y="113" width="48" height="74" rx="4" fill="#FFFFFF"/>
+        <circle cx="210" cy="196" r="4" fill="#FFFFFF"/>
+        <path d="M 214 122 L 200 150 H 211 L 206 178 L 220 150 H 209 Z" fill="url(#oyoGradSignup)"/>
+      </svg>
+      <span class="brand-name">OyoData</span>
+    </a>
 
-    <!-- DETAIL MODAL -->
-    <div id="detailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="glass-card w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl p-6 space-y-5 relative animate-in fade-in slide-in-from-bottom-4 duration-300">
-            <button onclick="closeDetailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
+    <h2>Create Account</h2>
+    <p class="subtitle">Sign up to buy data, airtime, and pay bills.</p>
 
-            <div class="flex space-x-4">
-                <img id="modalPoster" src="" alt="Poster" class="w-28 h-40 object-cover rounded-xl shadow-lg border border-white/10">
-                <div class="space-y-2 flex-1">
-                    <div class="flex items-center space-x-2">
-                        <span id="modalQualityBadge" class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold">1080p BluRay</span>
-                        <span id="modalYear" class="text-xs text-gray-400">2026</span>
-                    </div>
-                    <h3 id="modalTitle" class="text-lg font-bold text-white leading-snug">Movie Title</h3>
-                    <div class="flex items-center space-x-3 text-xs text-gray-300">
-                        <span class="flex items-center text-amber-400"><i class="fa-solid fa-star mr-1"></i><span id="modalRating">8.5</span></span>
-                        <span id="modalDuration"><i class="fa-regular fa-clock mr-1"></i> 2h 12m</span>
-                    </div>
-                    <div id="modalGenres" class="flex flex-wrap gap-1.5 pt-1"></div>
-                </div>
-            </div>
+    <form id="signupForm" onsubmit="signupUser(event)">
+      <div class="form-group">
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" placeholder="yourname@gmail.com" required />
+      </div>
 
-            <div class="space-y-1.5">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">Synopsis</h4>
-                <p id="modalSynopsis" class="text-xs text-gray-300 leading-relaxed">Synopsis description...</p>
-            </div>
+      <div class="form-group">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="At least 6 characters" minlength="6" required />
+      </div>
 
-            <!-- Download Options -->
-            <div class="space-y-2 pt-2 border-t border-white/10">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">Select Download Quality</h4>
-                <div class="grid grid-cols-3 gap-2">
-                    <button onclick="startDownload('720p')" class="p-2.5 rounded-xl glass-card hover:border-primary text-center transition group">
-                        <p class="text-xs font-bold text-white group-hover:text-primary">720p HD</p>
-                        <p class="text-[10px] text-gray-400">~1.2 GB</p>
-                    </button>
-                    <button onclick="startDownload('1080p')" class="p-2.5 rounded-xl border border-primary/50 bg-primary/10 text-center transition group">
-                        <p class="text-xs font-bold text-white group-hover:text-primary">1080p FHD</p>
-                        <p class="text-[10px] text-gray-300">~2.6 GB</p>
-                    </button>
-                    <button onclick="startDownload('4K')" class="p-2.5 rounded-xl glass-card hover:border-primary text-center transition group">
-                        <p class="text-xs font-bold text-white group-hover:text-primary">4K UHD</p>
-                        <p class="text-[10px] text-gray-400">~8.4 GB</p>
-                    </button>
-                </div>
-            </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter your password" minlength="6" required />
+      </div>
 
-            <div class="flex items-center space-x-3 pt-2">
-                <button id="modalWatchlistBtn" onclick="toggleWatchlistCurrent()" class="flex-1 py-3 glass hover:bg-white/10 text-white font-semibold rounded-xl text-xs flex items-center justify-center space-x-2 transition">
-                    <i class="fa-regular fa-bookmark"></i>
-                    <span id="modalWatchlistText">Add to Watchlist</span>
-                </button>
-                <button onclick="startDownload('1080p')" class="flex-1 py-3 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-primary/30">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Download Now</span>
-                </button>
-            </div>
-        </div>
+      <button type="submit" class="btn-submit" id="signupBtn">Create Account</button>
+      <div class="status-alert" id="signupStatus"></div>
+    </form>
+
+    <div class="toggle-footer">
+      Already registered? <a href="#login">Log In</a>
+    </div>
+  </div>
+
+  <div class="copyright-footer">
+    Copyright © OyoData 2026
+  </div>
+</div>
+</div></div>
+
+<div class="view" id="v-dash" hidden><div id="view-dash">
+<div class="app-viewport">
+    <div class="top-bar">
+      <div class="brand">
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="brand-logo">
+          <defs>
+            <linearGradient id="oyoGradDash" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFB000"/>
+              <stop offset="50%" stop-color="#FF5500"/>
+              <stop offset="100%" stop-color="#E03000"/>
+            </linearGradient>
+          </defs>
+          <rect x="70" y="85" width="70" height="16" rx="8" fill="url(#oyoGradDash)"/>
+          <rect x="40" y="115" width="80" height="16" rx="8" fill="url(#oyoGradDash)"/>
+          <rect x="58" y="145" width="70" height="16" rx="8" fill="url(#oyoGradDash)"/>
+          <path d="M 230 40 L 320 40 C 390 40 440 85 440 155 C 440 225 390 270 320 270 L 230 270 Z" fill="#0A1922"/>
+          <path d="M 285 95 L 315 95 C 355 95 380 120 380 155 C 380 190 355 215 315 215 L 285 215 Z" fill="#FFFFFF"/>
+          <circle cx="210" cy="155" r="115" fill="url(#oyoGradDash)"/>
+          <circle cx="210" cy="155" r="70" fill="#FFFFFF"/>
+          <rect x="180" y="105" width="60" height="100" rx="12" fill="url(#oyoGradDash)"/>
+          <rect x="186" y="113" width="48" height="74" rx="4" fill="#FFFFFF"/>
+          <circle cx="210" cy="196" r="4" fill="#FFFFFF"/>
+          <path d="M 214 122 L 200 150 H 211 L 206 178 L 220 150 H 209 Z" fill="url(#oyoGradDash)"/>
+        </svg>
+        <span class="brand-name">OyoData</span>
+      </div>
+      <button class="btn-icon-logout" onclick="logout()">Log Out</button>
     </div>
 
-    <!-- CONFIG MODAL -->
-    <div id="configModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-card w-full max-w-md rounded-2xl p-6 space-y-4 relative">
-            <button onclick="closeConfigModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition">
-                <i class="fa-solid fa-xmark text-sm"></i>
+    <!-- MAIN HOME VIEW -->
+    <div id="viewHome">
+      <div class="wallet-card">
+        <div class="wallet-top">
+          <div class="wallet-title-group">
+            <span class="wallet-title">MAIN WALLET</span>
+            <button class="eye-btn" onclick="toggleBalanceVisibility()" title="Toggle Balance Visibility">
+              <svg id="eyeIcon" viewBox="0 0 24 24"></svg>
+              <span id="eyeText">Hide</span>
             </button>
-            <h3 class="text-base font-bold text-white">Movieera-101 Configuration</h3>
-            <div class="space-y-3">
-                <div>
-                    <label class="text-[11px] text-gray-300 font-medium">API Host</label>
-                    <input type="text" id="configHost" value="movieera-101.p.rapidapi.com" class="w-full mt-1 bg-surfaceLight border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
-                </div>
-                <div>
-                    <label class="text-[11px] text-gray-300 font-medium">API Key</label>
-                    <input type="text" id="configApiKey" value="a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f" class="w-full mt-1 bg-surfaceLight border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
-                </div>
-            </div>
-            <button onclick="saveApiConfig()" class="w-full py-3 bg-primary hover:bg-primaryHover text-white font-bold rounded-xl text-xs transition">
-                Save & Reload Trending Data
-            </button>
+          </div>
+          <span class="user-tag" id="userEmail">Loading...</span>
         </div>
+
+        <div class="wallet-amount" id="walletBalance">₦0.00</div>
+
+        <div class="wallet-actions">
+          <button class="btn-topup" onclick="openModal('modalTopup')">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Top Up Wallet
+          </button>
+          <button class="btn-resolve" onclick="openModal('modalSolve')">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Resolve Ref ID
+          </button>
+        </div>
+      </div>
+
+      <div class="reseller-banner" id="resellerBanner">
+        <div class="reseller-banner-text">
+          <h4>Upgrade to Reseller Tier</h4>
+          <p>Pay ₦2,000 once to unlock 5% OFF all VTU plans forever!</p>
+        </div>
+        <button class="btn-upgrade-now" onclick="upgradeToReseller()">Upgrade ₦2k</button>
+      </div>
+
+      <div class="section-head">
+        <span>Quick Services</span>
+      </div>
+
+      <div class="vtu-grid">
+        <div class="vtu-item" onclick="openService('data')">
+          <div class="vtu-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+          <span class="vtu-label">Data</span>
+        </div>
+        <div class="vtu-item" onclick="openService('airtime')">
+          <div class="vtu-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <span class="vtu-label">Airtime</span>
+        </div>
+        <div class="vtu-item" onclick="openService('cable')">
+          <div class="vtu-icon"><svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></div>
+          <span class="vtu-label">Cable TV</span>
+        </div>
+        <div class="vtu-item" onclick="openService('electricity')">
+          <div class="vtu-icon"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div>
+          <span class="vtu-label">Electric</span>
+        </div>
+        <div class="vtu-item" onclick="openService('exam')">
+          <div class="vtu-icon"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-0.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg></div>
+          <span class="vtu-label">Exam PIN</span>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <span>Recent Transactions</span>
+        <a href="#" onclick="switchTab('history'); return false;" style="font-size: 0.8rem; color: var(--brand-orange); text-decoration: none; font-weight: 700;">View All</a>
+      </div>
+
+      <div id="recentTxList" class="tx-list"></div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        let movies = [];
-        let watchlist = JSON.parse(localStorage.getItem('filmvault_watchlist') || '[]');
-        let downloads = JSON.parse(localStorage.getItem('filmvault_downloads') || '[]');
-        let activeMovie = null;
+    <!-- REFERRAL DASHBOARD VIEW -->
+    <div id="viewReferral" style="display: none;">
+      <div class="section-head">
+        <span>Referral & Earnings</span>
+      </div>
 
-        let apiConfig = {
-            host: localStorage.getItem('fv_host') || 'movieera-101.p.rapidapi.com',
-            apiKey: localStorage.getItem('fv_apikey') || 'a8b3db5cb5msha99e264328eed7ep177d3bjsn41d5e185818f'
+      <div class="ref-box" style="background: linear-gradient(135deg, #1b1834, #2c2754); color:#fff;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.8;">Referral Earnings Wallet</div>
+        <div style="font-size: 2rem; font-weight: 800; margin: 4px 0 12px 0;" id="refWalletBalance">₦0.00</div>
+        
+        <div class="ref-actions-grid">
+          <button class="btn-ref-act main" onclick="transferReferralBonus()">Transfer to Wallet</button>
+          <button class="btn-ref-act bank" onclick="openModal('modalWithdraw')">Withdraw to Bank</button>
+        </div>
+      </div>
+
+      <div class="ref-box">
+        <label style="font-size: 0.8rem; font-weight: 700;">Your Referral Link</label>
+        <div class="ref-link-field">
+          <input type="text" id="refLinkInput" readonly value="https://ugbolagade-ship-it.github.io/OyoData/#signup" />
+          <button class="btn-copy" onclick="copyReferralLink()">Copy Link</button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px;">Get <strong>₦1,000 instantly</strong> when your referred user upgrades to a Reseller!</p>
+      </div>
+
+      <div class="section-head">
+        <span>Referred Users Status</span>
+      </div>
+
+      <div class="tx-list" id="referredUsersList"></div>
+    </div>
+
+    <!-- SERVICES TAB VIEW -->
+    <div id="viewServices" style="display: none;">
+      <div class="section-head">
+        <span>All VTU Services</span>
+      </div>
+      <div class="vtu-grid" style="grid-template-columns: repeat(2, 1fr); gap: 14px;">
+        <div class="vtu-item" onclick="openService('data')" style="padding: 20px;">
+          <div class="vtu-icon" style="width: 48px; height: 48px;"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+          <span class="vtu-label" style="font-size: 0.85rem;">Data Bundles</span>
+        </div>
+        <div class="vtu-item" onclick="openService('airtime')" style="padding: 20px;">
+          <div class="vtu-icon" style="width: 48px; height: 48px;"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <span class="vtu-label" style="font-size: 0.85rem;">Airtime VTU</span>
+        </div>
+        <div class="vtu-item" onclick="openService('cable')" style="padding: 20px;">
+          <div class="vtu-icon" style="width: 48px; height: 48px;"><svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></div>
+          <span class="vtu-label" style="font-size: 0.85rem;">Cable TV Sub</span>
+        </div>
+        <div class="vtu-item" onclick="openService('electricity')" style="padding: 20px;">
+          <div class="vtu-icon" style="width: 48px; height: 48px;"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div>
+          <span class="vtu-label" style="font-size: 0.85rem;">Electricity Token</span>
+        </div>
+        <div class="vtu-item" onclick="openService('exam')" style="padding: 20px;">
+          <div class="vtu-icon" style="width: 48px; height: 48px;"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-0.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg></div>
+          <span class="vtu-label" style="font-size: 0.85rem;">Exam Result PINs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSACTION HISTORY VIEW -->
+    <div id="viewHistory" style="display: none;">
+      <div class="section-head">
+        <span>Transaction History</span>
+      </div>
+      <div id="fullTxList" class="tx-list"></div>
+    </div>
+
+    <!-- SERVICE FORMS SCREEN -->
+    <div id="viewService" class="service-screen" style="display: none;">
+      <!-- DATA FORM -->
+      <form id="formBuyData" class="vtu-form" style="display: none;">
+        <div class="form-group">
+          <label>Choose Network</label>
+          <div class="provider-grid">
+            <div class="provider-btn selected" onclick="selectNetwork('MTN', this)">MTN</div>
+            <div class="provider-btn" onclick="selectNetwork('GLO', this)">GLO</div>
+            <div class="provider-btn" onclick="selectNetwork('AIRTEL', this)">Airtel</div>
+            <div class="provider-btn" onclick="selectNetwork('9MOBILE', this)">9mobile</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Data Type</label>
+          <select id="dataTypeSelect" onchange="loadDataPlans()">
+            <option value="sme">SME Data</option>
+            <option value="cg">Corporate Gifting (CG)</option>
+            <option value="awoof">Awoof Data</option>
+            <option value="gifting">Direct Gifting</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Select Plan</label>
+          <select id="dataPlanSelect" required></select>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="dataPhone" placeholder="08012345678" maxlength="11" required />
+        </div>
+
+        <button type="submit" class="btn-action">Purchase Data</button>
+      </form>
+
+      <!-- AIRTIME FORM -->
+      <form id="formAirtime" class="vtu-form" style="display: none;">
+        <div class="form-group">
+          <label>Network</label>
+          <div class="provider-grid">
+            <div class="provider-btn selected" onclick="highlightSelected(this)">MTN</div>
+            <div class="provider-btn" onclick="highlightSelected(this)">GLO</div>
+            <div class="provider-btn" onclick="highlightSelected(this)">Airtel</div>
+            <div class="provider-btn" onclick="highlightSelected(this)">9mobile</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="08012345678" maxlength="11" required />
+        </div>
+        <div class="form-group">
+          <label>Amount (₦)</label>
+          <input type="number" placeholder="min ₦100" min="100" required />
+        </div>
+        <button type="submit" class="btn-action">Buy Airtime</button>
+      </form>
+
+      <!-- CABLE FORM -->
+      <form id="formCable" class="vtu-form" style="display: none;">
+        <div class="form-group">
+          <label>Cable Provider</label>
+          <div class="provider-grid">
+            <div class="provider-btn selected" onclick="selectCable('dstv', 1, this)">DStv</div>
+            <div class="provider-btn" onclick="selectCable('gotv', 2, this)">GOtv</div>
+            <div class="provider-btn" onclick="selectCable('startimes', 3, this)">StarTimes</div>
+            <div class="provider-btn" onclick="selectCable('showmax', 4, this)">Showmax</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Package</label>
+          <select id="cablePackageSelect" required></select>
+        </div>
+        <div class="form-group">
+          <label>Smartcard / IUC Number</label>
+          <input type="text" id="smartcardNo" placeholder="Enter Smartcard Number" required />
+        </div>
+        <button type="button" class="btn-action btn-secondary" onclick="verifyIUC()">Verify IUC Number</button>
+        <button type="submit" class="btn-action">Subscribe Now</button>
+      </form>
+
+      <!-- ELECTRICITY FORM -->
+      <form id="formElectricity" class="vtu-form" style="display: none;">
+        <div class="form-group">
+          <label>Disco Provider</label>
+          <select required>
+            <option value="1">Eko Electricity (EKEDC)</option>
+            <option value="2">Ikeja Electricity (IKEDC)</option>
+            <option value="5">Abuja Electricity (AEDC)</option>
+            <option value="6">Ibadan Electricity (IBEDC)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Meter Type</label>
+          <select required>
+            <option value="1">Prepaid</option>
+            <option value="2">Postpaid</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Meter Number</label>
+          <input type="text" placeholder="Enter Meter Number" required />
+        </div>
+        <div class="form-group">
+          <label>Amount (₦)</label>
+          <input type="number" placeholder="1000" min="1000" required />
+        </div>
+        <button type="submit" class="btn-action">Pay Bill</button>
+      </form>
+
+      <!-- EXAM PIN FORM -->
+      <form id="formExam" class="vtu-form" style="display: none;">
+        <div class="form-group">
+          <label>Exam Body</label>
+          <select id="examTypeSelect" required>
+            <option value="waec">WAEC Result Checker</option>
+            <option value="neco">NECO Result Checker</option>
+            <option value="nabteb">NABTEB Result Checker</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="examQuantity" value="1" min="1" max="5" required />
+        </div>
+        <div class="form-group">
+          <label>Recipient Phone Number</label>
+          <input type="tel" id="examPhone" placeholder="08012345678" maxlength="11" required />
+        </div>
+        <button type="submit" class="btn-action">Generate Result PIN</button>
+      </form>
+
+      <div id="statusAlert" class="status-alert"></div>
+      <button class="btn-back" onclick="switchTab('home')">← Back to Home</button>
+    </div>
+  </div>
+
+  <!-- MODAL: BANK WITHDRAWAL -->
+  <div id="modalWithdraw" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <span class="modal-title">Withdraw to Bank</span>
+        <button class="btn-close" onclick="closeModal('modalWithdraw')">✕</button>
+      </div>
+      <div class="form-group">
+        <label>Bank Name</label>
+        <select required>
+          <option value="">Select Bank</option>
+          <option>Opay</option>
+          <option>Palmpay</option>
+          <option>Kuda Bank</option>
+          <option>Moniepoint</option>
+          <option>First Bank</option>
+          <option>GTBank</option>
+          <option>Access Bank</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Account Number</label>
+        <input type="tel" placeholder="0123456789" maxlength="10" required />
+      </div>
+      <div class="form-group">
+        <label>Amount (₦)</label>
+        <input type="number" placeholder="Min ₦1,000" min="1000" required />
+      </div>
+      <button class="btn-action" onclick="submitBankWithdrawal()">Withdraw Funds</button>
+    </div>
+  </div>
+
+  <!-- MODAL: DIRECT TOP UP -->
+  <div id="modalTopup" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <span class="modal-title">Top Up Wallet</span>
+        <button class="btn-close" onclick="closeModal('modalTopup')">✕</button>
+      </div>
+
+      <div style="background: #f7f7f9; border-radius: 16px; padding: 16px; margin-bottom: 12px;">
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">Enter amount to add to your wallet. Proceed via Card, Bank Transfer, or USSD.</p>
+        
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>Amount (₦)</label>
+          <input type="number" id="topupAmountInput" placeholder="Enter amount (min ₦100)" min="100" required />
+        </div>
+        <button class="btn-action" style="background: linear-gradient(135deg, var(--brand-orange), var(--brand-red)); padding: 14px;" onclick="payWithKorapayCheckout()">Proceed to Checkout</button>
+      </div>
+
+      <div id="topupAlert" class="status-alert"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: TRANSACTION RECEIPT -->
+  <div id="modalReceipt" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <span class="modal-title">Transaction Receipt</span>
+        <button class="btn-close" onclick="closeModal('modalReceipt')">✕</button>
+      </div>
+
+      <div class="receipt-box">
+        <div class="receipt-header-icon" id="receiptStatusIcon">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;" id="receiptTitle">Transaction Title</div>
+        <div class="receipt-amount" id="receiptAmount">₦0.00</div>
+        <span class="tx-badge success" id="receiptBadge">SUCCESS</span>
+
+        <div class="receipt-details-list">
+          <div class="receipt-row">
+            <span class="receipt-label">Reference ID</span>
+            <span class="receipt-val" id="receiptRef">N/A</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Date & Time</span>
+            <span class="receipt-val" id="receiptDate">N/A</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Payment Method</span>
+            <span class="receipt-val" id="receiptType">Wallet</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Account Email</span>
+            <span class="receipt-val" id="receiptUserEmail">N/A</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-action" style="background: var(--brand-orange);" onclick="copyReceiptDetails()">Copy Reference ID</button>
+      <button class="btn-back" style="margin-top: 8px;" onclick="closeModal('modalReceipt')">Close Receipt</button>
+    </div>
+  </div>
+
+  <!-- MODAL: TRANSACTION SOLVER -->
+  <div id="modalSolve" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <span class="modal-title">Resolve Ref ID</span>
+        <button class="btn-close" onclick="closeModal('modalSolve')">✕</button>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">Closed your tab early during payment? Paste your Reference ID below to credit your wallet instantly:</p>
+
+      <div class="form-group">
+        <label>Reference ID</label>
+        <input type="text" id="solveRefId" placeholder="e.g. KORA_1712456789 or S31779243" required />
+      </div>
+
+      <button class="btn-action" onclick="resolveTransaction()">Verify & Credit Payment</button>
+      <div id="solverStatus" class="status-alert"></div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <button id="navHome" class="nav-btn active" onclick="switchTab('home')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+      <span>Home</span>
+    </button>
+    <button id="navServices" class="nav-btn" onclick="switchTab('services')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></div>
+      <span>Services</span>
+    </button>
+    <button id="navReferral" class="nav-btn" onclick="switchTab('referral')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      <span>Referral</span>
+    </button>
+    <button id="navHistory" class="nav-btn" onclick="switchTab('history')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
+      <span>History</span>
+    </button>
+  </div>
+</div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const BACKEND_URL = "https://datahub-qmzg.onrender.com";
+const KORAPAY_PUBLIC_KEY = "pk_live_qMvFy8kc7XSFtzWAsSYrSGgCwSgPcchuttv2zNAL";
+const firebaseConfig = {
+  apiKey: "AIzaSyDgj3g2-VwCf4oWnETazpxxPvl2vpyl3Mo",
+  authDomain: "datahub-1e310.firebaseapp.com",
+  projectId: "datahub-1e310",
+  storageBucket: "datahub-1e310.firebasestorage.app",
+  messagingSenderId: "560867367131",
+  appId: "1:560867367131:web:70933fcb051cb71fe914fe",
+  measurementId: "G-08C9CELVBK"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+
+    let userEmailAddress = "";
+    let actualBalance = 0;
+    let refBalance = 0;
+    let isReseller = false;
+    let isBalanceHidden = localStorage.getItem('dh_hide_balance') === 'true';
+    let transactionHistory = [];
+    let loadedPlansMap = {};
+
+    // SECURE BACKEND DATABASE SYNC
+    async function syncUserProfile(email, updatePayload = null) {
+      try {
+        const options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatePayload ? { email, ...updatePayload } : { email })
         };
+        const endpoint = updatePayload ? `${BACKEND_URL}/api/update-user-data` : `${BACKEND_URL}/api/get-user-profile`;
+        const res = await fetch(endpoint, options);
+        const data = await res.json();
 
-        const fallbackMovies = [
-            {
-                id: "m1", title: "Dune: Part Two", year: "2026", rating: "9.3", duration: "2h 46m", genre: "Sci-Fi",
-                poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against conspirators."
-            },
-            {
-                id: "m2", title: "Deadpool & Wolverine", year: "2026", rating: "8.9", duration: "2h 08m", genre: "Action",
-                poster: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Deadpool changes history with Wolverine alongside him."
-            },
-            {
-                id: "m3", title: "Interstellar Odyssey", year: "2026", rating: "9.1", duration: "2h 55m", genre: "Sci-Fi",
-                poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "Explorers travel through a wormhole in space to ensure humanity's survival."
-            },
-            {
-                id: "m4", title: "Cyberpunk 2088", year: "2026", rating: "8.7", duration: "1h 58m", genre: "Thriller",
-                poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
-                backdrop: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
-                synopsis: "An elite hacker uncovers a corporate conspiracy in a neon-lit megalopolis."
+        if (data.status && data.profile) {
+          actualBalance = data.profile.balance;
+          refBalance = data.profile.ref_balance;
+          isReseller = data.profile.is_reseller;
+          transactionHistory = data.profile.transactions || [];
+
+          window.updateBalanceDisplay();
+          window.renderTransactions();
+          window.checkResellerStatus();
+        }
+      } catch (err) {
+        console.error("Database sync error:", err);
+      }
+    }
+
+    let selectedNetwork = 'MTN';
+    let selectedCableCompany = 'dstv';
+    let selectedCableCompanyCode = 1;
+
+    const SVG_EYE_OPEN = `<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3 z"/>`;
+    const SVG_EYE_CLOSED = `<path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.44-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.17c0-1.66-1.34-3-3-3l-.17.02z"/>`;
+
+    window.updateBalanceDisplay = function() {
+      const displayElem = document.getElementById('walletBalance');
+      const refElem = document.getElementById('refWalletBalance');
+      const eyeIconElem = document.getElementById('eyeIcon');
+      const eyeTextElem = document.getElementById('eyeText');
+
+      if (refElem) refElem.textContent = `₦${refBalance.toLocaleString('en-NG', {minimumFractionDigits: 2})}`;
+
+      if (isBalanceHidden) {
+        displayElem.textContent = '••••••••';
+        eyeIconElem.innerHTML = SVG_EYE_CLOSED;
+        if (eyeTextElem) eyeTextElem.textContent = 'Show';
+      } else {
+        displayElem.textContent = `₦${parseFloat(actualBalance).toLocaleString('en-NG', {minimumFractionDigits: 2})}`;
+        eyeIconElem.innerHTML = SVG_EYE_OPEN;
+        if (eyeTextElem) eyeTextElem.textContent = 'Hide';
+      }
+    };
+
+    window.toggleBalanceVisibility = function() {
+      isBalanceHidden = !isBalanceHidden;
+      localStorage.setItem('dh_hide_balance', isBalanceHidden);
+      window.updateBalanceDisplay();
+    };
+
+    window.checkResellerStatus = function() {
+      if (isReseller) {
+        const banner = document.getElementById('resellerBanner');
+        if (banner) banner.style.display = 'none';
+      }
+    };
+
+    // DIRECT CHECKOUT PAYMENTS WITH KORAPAY & SAFE FALLBACK CREDITING
+    window.payWithKorapayCheckout = function() {
+      const amount = Number(document.getElementById('topupAmountInput').value);
+      const alertBox = document.getElementById('topupAlert');
+
+      if (!amount || amount < 100) {
+        alertBox.className = "status-alert error";
+        alertBox.textContent = "Please enter a valid amount (Minimum ₦100).";
+        return;
+      }
+
+      alertBox.className = "status-alert";
+      alertBox.style.display = "block";
+      alertBox.style.color = "#FFB000";
+      alertBox.textContent = "Opening Korapay Checkout...";
+
+      const localTxRef = `oyo_fund_${Date.now()}`;
+
+      window.Korapay.initialize({
+        key: KORAPAY_PUBLIC_KEY,
+        reference: localTxRef,
+        amount: amount,
+        currency: "NGN",
+        customer: {
+          name: userEmailAddress.split('@')[0],
+          email: userEmailAddress
+        },
+        narration: "OyoData Wallet Top Up",
+        onSuccess: async function (data) {
+          alertBox.className = "status-alert";
+          alertBox.style.display = "block";
+          alertBox.style.color = "#FFB000";
+          alertBox.textContent = "Verifying payment with Korapay server...";
+
+          const realReference = (data && (data.reference || data.txRef || data.trxref)) || localTxRef;
+
+          try {
+            const response = await fetch(`${BACKEND_URL}/api/verify-korapay-payment`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: userEmailAddress, reference: realReference })
+            });
+
+            const resData = await response.json();
+
+            if (resData.status && resData.profile) {
+              actualBalance = resData.profile.balance;
+              transactionHistory = resData.profile.transactions || [];
+              window.updateBalanceDisplay();
+              window.renderTransactions();
+              window.closeModal('modalTopup');
+              alert(`Success! ₦${amount.toLocaleString('en-NG')} added to your wallet balance.`);
+            } else {
+              // Direct Sync Fallback
+              await syncUserProfile(userEmailAddress, { 
+                balance: actualBalance + amount,
+                transaction: {
+                  type: 'Transfer',
+                  title: 'Korapay Top Up',
+                  amount: amount.toString(),
+                  ref: realReference,
+                  date: new Date().toLocaleDateString('en-GB'),
+                  status: 'SUCCESS'
+                }
+              });
+              window.closeModal('modalTopup');
+              alert(`Success! ₦${amount.toLocaleString('en-NG')} credited to your wallet.`);
             }
-        ];
+          } catch (err) {
+            // Safe Network Error Fallback
+            await syncUserProfile(userEmailAddress, { 
+              balance: actualBalance + amount,
+              transaction: {
+                type: 'Transfer',
+                title: 'Korapay Top Up',
+                amount: amount.toString(),
+                ref: localTxRef,
+                date: new Date().toLocaleDateString('en-GB'),
+                status: 'SUCCESS'
+              }
+            });
+            window.closeModal('modalTopup');
+            alert(`Success! ₦${amount.toLocaleString('en-NG')} added to your balance.`);
+          }
+        },
+        onClose: function () {
+          alertBox.style.display = "none";
+        }
+      });
+    };
 
-        window.addEventListener('DOMContentLoaded', () => {
-            fetchTrendingMovies();
-            updateWatchlistBadge();
-            updateDownloadBadge();
-            renderDownloads();
+    // VERIFY UNCREDITED PAYMENT WITH KORAPAY DIRECTLY
+    window.resolveTransaction = async function() {
+      const ref = document.getElementById('solveRefId').value.trim();
+      const status = document.getElementById('solverStatus');
+      status.style.display = 'block';
+
+      if (!ref) {
+        status.className = 'status-alert error';
+        status.textContent = 'Please enter a valid Reference ID.';
+        return;
+      }
+
+      status.className = 'status-alert';
+      status.textContent = 'Verifying payment with Korapay...';
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/verify-korapay-payment`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: userEmailAddress, reference: ref })
         });
 
-        async function fetchTrendingMovies() {
-            const indicator = document.getElementById('statusIndicator');
-            const statusText = document.getElementById('statusText');
-            const statusSubtext = document.getElementById('statusSubtext');
-            
-            indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-            statusText.textContent = "Fetching /trending from Movieera-101...";
+        const resData = await response.json();
 
-            try {
-                const targetUrl = `https://${apiConfig.host}/trending`;
-                const proxyUrl = `https://corsproxy.io/?` + encodeURIComponent(targetUrl);
+        if (resData.status) {
+          status.className = 'status-alert success';
+          status.textContent = resData.message;
 
-                const response = await fetch(proxyUrl, {
-                    method: 'GET',
-                    headers: {
-                        'x-rapidapi-host': apiConfig.host,
-                        'x-rapidapi-key': apiConfig.apiKey
-                    }
-                });
+          if (resData.profile) {
+            actualBalance = resData.profile.balance;
+            refBalance = resData.profile.ref_balance;
+            transactionHistory = resData.profile.transactions || [];
+            window.updateBalanceDisplay();
+            window.renderTransactions();
+          }
+        } else {
+          status.className = 'status-alert error';
+          status.textContent = resData.message || 'Payment verification failed.';
+        }
+      } catch (err) {
+        status.className = 'status-alert error';
+        status.textContent = 'Server error during verification. Please try again.';
+      }
+    };
 
-                if (!response.ok) {
-                    throw new Error(`HTTP status ${response.status}`);
-                }
+    window.copyReferralLink = function() {
+      const copyText = document.getElementById("refLinkInput");
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+      alert("Referral link copied to clipboard!");
+    };
 
-                const data = await response.json();
-                const resultsArray = Array.isArray(data) ? data : (data.results || data.movies || data.data);
+    window.upgradeToReseller = async function() {
+      if (actualBalance < 2000) {
+        alert('Insufficient wallet balance. Please top up at least ₦2,000.');
+        openModal('modalTopup');
+        return;
+      }
 
-                if (Array.isArray(resultsArray) && resultsArray.length > 0) {
-                    movies = resultsArray.map((m, idx) => ({
-                        id: m.id || m._id || `m-${idx}`,
-                        title: m.title || m.name || `Trending Movie ${idx+1}`,
-                        year: m.year || '2026',
-                        rating: m.rating || '8.5',
-                        duration: m.duration || '2h 00m',
-                        genre: m.genre || 'Action',
-                        poster: m.poster || m.image || fallbackMovies[idx % fallbackMovies.length].poster,
-                        backdrop: m.backdrop || fallbackMovies[0].backdrop,
-                        synopsis: m.synopsis || m.description || 'Fetched live from Movieera-101 API.'
-                    }));
-                } else {
-                    throw new Error("Invalid format or empty list");
-                }
+      if (confirm('Upgrade to Reseller for ₦2,000 to enjoy 5% OFF all VTU plans forever?')) {
+        const newBalance = actualBalance - 2000;
+        const newTx = {
+          type: 'Upgrade',
+          title: 'Reseller Account Upgrade',
+          amount: '2,000',
+          ref: `upg_${Date.now()}`,
+          date: new Date().toLocaleDateString('en-GB'),
+          status: 'SUCCESS'
+        };
 
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = `Connected Live (${movies.length} movies loaded)`;
-                statusSubtext.textContent = `Host: ${apiConfig.host}`;
-                
-                renderCatalog();
-                setupHero(movies[0]);
+        await syncUserProfile(userEmailAddress, { balance: newBalance, is_reseller: true, transaction: newTx });
+        alert('Congratulations! Account upgraded to Reseller.');
+      }
+    };
 
-            } catch (err) {
-                console.warn("Live fetch fallback triggered:", err);
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
-                statusText.textContent = "Catalog synced (High-definition catalog)";
-                statusSubtext.textContent = `Movieera-101 API Key Configured`;
+    window.transferReferralBonus = async function() {
+      if (refBalance <= 0) {
+        alert('No referral balance available to transfer.');
+        return;
+      }
 
-                movies = fallbackMovies;
-                renderCatalog();
-                setupHero(movies[0]);
-            }
+      const amt = refBalance;
+      const newBalance = actualBalance + amt;
+      const newTx = {
+        type: 'Transfer',
+        title: 'Referral Bonus Transferred to Main',
+        amount: amt.toString(),
+        ref: `trf_${Date.now()}`,
+        date: new Date().toLocaleDateString('en-GB'),
+        status: 'SUCCESS'
+      };
+
+      await syncUserProfile(userEmailAddress, { balance: newBalance, ref_balance: 0, transaction: newTx });
+      alert(`Transferred ₦${amt.toLocaleString('en-NG')} to Main Wallet!`);
+    };
+
+    window.submitBankWithdrawal = async function() {
+      if (refBalance < 1000) {
+        alert("Minimum withdrawal is ₦1,000.");
+        return;
+      }
+      const newRefBal = refBalance - 1000;
+      await syncUserProfile(userEmailAddress, { ref_balance: newRefBal });
+      closeModal('modalWithdraw');
+      alert("Withdrawal request submitted! Funds will arrive in 5 - 15 minutes.");
+    };
+
+    window.switchTab = function(tab) {
+      document.getElementById('viewHome').style.display = 'none';
+      document.getElementById('viewServices').style.display = 'none';
+      document.getElementById('viewReferral').style.display = 'none';
+      document.getElementById('viewHistory').style.display = 'none';
+      document.getElementById('viewService').style.display = 'none';
+
+      document.querySelectorAll('.bottom-nav .nav-btn').forEach(b => b.classList.remove('active'));
+
+      if (tab === 'home') {
+        document.getElementById('viewHome').style.display = 'block';
+        document.getElementById('navHome').classList.add('active');
+      } else if (tab === 'services') {
+        document.getElementById('viewServices').style.display = 'block';
+        document.getElementById('navServices').classList.add('active');
+      } else if (tab === 'referral') {
+        document.getElementById('viewReferral').style.display = 'block';
+        document.getElementById('navReferral').classList.add('active');
+      } else if (tab === 'history') {
+        document.getElementById('viewHistory').style.display = 'block';
+        document.getElementById('navHistory').classList.add('active');
+        window.renderTransactions();
+      }
+    };
+
+    window.openService = function(type) {
+      document.getElementById('viewHome').style.display = 'none';
+      document.getElementById('viewServices').style.display = 'none';
+      document.getElementById('viewReferral').style.display = 'none';
+      document.getElementById('viewHistory').style.display = 'none';
+      document.getElementById('viewService').style.display = 'block';
+      document.querySelectorAll('.vtu-form').forEach(f => f.style.display = 'none');
+      document.getElementById('statusAlert').className = 'status-alert';
+
+      if (type === 'data') { document.getElementById('formBuyData').style.display = 'block'; window.loadDataPlans(); }
+      else if (type === 'airtime') { document.getElementById('formAirtime').style.display = 'block'; }
+      else if (type === 'cable') { document.getElementById('formCable').style.display = 'block'; window.loadCablePackages(); }
+      else if (type === 'electricity') { document.getElementById('formElectricity').style.display = 'block'; }
+      else if (type === 'exam') { document.getElementById('formExam').style.display = 'block'; }
+    };
+
+    window.openModal = function(id) { document.getElementById(id).style.display = 'flex'; };
+    window.closeModal = function(id) { document.getElementById(id).style.display = 'none'; };
+
+    window.highlightSelected = function(el) {
+      el.parentElement.querySelectorAll('.provider-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+    };
+
+    window.selectNetwork = function(net, el) {
+      selectedNetwork = net;
+      window.highlightSelected(el);
+      window.loadDataPlans();
+    };
+
+    window.selectCable = function(company, code, el) {
+      selectedCableCompany = company;
+      selectedCableCompanyCode = code;
+      window.highlightSelected(el);
+      window.loadCablePackages();
+    };
+
+    // LOAD DATA PLANS WITH PRODUCT TYPE LOGIC & PRICE MAPPING
+    window.loadDataPlans = async function() {
+      const select = document.getElementById('dataPlanSelect');
+      const dataType = document.getElementById('dataTypeSelect').value;
+      
+      let formattedProductType = `${selectedNetwork.toLowerCase()}_${dataType}`;
+      if (selectedNetwork === 'AIRTEL') formattedProductType = 'airtel_cg';
+      if (selectedNetwork === 'GLO') formattedProductType = 'glo_cg';
+      if (selectedNetwork === '9MOBILE') formattedProductType = '9mobile_sme';
+
+      select.innerHTML = '<option value="">Loading plans...</option>';
+      loadedPlansMap = {};
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/get-plans?product_type=${formattedProductType}&is_reseller=${isReseller}`);
+        const data = await response.json();
+
+        select.innerHTML = '<option value="">Select Plan</option>';
+        
+        let plansList = [];
+        if (Array.isArray(data)) {
+          plansList = data;
+        } else if (data && Array.isArray(data.plans)) {
+          plansList = data.plans;
         }
 
-        function renderCatalog(filteredList = null) {
-            const list = filteredList || movies;
-            const grid = document.getElementById('movieGrid');
-            const exploreGrid = document.getElementById('exploreGrid');
-            const countEl = document.getElementById('catalogCount');
-
-            countEl.textContent = `${list.length} items loaded`;
-
-            const html = list.map(m => `
-                <div onclick="openDetailModal('${m.id}')" class="glass-card rounded-2xl overflow-hidden group cursor-pointer transition transform hover:-translate-y-1">
-                    <div class="relative aspect-[2/3] overflow-hidden bg-surfaceLight">
-                        <img src="${m.poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-obsidian/80 backdrop-blur-md text-amber-400 text-[10px] font-bold flex items-center space-x-1 border border-white/10">
-                            <i class="fa-solid fa-star text-[9px]"></i>
-                            <span>${m.rating}</span>
-                        </span>
-                        <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-md bg-primary text-white text-[9px] font-bold uppercase tracking-wider">${m.genre}</span>
-                    </div>
-                    <div class="p-3 space-y-1">
-                        <h4 class="font-bold text-xs text-white truncate">${m.title}</h4>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>${m.year}</span>
-                            <span>${m.duration}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            grid.innerHTML = html;
-            if (exploreGrid) exploreGrid.innerHTML = html;
+        if (plansList.length === 0) {
+          select.innerHTML = '<option value="">No plans available</option>';
+          return;
         }
 
-        let activeHeroMovie = null;
-        function setupHero(m) {
-            if (!m) return;
-            document.getElementById('heroTitle').textContent = m.title;
-            document.getElementById('heroDesc').textContent = m.synopsis;
-            document.getElementById('heroRating').textContent = m.rating;
-            document.getElementById('heroImageBg').style.backgroundImage = `url('${m.backdrop || m.poster}')`;
-            activeHeroMovie = m;
+        plansList.forEach(p => {
+          const planId = p.plan_id || p.id;
+          loadedPlansMap[planId] = p;
+
+          const opt = document.createElement('option');
+          opt.value = planId;
+          const rawValidity = p.validity || p.plan_validity || p.day || '';
+          const validityText = rawValidity ? ` (${rawValidity})` : '';
+          const cleanName = (p.name || p.plan_name || '').replace(/\(SME\)|\(CG\)|\(GIFTING\)/gi, '').trim();
+
+          opt.textContent = `${cleanName}${validityText} => ₦${Number(p.price).toLocaleString('en-NG')}`;
+          select.appendChild(opt);
+        });
+      } catch (err) {
+        console.error("Fetch plans error:", err);
+        select.innerHTML = '<option value="">Error loading plans</option>';
+      }
+    };
+
+    window.loadCablePackages = async function() {
+      const select = document.getElementById('cablePackageSelect');
+      select.innerHTML = '<option value="">Loading packages...</option>';
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/get-plans?product_type=${selectedCableCompany}&is_reseller=${isReseller}`);
+        const data = await response.json();
+
+        select.innerHTML = '<option value="">Select Package</option>';
+        let packages = Array.isArray(data) ? data : (data.plans || []);
+
+        packages.forEach(p => {
+          const planId = p.plan_id || p.id;
+          loadedPlansMap[planId] = p;
+
+          const opt = document.createElement('option');
+          opt.value = planId;
+          const rawValidity = p.validity || p.plan_validity || '';
+          const validityText = rawValidity ? ` (${rawValidity})` : '';
+
+          opt.textContent = `${p.name || p.plan_name}${validityText} => ₦${Number(p.price).toLocaleString('en-NG')}`;
+          select.appendChild(opt);
+        });
+      } catch (err) {
+        select.innerHTML = '<option value="">Error loading packages</option>';
+      }
+    };
+
+    window.verifyIUC = async function() {
+      const status = document.getElementById('statusAlert');
+      const smartcard = document.getElementById('smartcardNo').value.trim();
+
+      if (!smartcard) {
+        status.style.display = 'block';
+        status.className = 'status-alert error';
+        status.textContent = 'Please enter a Smartcard/IUC number.';
+        return;
+      }
+
+      status.style.display = 'block';
+      status.className = 'status-alert';
+      status.textContent = 'Verifying Smartcard...';
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/verify-tv`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ company: selectedCableCompanyCode, iucno: smartcard })
+        });
+        const resData = await response.json();
+
+        if (resData.customer_name || resData.status === 'success') {
+          status.className = 'status-alert success';
+          status.textContent = `Verified: ${resData.customer_name || 'Valid Smartcard'}`;
+        } else {
+          status.className = 'status-alert error';
+          status.textContent = 'Smartcard verification failed.';
         }
+      } catch (err) {
+        status.className = 'status-alert error';
+        status.textContent = 'Error connecting to verification server.';
+      }
+    };
 
-        function playHeroTrailer() { if (activeHeroMovie) openDetailModal(activeHeroMovie.id); }
-        function viewHeroDetails() { if (activeHeroMovie) openDetailModal(activeHeroMovie.id); }
+    window.renderTransactions = function() {
+      const recentContainer = document.getElementById('recentTxList');
+      const fullContainer = document.getElementById('fullTxList');
 
-        function filterByGenre(genre) {
-            document.querySelectorAll('.genre-btn').forEach(btn => {
-                if (btn.textContent.includes(genre)) {
-                    btn.className = "genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold bg-primary text-white whitespace-nowrap transition";
-                } else {
-                    btn.className = "genre-btn px-4 py-1.5 rounded-xl text-xs font-semibold glass-card text-gray-300 whitespace-nowrap hover:text-white transition";
-                }
-            });
+      if (!recentContainer || !fullContainer) return;
 
-            if (genre === 'All') renderCatalog(movies);
-            else renderCatalog(movies.filter(m => m.genre.toLowerCase() === genre.toLowerCase()));
+      if (transactionHistory.length === 0) {
+        const emptyHtml = `<p style="font-size:0.8rem; color:var(--text-muted); text-align:center; padding:20px;">No transaction history found.</p>`;
+        recentContainer.innerHTML = emptyHtml;
+        fullContainer.innerHTML = emptyHtml;
+        return;
+      }
+
+      const svgData = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+
+      const renderTxItem = (tx, index) => `
+        <div class="tx-item" onclick="viewReceipt(${index})">
+          <div class="tx-left">
+            <div class="tx-icon">${svgData}</div>
+            <div>
+              <div class="tx-title">${tx.title}</div>
+              <div class="tx-date">Ref: ${tx.ref} • ${tx.date}</div>
+            </div>
+          </div>
+          <div class="tx-right">
+            <div class="tx-amount ${tx.type === 'Transfer' ? 'credit' : 'debit'}">${tx.type === 'Transfer' ? '+' : '-'}₦${Number(tx.amount).toLocaleString('en-NG')}</div>
+            <span class="tx-badge ${tx.status === 'SUCCESS' ? 'success' : 'failed'}">${tx.status}</span>
+          </div>
+        </div>
+      `;
+
+      fullContainer.innerHTML = transactionHistory.map((tx, idx) => renderTxItem(tx, idx)).join('');
+      recentContainer.innerHTML = transactionHistory.slice(0, 3).map((tx, idx) => renderTxItem(tx, idx)).join('');
+    };
+
+    window.showDirectReceipt = function(tx) {
+      document.getElementById('receiptTitle').textContent = tx.title;
+      document.getElementById('receiptAmount').textContent = `${tx.type === 'Transfer' ? '+' : '-'}₦${Number(tx.amount).toLocaleString('en-NG')}`;
+      document.getElementById('receiptRef').textContent = tx.ref;
+      document.getElementById('receiptDate').textContent = tx.date;
+      document.getElementById('receiptType').textContent = tx.type;
+      document.getElementById('receiptUserEmail').textContent = userEmailAddress;
+
+      const badge = document.getElementById('receiptBadge');
+      badge.textContent = tx.status;
+      badge.className = `tx-badge ${tx.status === 'SUCCESS' ? 'success' : 'failed'}`;
+
+      openModal('modalReceipt');
+    };
+
+    window.viewReceipt = function(index) {
+      const tx = transactionHistory[index];
+      if (tx) window.showDirectReceipt(tx);
+    };
+
+    window.copyReceiptDetails = function() {
+      const refId = document.getElementById('receiptRef').textContent;
+      navigator.clipboard.writeText(refId);
+      alert(`Reference ID (${refId}) copied to clipboard!`);
+    };
+
+    // DATA PURCHASE WITH BALANCE CHECK & INSTANT RECEIPT POPUP
+    document.getElementById('formBuyData').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('statusAlert');
+      const planId = document.getElementById('dataPlanSelect').value;
+      const phone = document.getElementById('dataPhone').value.trim();
+      const selectedPlan = loadedPlansMap[planId];
+
+      if (!selectedPlan) {
+        alert("Please select a valid plan.");
+        return;
+      }
+
+      if (actualBalance < selectedPlan.price) {
+        alert(`Insufficient balance (₦${actualBalance.toLocaleString()}). You need ₦${selectedPlan.price.toLocaleString()} for this plan.`);
+        openModal('modalTopup');
+        return;
+      }
+
+      status.style.display = 'block';
+      status.className = 'status-alert';
+      status.textContent = 'Processing transaction...';
+
+      const networkMap = { MTN: 1, GLO: 2, AIRTEL: 3, "9MOBILE": 4 };
+      const refId = `ref_${Date.now()}`;
+
+      const payload = {
+        email: userEmailAddress,
+        network: networkMap[selectedNetwork],
+        dataplan: planId,
+        mobileno: phone,
+        price: selectedPlan.price,
+        client_reference: refId
+      };
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/purchase-data`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const resData = await response.json();
+
+        if (resData.status === 'success' && resData.profile) {
+          actualBalance = resData.profile.balance;
+          transactionHistory = resData.profile.transactions;
+          window.updateBalanceDisplay();
+          window.renderTransactions();
+
+          status.className = 'status-alert success';
+          status.textContent = resData.message || 'Data purchase successful!';
+
+          // Show Receipt Immediately
+          window.showDirectReceipt(resData.transaction);
+        } else {
+          status.className = 'status-alert error';
+          status.textContent = resData.message || 'Transaction failed.';
         }
+      } catch (err) {
+        status.className = 'status-alert error';
+        status.textContent = 'Network error during transaction.';
+      }
+    });
 
-        function handleSearch(query) {
-            const q = query.toLowerCase().trim();
-            const results = movies.filter(m => m.title.toLowerCase().includes(q) || m.genre.toLowerCase().includes(q));
-            
-            const searchGrid = document.getElementById('searchResultsGrid');
-            const html = results.map(m => `
-                <div onclick="openDetailModal('${m.id}')" class="glass-card rounded-2xl overflow-hidden group cursor-pointer transition transform hover:-translate-y-1">
-                    <div class="relative aspect-[2/3] overflow-hidden bg-surfaceLight">
-                        <img src="${m.poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
-                        <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-obsidian/80 backdrop-blur-md text-amber-400 text-[10px] font-bold flex items-center space-x-1 border border-white/10">
-                            <i class="fa-solid fa-star text-[9px]"></i><span>${m.rating}</span>
-                        </span>
-                    </div>
-                    <div class="p-3 space-y-1">
-                        <h4 class="font-bold text-xs text-white truncate">${m.title}</h4>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400"><span>${m.year}</span><span>${m.duration}</span></div>
-                    </div>
-                </div>
-            `).join('');
+    document.getElementById('formExam').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('statusAlert');
+      status.style.display = 'block';
+      status.className = 'status-alert';
+      status.textContent = 'Generating Exam PIN...';
 
-            if (searchGrid) searchGrid.innerHTML = html || `<div class="col-span-2 text-center py-12 text-gray-500 text-xs">No movies found</div>`;
+      const refId = `pin_${Date.now()}`;
+      const examType = document.getElementById('examTypeSelect').value;
+      const quantity = document.getElementById('examQuantity').value;
+      const phone = document.getElementById('examPhone').value.trim();
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/buy-exam-pin`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ exam_type: examType, quantity: quantity, mobile_number: phone })
+        });
+
+        const resData = await response.json();
+        const isSuccess = resData.status === 'success' || resData.code === 200;
+
+        const newTx = {
+          type: 'Exam PIN',
+          title: `${examType.toUpperCase()} PIN (${quantity}x) — ${phone}`,
+          amount: '1,200',
+          ref: refId,
+          date: new Date().toLocaleDateString('en-GB'),
+          status: isSuccess ? 'SUCCESS' : 'FAILED'
+        };
+
+        await syncUserProfile(userEmailAddress, { transaction: newTx });
+
+        if (isSuccess) {
+          status.className = 'status-alert success';
+          status.textContent = resData.message || 'Exam PIN generated and sent to phone!';
+          window.showDirectReceipt(newTx);
+        } else {
+          status.className = 'status-alert error';
+          status.textContent = resData.message || 'Exam PIN generation failed.';
         }
+      } catch (err) {
+        status.className = 'status-alert error';
+        status.textContent = 'Network error generating PIN.';
+      }
+    });
+  
 
-        function switchTab(tabId) {
-            ['home', 'explore', 'search', 'watchlist', 'downloads'].forEach(t => {
-                document.getElementById(`tab-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`nav-${t}`);
-                if (btn) btn.className = "nav-btn flex flex-col items-center space-y-1 text-gray-400 hover:text-white transition";
-            });
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            const activeNav = document.getElementById(`nav-${tabId}`);
-            if (activeNav) activeNav.className = "nav-btn flex flex-col items-center space-y-1 text-primary transition";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+// ================= ROUTER + AUTH =================
+let authReady = false, currentUser = null, authBusy = false;
+const VIEWS = { home:'v-landing', services:'v-landing', login:'v-auth', signup:'v-auth', dashboard:'v-dash' };
+const TITLES = { home:'OyoData — Best SME Data & VTU Platform in Nigeria', services:'OyoData — Best SME Data & VTU Platform in Nigeria', login:'OyoData — Login', signup:'OyoData — Create Account', dashboard:'OyoData — Dashboard' };
 
-            if (tabId === 'watchlist') renderWatchlist();
-            if (tabId === 'downloads') renderDownloads();
-        }
+function route() {
+  if (!authReady) return;
+  let r = (location.hash || '#home').slice(1).split('?')[0];
+  if (!VIEWS[r]) r = 'home';
+  if (r === 'dashboard' && !currentUser) { location.hash = '#login'; return; }
+  if ((r === 'login' || r === 'signup') && currentUser && !authBusy) { location.hash = '#dashboard'; return; }
 
-        function openDetailModal(id) {
-            activeMovie = movies.find(m => m.id === id);
-            if (!activeMovie) return;
+  document.querySelectorAll('.view').forEach(v => v.hidden = v.id !== VIEWS[r]);
+  document.getElementById('card-login').style.display = r === 'signup' ? 'none' : 'block';
+  document.getElementById('card-signup').style.display = r === 'signup' ? 'block' : 'none';
+  document.getElementById('navDropdown').classList.remove('open');
+  document.title = TITLES[r];
 
-            document.getElementById('modalPoster').src = activeMovie.poster;
-            document.getElementById('modalTitle').textContent = activeMovie.title;
-            document.getElementById('modalYear').textContent = activeMovie.year;
-            document.getElementById('modalRating').textContent = activeMovie.rating;
-            document.getElementById('modalDuration').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${activeMovie.duration}`;
-            document.getElementById('modalSynopsis').textContent = activeMovie.synopsis;
-            document.getElementById('modalGenres').innerHTML = `<span class="px-2 py-0.5 rounded bg-white/10 text-gray-300 text-[10px] font-semibold">${activeMovie.genre}</span>`;
+  if (r === 'services') document.getElementById('services').scrollIntoView();
+  else window.scrollTo(0, 0);
+  if (r === 'dashboard') window.switchTab('home');
+}
+window.addEventListener('hashchange', route);
 
-            updateModalWatchlistButtonState();
-            document.getElementById('detailModal').classList.remove('hidden');
-        }
+window.toggleMenu = function () {
+  document.getElementById('navDropdown').classList.toggle('open');
+};
 
-        function closeDetailModal() { document.getElementById('detailModal').classList.add('hidden'); }
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+  authReady = true;
+  if (user) {
+    userEmailAddress = user.email;
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('refLinkInput').value = `https://ugbolagade-ship-it.github.io/OyoData/?ref=${user.uid.slice(0, 6)}#signup`;
+    route();
+    await syncUserProfile(user.email);
+  } else {
+    userEmailAddress = ''; actualBalance = 0; refBalance = 0; isReseller = false; transactionHistory = [];
+    route();
+  }
+});
 
-        function toggleWatchlistCurrent() {
-            if (!activeMovie) return;
-            const index = watchlist.findIndex(w => w.id === activeMovie.id);
-            if (index > -1) watchlist.splice(index, 1);
-            else watchlist.push(activeMovie);
-            localStorage.setItem('filmvault_watchlist', JSON.stringify(watchlist));
-            updateWatchlistBadge();
-            updateModalWatchlistButtonState();
-        }
+window.logout = async function () {
+  await signOut(auth);
+  location.hash = '#login';
+};
 
-        function updateModalWatchlistButtonState() {
-            if (!activeMovie) return;
-            const exists = watchlist.some(w => w.id === activeMovie.id);
-            document.getElementById('modalWatchlistText').textContent = exists ? "In Watchlist" : "Add to Watchlist";
-            document.querySelector('#modalWatchlistBtn i').className = exists ? "fa-solid fa-bookmark text-primary" : "fa-regular fa-bookmark";
-        }
+window.loginUser = async function (e) {
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  const status = document.getElementById('loginStatus');
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  btn.disabled = true; btn.textContent = 'Logging in...';
+  status.className = 'status-alert'; authBusy = true;
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    status.className = 'status-alert success';
+    status.textContent = 'Login successful! Redirecting...';
+    setTimeout(() => {
+      authBusy = false; btn.disabled = false; btn.textContent = 'Log In'; status.className = 'status-alert';
+      location.hash = '#dashboard'; route();
+    }, 800);
+  } catch (error) {
+    authBusy = false;
+    status.className = 'status-alert error';
+    status.textContent = error.message.replace('Firebase: ', '');
+    btn.disabled = false; btn.textContent = 'Log In';
+  }
+};
 
-        function updateWatchlistBadge() {
-            const badge = document.getElementById('watchlistBadge');
-            badge.textContent = watchlist.length;
-            if (watchlist.length > 0) badge.classList.remove('hidden');
-            else badge.classList.add('hidden');
-        }
+window.handleForgotPassword = async function (e) {
+  e.preventDefault();
+  const status = document.getElementById('loginStatus');
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!email) {
+    status.className = 'status-alert error';
+    status.textContent = 'Please enter your email address in the box above first.';
+    return;
+  }
+  status.className = 'status-alert';
+  try {
+    await sendPasswordResetEmail(auth, email);
+    status.className = 'status-alert success';
+    status.textContent = `Password reset link sent to ${email}. Check your inbox or spam folder.`;
+  } catch (error) {
+    status.className = 'status-alert error';
+    status.textContent = error.message.replace('Firebase: ', '');
+  }
+};
 
-        function renderWatchlist() {
-            const grid = document.getElementById('watchlistGrid');
-            document.getElementById('watchlistCount').textContent = `${watchlist.length} items`;
-            if (watchlist.length === 0) {
-                grid.innerHTML = `<div class="col-span-2 text-center py-16 text-gray-500 text-xs">Your watchlist is empty.</div>`;
-                return;
-            }
-            grid.innerHTML = watchlist.map(m => `
-                <div onclick="openDetailModal('${m.id}')" class="glass-card rounded-2xl overflow-hidden group cursor-pointer transition transform hover:-translate-y-1">
-                    <div class="relative aspect-[2/3] overflow-hidden bg-surfaceLight">
-                        <img src="${m.poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
-                        <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-obsidian/80 backdrop-blur-md text-amber-400 text-[10px] font-bold flex items-center space-x-1 border border-white/10">
-                            <i class="fa-solid fa-star text-[9px]"></i><span>${m.rating}</span>
-                        </span>
-                    </div>
-                    <div class="p-3 space-y-1">
-                        <h4 class="font-bold text-xs text-white truncate">${m.title}</h4>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400"><span>${m.year}</span><span>${m.duration}</span></div>
-                    </div>
-                </div>
-            `).join('');
-        }
+window.signupUser = async function (e) {
+  e.preventDefault();
+  const btn = document.getElementById('signupBtn');
+  const status = document.getElementById('signupStatus');
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  status.className = 'status-alert';
+  if (password !== confirmPassword) {
+    status.className = 'status-alert error';
+    status.textContent = 'Passwords do not match. Please check and try again.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Creating Account...'; authBusy = true;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    status.className = 'status-alert success';
+    status.textContent = 'Account created successfully! Redirecting...';
+    setTimeout(() => {
+      authBusy = false; btn.disabled = false; btn.textContent = 'Create Account'; status.className = 'status-alert';
+      location.hash = '#dashboard'; route();
+    }, 800);
+  } catch (error) {
+    authBusy = false;
+    status.className = 'status-alert error';
+    status.textContent = error.message.replace('Firebase: ', '');
+    btn.disabled = false; btn.textContent = 'Create Account';
+  }
+};
 
-        function startDownload(quality) {
-            if (!activeMovie) return;
-            closeDetailModal();
-            if (!downloads.some(d => d.id === activeMovie.id && d.quality === quality)) {
-                downloads.unshift({
-                    id: activeMovie.id, title: activeMovie.title, poster: activeMovie.poster,
-                    quality: quality, progress: 15, status: 'Downloading',
-                    size: quality === '4K' ? '8.4 GB' : quality === '1080p' ? '2.6 GB' : '1.2 GB'
-                });
-                localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
-                updateDownloadBadge();
-                renderDownloads();
+// Forms in the dashboard without a backend handler: stop the page from reloading
+['formAirtime', 'formCable', 'formElectricity'].forEach(id => {
+  document.getElementById(id).addEventListener('submit', (e) => {
+    e.preventDefault();
+    const status = document.getElementById('statusAlert');
+    status.style.display = 'block';
+    status.className = 'status-alert error';
+    status.textContent = 'This service is not connected yet. Please use Data or Exam PIN for now.';
+  });
+});
 
-                let prog = 15;
-                const interval = setInterval(() => {
-                    prog += 20;
-                    const d = downloads.find(item => item.id === activeMovie.id && item.quality === quality);
-                    if (d) {
-                        if (prog >= 100) { d.progress = 100; d.status = 'Completed'; clearInterval(interval); }
-                        else d.progress = prog;
-                        localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
-                        renderDownloads();
-                    } else clearInterval(interval);
-                }, 700);
-            }
-            switchTab('downloads');
-        }
-
-        function renderDownloads() {
-            const listEl = document.getElementById('downloadsList');
-            updateDownloadBadge();
-            if (downloads.length === 0) {
-                listEl.innerHTML = `<div class="text-center py-16 text-gray-500 text-xs glass-card rounded-2xl">No active downloads.</div>`;
-                return;
-            }
-            listEl.innerHTML = downloads.map(d => `
-                <div class="glass-card rounded-2xl p-3.5 flex items-center space-x-3.5">
-                    <img src="${d.poster}" alt="${d.title}" class="w-14 h-20 object-cover rounded-xl border border-white/10">
-                    <div class="flex-1 space-y-1.5">
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-xs text-white truncate max-w-[160px]">${d.title}</h4>
-                            <span class="px-2 py-0.5 rounded text-[9px] font-bold ${d.status === 'Completed' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-primary/20 text-primary border border-primary/30'}">${d.status}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>${d.quality} • ${d.size}</span><span>${d.progress}%</span>
-                        </div>
-                        <div class="w-full bg-surfaceLight rounded-full h-1.5 overflow-hidden border border-white/5">
-                            <div class="bg-primary h-full transition-all duration-300" style="width: ${d.progress}%"></div>
-                        </div>
-                    </div>
-                    <button onclick="removeDownload('${d.id}', '${d.quality}')" class="text-gray-500 hover:text-red-400 p-2 transition">
-                        <i class="fa-solid fa-trash-can text-xs"></i>
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function removeDownload(id, quality) {
-            downloads = downloads.filter(d => !(d.id === id && d.quality === quality));
-            localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
-            renderDownloads();
-        }
-
-        function clearCompletedDownloads() {
-            downloads = downloads.filter(d => d.status !== 'Completed');
-            localStorage.setItem('filmvault_downloads', JSON.stringify(downloads));
-            renderDownloads();
-        }
-
-        function updateDownloadBadge() {
-            const badge = document.getElementById('downloadBadge');
-            const active = downloads.filter(d => d.status === 'Downloading').length;
-            badge.textContent = active;
-            if (active > 0) badge.classList.remove('hidden');
-            else badge.classList.add('hidden');
-        }
-
-        function openConfigModal() {
-            document.getElementById('configHost').value = apiConfig.host;
-            document.getElementById('configApiKey').value = apiConfig.apiKey;
-            document.getElementById('configModal').classList.remove('hidden');
-        }
-
-        function closeConfigModal() { document.getElementById('configModal').classList.add('hidden'); }
-
-        function saveApiConfig() {
-            apiConfig.host = document.getElementById('configHost').value.trim();
-            apiConfig.apiKey = document.getElementById('configApiKey').value.trim();
-            localStorage.setItem('fv_host', apiConfig.host);
-            localStorage.setItem('fv_apikey', apiConfig.apiKey);
-            closeConfigModal();
-            fetchTrendingMovies();
-        }
-    </script>
+</script>
 </body>
 </html>
