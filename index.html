@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="AccsStores - Premium verified social account logs & digital solutions for modern marketers." />
-  <title>AccsStores | Premium Social Account Logs & Solutions</title>
+  <meta name="description" content="EasyStores - Premium verified social account logs & digital solutions for modern marketers." />
+  <title>EasyStores | Premium Social Account Logs & Solutions</title>
   <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -396,376 +396,6 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-12px); }
     }
-
-    /* ========== AUTH SECTION (INLINE) ========== */
-    .auth-section {
-      padding: 120px 0;
-      background: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
-    .auth-section::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 50%; height: 100%;
-      background: radial-gradient(circle at 80% 30%, rgba(196, 240, 0, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .auth-section::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 40%; height: 60%;
-      background: radial-gradient(circle at 20% 80%, rgba(13, 13, 13, 0.02) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .auth-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 60px;
-      align-items: start;
-      position: relative;
-      z-index: 2;
-    }
-    .auth-info {
-      position: sticky;
-      top: 120px;
-    }
-    .auth-info .section-label {
-      display: inline-block;
-      padding: 8px 18px;
-      background: var(--lime-100);
-      color: var(--charcoal-800);
-      border-radius: var(--radius-full);
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 1px solid var(--lime-300);
-    }
-    .auth-info h2 {
-      font-size: 46px;
-      font-weight: 800;
-      color: var(--charcoal-900);
-      margin-bottom: 20px;
-      line-height: 1.1;
-    }
-    .auth-info h2 span { color: var(--lime-600); }
-    .auth-info > p {
-      font-size: 17px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 440px;
-    }
-    .auth-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    .auth-features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-    .auth-features li i {
-      width: 28px; height: 28px;
-      background: var(--lime-100);
-      color: var(--lime-600);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      flex-shrink: 0;
-      border: 1px solid var(--lime-300);
-    }
-    .auth-trust {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      background: var(--off-white);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-light);
-    }
-    .auth-trust i {
-      font-size: 28px;
-      color: var(--lime-600);
-    }
-    .auth-trust-text {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .auth-trust-text strong {
-      display: block;
-      color: var(--charcoal-900);
-      font-family: 'Syne', sans-serif;
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    /* ========== AUTH FORMS (TABS) ========== */
-    .auth-forms-wrapper {
-      background: var(--white);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-xl);
-      border: 1px solid var(--border-light);
-      overflow: hidden;
-    }
-    .auth-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border-light);
-      position: relative;
-    }
-    .auth-tab {
-      flex: 1;
-      padding: 20px;
-      text-align: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: var(--transition);
-      background: transparent;
-      border: none;
-      position: relative;
-    }
-    .auth-tab.active {
-      color: var(--charcoal-900);
-    }
-    .auth-tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0;
-      width: 100%; height: 3px;
-      background: var(--lime-500);
-      border-radius: 3px 3px 0 0;
-    }
-    .auth-tab:hover { color: var(--charcoal-700); }
-    .auth-panel {
-      display: none;
-      padding: 40px 36px 36px;
-      animation: fadePanel 0.4s ease forwards;
-    }
-    .auth-panel.active { display: block; }
-    @keyframes fadePanel {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .auth-form .form-group { margin-bottom: 18px; }
-    .auth-form .form-label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text-primary);
-      font-size: 12px;
-      font-weight: 600;
-      font-family: 'Syne', sans-serif;
-      letter-spacing: 0.02em;
-    }
-    .required:after { content: '*'; color: var(--lime-600); margin-left: 4px; }
-    .input-wrapper {
-      position: relative;
-      border-radius: var(--radius-md);
-      border: 2px solid var(--border-light);
-      transition: var(--transition);
-      background: var(--white);
-    }
-    .input-wrapper:hover { border-color: var(--charcoal-300); }
-    .input-wrapper:focus-within {
-      border-color: var(--lime-500);
-      box-shadow: 0 0 0 4px rgba(196, 240, 0, 0.12);
-    }
-    .input-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 14px;
-      transition: var(--transition);
-    }
-    .input-wrapper:focus-within .input-icon { color: var(--lime-600); }
-    .form-control {
-      width: 100%;
-      padding: 13px 14px 13px 44px;
-      border: none;
-      background: transparent;
-      font-size: 14px;
-      color: var(--text-primary);
-      outline: none;
-      border-radius: var(--radius-md);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-    }
-    .form-control::placeholder { color: var(--text-muted); opacity: 0.7; }
-    .password-toggle {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 14px;
-      padding: 8px;
-      transition: var(--transition);
-      border-radius: var(--radius-sm);
-    }
-    .password-toggle:hover { color: var(--lime-600); background: var(--lime-100); }
-    .password-strength { margin-top: 8px; display: none; }
-    .strength-bar {
-      height: 4px;
-      background: var(--border-light);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 4px;
-    }
-    .strength-fill {
-      height: 100%;
-      width: 0;
-      background: var(--text-muted);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-    .strength-text { font-size: 11px; color: var(--text-muted); }
-    .form-options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .checkbox-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .checkbox-wrapper input { display: none; }
-    .custom-checkbox {
-      width: 18px; height: 18px;
-      border: 2px solid var(--border-light);
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      background: var(--white);
-      flex-shrink: 0;
-    }
-    .checkbox-wrapper:hover .custom-checkbox { border-color: var(--lime-600); }
-    .checkbox-wrapper input:checked + .custom-checkbox {
-      background: var(--lime-500);
-      border-color: var(--lime-500);
-    }
-    .checkbox-wrapper input:checked + .custom-checkbox::after {
-      content: '✓';
-      color: var(--charcoal-900);
-      font-size: 11px;
-      font-weight: bold;
-    }
-    .checkbox-label, .terms-text {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .terms-text a {
-      color: var(--lime-600);
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .terms-text a:hover { color: var(--lime-500); text-decoration: underline; }
-    .forgot-link {
-      color: var(--lime-600);
-      font-size: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .forgot-link:hover { color: var(--lime-500); text-decoration: underline; }
-    .btn-auth {
-      width: 100%;
-      padding: 16px;
-      background: var(--charcoal-900);
-      color: var(--off-white);
-      border: none;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 700;
-      font-family: 'Syne', sans-serif;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      margin-top: 8px;
-      letter-spacing: 0.02em;
-    }
-    .btn-auth:hover {
-      background: var(--charcoal-700);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-    .btn-auth .loading-spinner {
-      display: none;
-      width: 20px; height: 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: var(--off-white);
-      animation: spin 0.8s linear infinite;
-    }
-    .btn-auth.loading .btn-text { visibility: hidden; }
-    .btn-auth.loading .loading-spinner { display: block; position: absolute; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .auth-switch {
-      text-align: center;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-light);
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .auth-switch a {
-      color: var(--lime-600);
-      font-weight: 700;
-      text-decoration: none;
-      margin-left: 4px;
-      transition: var(--transition);
-    }
-    .auth-switch a:hover { color: var(--lime-500); }
-    .security-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
-      padding: 12px 14px;
-      background: var(--lime-100);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--lime-300);
-      font-size: 11px;
-      color: var(--text-secondary);
-    }
-    .security-badge i { color: var(--lime-600); font-size: 13px; }
 
     /* ========== SECTIONS (SHARED) ========== */
     section {
@@ -1242,9 +872,6 @@
       .hero-grid { gap: 50px; }
       .hero-content h1 { font-size: 52px; }
       .section-header h2 { font-size: 38px; }
-      .auth-grid { grid-template-columns: 1fr; gap: 40px; }
-      .auth-info { position: static; }
-      .auth-info h2 { font-size: 38px; }
     }
     @media (max-width: 900px) {
       .hero { padding: 150px 0 100px; }
@@ -1255,9 +882,6 @@
       .hero-btns { justify-content: center; }
       .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 0 auto; }
       .hero-badge { top: -10px; right: -10px; padding: 12px 20px; font-size: 11px; }
-      .auth-info { text-align: center; }
-      .auth-info > p { margin-left: auto; margin-right: auto; }
-      .auth-features { align-items: center; }
     }
     @media (max-width: 768px) {
       .mobile-menu-btn { display: block; }
@@ -1266,13 +890,11 @@
       section { padding: 80px 0; }
       .services-grid, .solutions-grid, .testimonials-grid { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: 1fr; }
-      .auth-panel { padding: 28px 22px 24px; }
       .hero-content h1 { font-size: 36px; }
       .hero-content p { font-size: 16px; }
       .stat-number { font-size: 30px; }
       .cta-section h2 { font-size: 34px; }
       .cta-section p { font-size: 16px; }
-      .form-grid { grid-template-columns: 1fr; gap: 0; }
     }
     @media (max-width: 520px) {
       .container { padding: 0 20px; }
@@ -1290,8 +912,6 @@
       .cta-section h2 { font-size: 28px; }
       .cta-section p { font-size: 14px; }
       .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; border-radius: var(--radius-sm); }
-      .auth-panel { padding: 24px 18px 20px; }
-      .auth-info h2 { font-size: 30px; }
       .footer-content { grid-template-columns: 1fr; gap: 28px; }
     }
   </style>
@@ -1303,19 +923,18 @@
     <div class="container">
       <nav>
         <a class="logo" href="#">
-          Accs<span>Stores</span><span class="logo-dot">.</span>
+          Easy<span>Stores</span><span class="logo-dot">.</span>
         </a>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Logs Services</a></li>
           <li><a href="#solutions">Solutions</a></li>
           <li><a href="#marketplace">Marketplace</a></li>
-          <li><a href="#auth">Sign In</a></li>
           <li><a href="#footer">Contact</a></li>
         </ul>
         <div class="nav-btns">
-          <a class="btn btn-outline btn-sm" href="#auth">Login</a>
-          <a class="btn btn-lime btn-sm" href="#auth">Get Started</a>
+          <a class="btn btn-outline btn-sm" href="#">Login</a>
+          <a class="btn btn-lime btn-sm" href="#">Get Started</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
           <i class="fas fa-bars"></i>
@@ -1330,10 +949,9 @@
     <a href="#services">Logs Services</a>
     <a href="#solutions">Solutions</a>
     <a href="#marketplace">Marketplace</a>
-    <a href="#auth">Sign In / Register</a>
     <a href="#footer">Contact</a>
-    <a class="btn btn-outline" href="#auth">Login</a>
-    <a class="btn btn-lime" href="#auth">Get Started</a>
+    <a class="btn btn-outline" href="#">Login</a>
+    <a class="btn btn-lime" href="#">Get Started</a>
   </div>
 
   <!-- ======================= HERO ======================= -->
@@ -1366,176 +984,6 @@
           <div class="hero-image-wrapper">
             <div class="hero-badge"><i class="fas fa-shield-check"></i> 100% Verified</div>
             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team working with laptops and phones on global social platform" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= AUTH SECTION (INLINE) ======================= -->
-  <section id="auth" class="auth-section">
-    <div class="container">
-      <div class="auth-grid">
-        <!-- Left: Info -->
-        <div class="auth-info">
-          <div class="section-label">Get Started Today</div>
-          <h2>Join <span>AccsStores</span> & Unlock Premium Access</h2>
-          <p>Create your free account or sign in to access thousands of verified social media logs, exclusive marketplace deals, and instant delivery.</p>
-          <ul class="auth-features">
-            <li><i class="fas fa-check"></i> Instant access to 50,000+ verified logs</li>
-            <li><i class="fas fa-check"></i> Secure 256-bit SSL encrypted transactions</li>
-            <li><i class="fas fa-check"></i> Exclusive member-only discounts & bulk pricing</li>
-            <li><i class="fas fa-check"></i> 24/7 dedicated support team</li>
-          </ul>
-          <div class="auth-trust">
-            <i class="fas fa-shield-halved"></i>
-            <div class="auth-trust-text">
-              <strong>Trusted by 10,000+ marketers</strong>
-              Your data is protected with bank-level encryption.
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Auth Forms with Tabs -->
-        <div class="auth-forms-wrapper">
-          <div class="auth-tabs">
-            <button class="auth-tab active" data-tab="login">Login</button>
-            <button class="auth-tab" data-tab="register">Create Account</button>
-          </div>
-
-          <!-- Login Panel -->
-          <div class="auth-panel active" id="loginPanel">
-            <form action="handle_login.php" method="POST" class="auth-form" id="loginForm">
-              <div class="form-group">
-                <label class="form-label" for="loginEmail">Email or Username</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-user input-icon"></i>
-                  <input type="text" id="loginEmail" name="email_username" placeholder="Enter your email or username" class="form-control" required autocomplete="username" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="loginPassword">Password</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-lock input-icon"></i>
-                  <input type="password" id="loginPassword" name="password" placeholder="Enter your password" class="form-control" required autocomplete="current-password" />
-                  <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Toggle password visibility">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="form-options">
-                <label class="checkbox-wrapper">
-                  <input type="checkbox" id="remember" name="remember" />
-                  <span class="custom-checkbox"></span>
-                  <span class="checkbox-label">Remember me</span>
-                </label>
-                <a class="forgot-link" href="recover.php">Forgot password?</a>
-              </div>
-              <button type="submit" class="btn-auth" id="loginSubmitBtn">
-                <span class="btn-text">Sign In to Dashboard</span>
-                <div class="loading-spinner"></div>
-                <i class="fas fa-arrow-right"></i>
-              </button>
-            </form>
-            <div class="auth-switch">
-              Don't have an account? <a href="#" class="switch-tab" data-target="register">Create Account</a>
-            </div>
-            <div class="security-badge">
-              <i class="fas fa-shield-alt"></i>
-              <span>Secured with 256-bit SSL encryption</span>
-            </div>
-          </div>
-
-          <!-- Register Panel -->
-          <div class="auth-panel" id="registerPanel">
-            <form action="handle_register.php" method="POST" class="auth-form" id="registerForm">
-              <input type="hidden" name="csrf_token" value="1e797fae729087f33854994a111976d48228fc9a2bc2563976fb662f9818e01e" />
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label required" for="fullName">Full Name</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" id="fullName" name="full_name" placeholder="Enter your full name" class="form-control" required autocomplete="name" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label required" for="phoneNumber">WhatsApp Number</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-phone input-icon"></i>
-                    <input type="tel" id="phoneNumber" name="phone_number" placeholder="+234 123 456 7890" class="form-control" required autocomplete="tel" />
-                  </div>
-                </div>
-              </div>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label required" for="regUsername">Username</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-at input-icon"></i>
-                    <input type="text" id="regUsername" name="username" placeholder="Choose a username" class="form-control" required minlength="3" autocomplete="username" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label required" for="regEmail">Email Address</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" id="regEmail" name="email" placeholder="you@example.com" class="form-control" required autocomplete="email" />
-                  </div>
-                </div>
-              </div>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label required" for="regPassword">Password</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" id="regPassword" name="password" placeholder="Create a strong password" class="form-control" required minlength="8" autocomplete="new-password" />
-                    <button type="button" class="password-toggle" id="toggleRegPassword" aria-label="Toggle password visibility">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                  </div>
-                  <div class="password-strength" id="passwordStrength">
-                    <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
-                    <div class="strength-text" id="strengthText">Password strength: None</div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label required" for="confirmPassword">Confirm Password</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" class="form-control" required autocomplete="new-password" />
-                    <button type="button" class="password-toggle" id="toggleConfirmPassword" aria-label="Toggle confirm password visibility">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                  </div>
-                  <div class="strength-text" id="passwordMatch" style="font-size: 11px; margin-top: 4px; display: none;"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="ref">Referral Code (Optional)</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-user-friends input-icon"></i>
-                  <input type="text" id="ref" name="ref" placeholder="Enter referral code if you have one" class="form-control" />
-                </div>
-              </div>
-              <div class="terms-container" style="margin: 16px 0; padding: 12px; background: var(--lime-100); border-radius: var(--radius-md); border: 1px solid var(--lime-300);">
-                <label class="checkbox-wrapper" style="align-items: flex-start;">
-                  <input type="checkbox" id="terms" name="terms" required />
-                  <span class="custom-checkbox" style="margin-top: 2px;"></span>
-                  <span class="terms-text">I agree to the <a href="terms.php" target="_blank">Terms of Service</a> and <a href="privacy.php" target="_blank">Privacy Policy</a>. I understand that I must be at least 18 years old to use this service.</span>
-                </label>
-              </div>
-              <button type="submit" class="btn-auth" id="registerSubmitBtn">
-                <span class="btn-text">Create Account</span>
-                <div class="loading-spinner"></div>
-                <i class="fas fa-arrow-right"></i>
-              </button>
-            </form>
-            <div class="auth-switch">
-              Already have an account? <a href="#" class="switch-tab" data-target="login">Sign In</a>
-            </div>
-            <div class="security-badge">
-              <i class="fas fa-shield-alt"></i>
-              <span>Protected with 256-bit SSL encryption</span>
-            </div>
           </div>
         </div>
       </div>
@@ -1694,11 +1142,11 @@
       <div class="section-header">
         <div class="section-label">Testimonials</div>
         <h2>Trusted by Marketers Worldwide</h2>
-        <p>See what our satisfied customers say about their experience with AccsStores</p>
+        <p>See what our satisfied customers say about their experience with EasyStores</p>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="testimonial-text">"AccsStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively. Highly recommended!"</p>
+          <p class="testimonial-text">"EasyStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively. Highly recommended!"</p>
           <div class="testimonial-author">
             <div class="author-avatar">
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel Okoro" />
@@ -1710,7 +1158,7 @@
           </div>
         </div>
         <div class="testimonial-card">
-          <p class="testimonial-text">"Best decision for my agency! AccsStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
+          <p class="testimonial-text">"Best decision for my agency! EasyStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
           <div class="testimonial-author">
             <div class="author-avatar">
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Okafor" />
@@ -1729,8 +1177,8 @@
   <section class="cta-section">
     <div class="container">
       <h2>Ready to Scale Your Digital Presence?</h2>
-      <p>Join over 10,000+ businesses and marketers already using AccsStores for their social media growth and marketing success.</p>
-      <a class="btn btn-lime" href="#auth" style="font-size: 15px; padding: 16px 36px;"><i class="fas fa-rocket"></i> Get Access Now</a>
+      <p>Join over 10,000+ businesses and marketers already using EasyStores for their social media growth and marketing success.</p>
+      <a class="btn btn-lime" href="#" style="font-size: 15px; padding: 16px 36px;"><i class="fas fa-rocket"></i> Get Access Now</a>
     </div>
   </section>
 
@@ -1739,7 +1187,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-col">
-          <h3>Accs<span>Stores</span></h3>
+          <h3>Easy<span>Stores</span></h3>
           <p>The #1 trusted marketplace for verified premium social media account logs and digital solutions worldwide.</p>
           <div class="social-links">
             <a class="social-link" href="#"><i class="fab fa-telegram"></i></a>
@@ -1771,13 +1219,13 @@
         <div class="footer-col">
           <h3>Contact</h3>
           <ul class="footer-links">
-            <li><a href="mailto:support@accsstores.com"><i class="fas fa-envelope"></i> support@accsstores.com</a></li>
+            <li><a href="mailto:support@easystores.com"><i class="fas fa-envelope"></i> support@easystores.com</a></li>
             <li><a href="https://wa.me/23470702"><i class="fab fa-whatsapp"></i> +234 707 582 0202</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>© 2026 <strong>AccsStores</strong>. All rights reserved. | Developed by <a href="https://wa.me/2347075820202" target="_blank">AP Technologies</a></p>
+        <p>© 2026 <strong>EasyStores</strong>. All rights reserved. | Developed by <a href="https://wa.me/2347075820202" target="_blank">AP Technologies</a></p>
       </div>
     </div>
   </footer>
@@ -1866,170 +1314,6 @@
               behavior: 'smooth'
             });
           }
-        });
-      });
-
-      // ---------- Auth Tabs ----------
-      const authTabs = document.querySelectorAll('.auth-tab');
-      const loginPanel = document.getElementById('loginPanel');
-      const registerPanel = document.getElementById('registerPanel');
-
-      function switchTab(tab) {
-        authTabs.forEach(t => t.classList.remove('active'));
-        document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
-        if (tab === 'login') {
-          loginPanel.classList.add('active');
-          registerPanel.classList.remove('active');
-          document.getElementById('loginEmail').focus();
-        } else {
-          registerPanel.classList.add('active');
-          loginPanel.classList.remove('active');
-          document.getElementById('fullName').focus();
-        }
-      }
-
-      authTabs.forEach(tab => {
-        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-      });
-
-      // Switch links inside forms
-      document.querySelectorAll('.switch-tab').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          switchTab(link.dataset.target);
-        });
-      });
-
-      // ---------- Password toggle (login) ----------
-      const toggleLoginPassword = document.getElementById('toggleLoginPassword');
-      const loginPasswordInput = document.getElementById('loginPassword');
-      const loginPasswordIcon = toggleLoginPassword.querySelector('i');
-      toggleLoginPassword.addEventListener('click', () => {
-        const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        loginPasswordInput.setAttribute('type', type);
-        loginPasswordIcon.classList.toggle('fa-eye');
-        loginPasswordIcon.classList.toggle('fa-eye-slash');
-      });
-
-      // ---------- Password toggle & strength (register) ----------
-      const toggleRegPassword = document.getElementById('toggleRegPassword');
-      const regPasswordInput = document.getElementById('regPassword');
-      const regPasswordIcon = toggleRegPassword.querySelector('i');
-      toggleRegPassword.addEventListener('click', () => {
-        const type = regPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        regPasswordInput.setAttribute('type', type);
-        regPasswordIcon.classList.toggle('fa-eye');
-        regPasswordIcon.classList.toggle('fa-eye-slash');
-      });
-
-      const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-      const confirmPasswordInput = document.getElementById('confirmPassword');
-      const confirmPasswordIcon = toggleConfirmPassword.querySelector('i');
-      toggleConfirmPassword.addEventListener('click', () => {
-        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPasswordInput.setAttribute('type', type);
-        confirmPasswordIcon.classList.toggle('fa-eye');
-        confirmPasswordIcon.classList.toggle('fa-eye-slash');
-      });
-
-      // Password strength checker
-      regPasswordInput.addEventListener('input', function() {
-        const password = this.value;
-        const strengthBar = document.getElementById('passwordStrength');
-        const strengthFill = document.getElementById('strengthFill');
-        const strengthText = document.getElementById('strengthText');
-        if (password.length === 0) {
-          strengthBar.style.display = 'none';
-          return;
-        }
-        strengthBar.style.display = 'block';
-        let strength = 0;
-        let color = '#ff4444';
-        let text = 'Weak';
-        if (password.length >= 8) strength += 25;
-        if (password.length >= 12) strength += 10;
-        if (/[a-z]/.test(password)) strength += 15;
-        if (/[A-Z]/.test(password)) strength += 15;
-        if (/[0-9]/.test(password)) strength += 15;
-        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-        if (strength >= 70) { color = '#00C851'; text = 'Strong'; }
-        else if (strength >= 40) { color = '#ffbb33'; text = 'Good'; }
-        strengthFill.style.width = strength + '%';
-        strengthFill.style.background = color;
-        strengthText.textContent = 'Password strength: ' + text;
-        strengthText.style.color = color;
-      });
-
-      // Password match
-      confirmPasswordInput.addEventListener('input', function() {
-        const password = regPasswordInput.value;
-        const confirm = this.value;
-        const matchText = document.getElementById('passwordMatch');
-        if (confirm.length === 0) {
-          matchText.style.display = 'none';
-          return;
-        }
-        matchText.style.display = 'block';
-        if (password === confirm) {
-          matchText.textContent = '✓ Passwords match';
-          matchText.style.color = '#00C851';
-        } else {
-          matchText.textContent = '✗ Passwords do not match';
-          matchText.style.color = '#ff4444';
-        }
-      });
-
-      // ---------- Login form submission ----------
-      const loginForm = document.getElementById('loginForm');
-      const loginSubmitBtn = document.getElementById('loginSubmitBtn');
-      loginForm.addEventListener('submit', function(e) {
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value.trim();
-        if (!email || !password) {
-          e.preventDefault();
-          alert('Please fill in all required fields');
-          return;
-        }
-        loginSubmitBtn.classList.add('loading');
-        loginSubmitBtn.disabled = true;
-      });
-
-      // ---------- Register form submission ----------
-      const registerForm = document.getElementById('registerForm');
-      const registerSubmitBtn = document.getElementById('registerSubmitBtn');
-      registerForm.addEventListener('submit', function(e) {
-        const password = regPasswordInput.value;
-        const confirm = confirmPasswordInput.value;
-        const terms = document.getElementById('terms').checked;
-        if (!terms) {
-          e.preventDefault();
-          alert('You must agree to the Terms of Service and Privacy Policy');
-          return;
-        }
-        if (password !== confirm) {
-          e.preventDefault();
-          alert('Passwords do not match. Please check and try again.');
-          return;
-        }
-        if (password.length < 8) {
-          e.preventDefault();
-          alert('Password must be at least 8 characters long');
-          return;
-        }
-        registerSubmitBtn.classList.add('loading');
-        registerSubmitBtn.disabled = true;
-      });
-
-      // Prevent double submit
-      [loginForm, registerForm].forEach(form => {
-        let submitted = false;
-        form.addEventListener('submit', function(e) {
-          if (submitted) {
-            e.preventDefault();
-            return false;
-          }
-          submitted = true;
-          setTimeout(() => { submitted = false; }, 4000);
         });
       });
 
