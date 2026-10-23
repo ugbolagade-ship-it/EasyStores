@@ -45,7 +45,6 @@
     a { text-decoration: none; color: inherit; }
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
-    /* Hide/show pages */
     .page-view { display: none; }
     .page-view.active { display: block; }
 
@@ -515,6 +514,395 @@
     .back-home i { transition: var(--transition); }
     .back-home a:hover i { transform: translateX(-3px); }
 
+    /* ======================= DASHBOARD ======================= */
+    .dashboard-page {
+      display: flex;
+      min-height: 100vh;
+      background: var(--off-white);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--charcoal-900);
+      color: var(--off-white);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; height: 100vh;
+      z-index: 100;
+      transition: var(--transition);
+    }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--off-white);
+      letter-spacing: -0.04em;
+      padding: 0 8px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 24px;
+      cursor: pointer;
+    }
+    .sidebar-brand span { color: var(--lime-400); }
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      color: rgba(247, 245, 240, 0.6);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .sidebar-nav li a:hover { background: rgba(255, 255, 255, 0.06); color: var(--off-white); }
+    .sidebar-nav li a.active { background: rgba(196, 240, 0, 0.12); color: var(--lime-400); }
+    .sidebar-nav li a i { width: 20px; text-align: center; font-size: 15px; }
+    .sidebar-nav li a .badge {
+      margin-left: auto;
+      background: var(--lime-500);
+      color: var(--charcoal-900);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+    .sidebar-user {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sidebar-user .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--lime-500);
+      color: var(--charcoal-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .sidebar-user .user-info { flex: 1; min-width: 0; }
+    .sidebar-user .user-info .name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; color: var(--off-white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-user .user-info .plan { font-size: 11px; color: var(--lime-400); font-weight: 500; }
+    .sidebar-user .logout-btn {
+      background: none; border: none; color: rgba(247, 245, 240, 0.5);
+      cursor: pointer; font-size: 14px; padding: 4px; transition: var(--transition);
+    }
+    .sidebar-user .logout-btn:hover { color: var(--lime-400); }
+
+    /* Main dashboard content */
+    .dashboard-main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 32px 40px 60px;
+      min-height: 100vh;
+    }
+    .dashboard-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .dashboard-topbar h1 {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--charcoal-900);
+    }
+    .dashboard-topbar h1 span { color: var(--lime-600); }
+    .topbar-actions { display: flex; gap: 12px; align-items: center; }
+    .topbar-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      transition: var(--transition);
+      min-width: 240px;
+    }
+    .topbar-search:focus-within { border-color: var(--lime-500); box-shadow: 0 0 0 3px rgba(196, 240, 0, 0.1); }
+    .topbar-search i { color: var(--text-muted); font-size: 14px; }
+    .topbar-search input {
+      border: none; background: transparent; outline: none;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-primary);
+      width: 100%;
+    }
+    .topbar-search input::placeholder { color: var(--text-muted); }
+    .topbar-icon {
+      width: 42px; height: 42px;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    .topbar-icon:hover { border-color: var(--lime-500); color: var(--lime-600); }
+    .topbar-icon .dot {
+      position: absolute; top: 8px; right: 10px;
+      width: 8px; height: 8px;
+      background: var(--lime-500);
+      border-radius: 50%;
+      border: 2px solid var(--white);
+    }
+
+    /* Stats grid */
+    .dash-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .dash-stat-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--border-light);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: var(--lime-500); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .dash-stat-card:hover::before { transform: scaleX(1); }
+    .dash-stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .dash-stat-card .stat-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--lime-100);
+      color: var(--lime-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .dash-stat-card .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--charcoal-900);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+    .dash-stat-card .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .dash-stat-card .stat-trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--lime-600);
+    }
+
+    /* Section panels */
+    .dash-panel {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .dash-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .dash-panel-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--charcoal-900);
+    }
+    .dash-panel-header .view-all {
+      color: var(--lime-600);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dash-panel-header .view-all:hover { color: var(--lime-500); text-decoration: underline; }
+
+    /* Recent activity / order table */
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .dash-table th {
+      text-align: left;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .dash-table td {
+      padding: 14px 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .dash-table tr:last-child td { border-bottom: none; }
+    .dash-table tr:hover td { background: var(--off-white); }
+    .dash-table .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-completed { background: var(--lime-100); color: var(--lime-600); }
+    .badge-pending { background: #FFF4D6; color: #B8860B; }
+    .badge-failed { background: #FFE0E0; color: #CC0000; }
+
+    /* Product grid in dashboard */
+    .dash-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .dash-product-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .dash-product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .dash-product-card .img {
+      height: 120px;
+      background: var(--off-white);
+      overflow: hidden;
+    }
+    .dash-product-card .img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .dash-product-card:hover .img img { transform: scale(1.08); }
+    .dash-product-card .info { padding: 16px; }
+    .dash-product-card .info h4 { font-size: 14px; font-weight: 700; color: var(--charcoal-900); margin-bottom: 4px; }
+    .dash-product-card .info .price { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--lime-600); }
+
+    /* Two column layout */
+    .dash-columns {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    /* Quick actions */
+    .quick-actions { display: flex; flex-direction: column; gap: 10px; }
+    .quick-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--off-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      width: 100%;
+      text-align: left;
+    }
+    .quick-action-btn:hover { background: var(--lime-100); border-color: var(--lime-300); color: var(--charcoal-900); }
+    .quick-action-btn i { color: var(--lime-600); font-size: 16px; width: 20px; text-align: center; }
+
+    /* Dashboard responsive */
+    @media (max-width: 1100px) {
+      .dash-columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 220px; padding: 20px 14px; }
+      .dashboard-main { margin-left: 220px; padding: 24px 24px 50px; }
+      .sidebar-user .user-info .name { font-size: 12px; }
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        width: 260px;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .dashboard-main { margin-left: 0; padding: 20px; }
+      .dash-stats { grid-template-columns: repeat(2, 1fr); }
+      .dash-table { font-size: 12px; }
+      .dash-table th, .dash-table td { padding: 10px 8px; }
+      .mobile-dash-toggle { display: flex !important; }
+    }
+    @media (max-width: 520px) {
+      .dash-stats { grid-template-columns: 1fr; }
+      .dashboard-topbar h1 { font-size: 24px; }
+      .topbar-search { min-width: auto; flex: 1; }
+      .dash-columns { grid-template-columns: 1fr; }
+    }
+
+    .mobile-dash-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: 18px;
+      color: var(--charcoal-900);
+      cursor: pointer;
+      margin-right: 12px;
+    }
+
+    /* Overlay for mobile sidebar */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(13, 13, 13, 0.5);
+      z-index: 99;
+    }
+    .sidebar-overlay.active { display: block; }
+
     /* ======================= RESPONSIVE ======================= */
     @media (max-width: 1100px) {
       .hero-grid { gap: 50px; } .hero-content h1 { font-size: 52px; } .section-header h2 { font-size: 38px; }
@@ -552,7 +940,7 @@
 </head>
 <body>
 
-  <!-- ======================= HEADER (Always visible on landing) ======================= -->
+  <!-- ======================= HEADER (Landing only) ======================= -->
   <header id="header">
     <div class="container">
       <nav>
@@ -575,7 +963,6 @@
     </div>
   </header>
 
-  <!-- Mobile Navigation -->
   <div class="mobile-nav" id="mobileNav">
     <a data-page="home" data-scroll="#home">Home</a>
     <a data-page="home" data-scroll="#services">Logs Services</a>
@@ -984,6 +1371,221 @@
     </div>
   </div><!-- /page-signup -->
 
+  <!-- ======================= DASHBOARD PAGE ======================= -->
+  <div id="page-dashboard" class="page-view">
+    <div class="dashboard-page">
+
+      <!-- Sidebar overlay for mobile -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand" data-page="home">
+          Easy<span>Stores</span>.
+        </div>
+        <ul class="sidebar-nav">
+          <li><a class="active" data-dash-tab="overview"><i class="fas fa-grid-2"></i> Overview</a></li>
+          <li><a data-dash-tab="marketplace"><i class="fas fa-store"></i> Marketplace</a></li>
+          <li><a data-dash-tab="orders"><i class="fas fa-receipt"></i> My Orders <span class="badge">3</span></a></li>
+          <li><a data-dash-tab="wallet"><i class="fas fa-wallet"></i> Wallet</a></li>
+          <li><a data-dash-tab="settings"><i class="fas fa-gear"></i> Settings</a></li>
+          <li><a data-dash-tab="support"><i class="fas fa-headset"></i> Support</a></li>
+        </ul>
+        <div class="sidebar-user">
+          <div class="avatar">JD</div>
+          <div class="user-info">
+            <div class="name">John Doe</div>
+            <div class="plan">Premium Member</div>
+          </div>
+          <button class="logout-btn" data-page="home" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <!-- Topbar -->
+        <div class="dashboard-topbar">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button class="mobile-dash-toggle" id="mobileDashToggle"><i class="fas fa-bars"></i></button>
+            <h1>Welcome back, <span>John</span> 👋</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-search">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search logs, orders..." />
+            </div>
+            <div class="topbar-icon" title="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="dot"></span>
+            </div>
+            <div class="topbar-icon" title="Messages">
+              <i class="fas fa-envelope"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overview Tab Content -->
+        <div class="dash-tab-content" id="dash-tab-overview">
+          <!-- Stats -->
+          <div class="dash-stats">
+            <div class="dash-stat-card">
+              <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+              <div class="stat-value">24</div>
+              <div class="stat-label">Total Orders</div>
+              <div class="stat-trend"><i class="fas fa-arrow-up"></i> +12% this month</div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+              <div class="stat-value">₦48,500</div>
+              <div class="stat-label">Wallet Balance</div>
+              <div class="stat-trend"><i class="fas fa-arrow-up"></i> +₦12,000 this week</div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="stat-icon"><i class="fas fa-key"></i></div>
+              <div class="stat-value">18</div>
+              <div class="stat-label">Active Logs</div>
+              <div class="stat-trend"><i class="fas fa-check-circle"></i> All verified</div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="stat-icon"><i class="fas fa-star"></i></div>
+              <div class="stat-value">4.9</div>
+              <div class="stat-label">Trust Score</div>
+              <div class="stat-trend"><i class="fas fa-arrow-up"></i> Excellent</div>
+            </div>
+          </div>
+
+          <!-- Two column: recent orders + quick actions -->
+          <div class="dash-columns">
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <h2>Recent Orders</h2>
+                <span class="view-all" data-dash-tab="orders">View All →</span>
+              </div>
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#ES-1042</td>
+                    <td>Instagram Aged Logs</td>
+                    <td>₦2,200</td>
+                    <td><span class="badge badge-completed">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>#ES-1038</td>
+                    <td>Bulk Gmail (10pcs)</td>
+                    <td>₦12,000</td>
+                    <td><span class="badge badge-completed">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>#ES-1021</td>
+                    <td>Facebook Ads Account</td>
+                    <td>₦2,500</td>
+                    <td><span class="badge badge-pending">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td>#ES-1015</td>
+                    <td>Instagram Aged Logs</td>
+                    <td>₦2,200</td>
+                    <td><span class="badge badge-failed">Failed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <h2>Quick Actions</h2>
+              </div>
+              <div class="quick-actions">
+                <button class="quick-action-btn" data-dash-tab="marketplace">
+                  <i class="fas fa-store"></i> Browse Marketplace
+                </button>
+                <button class="quick-action-btn" data-dash-tab="wallet">
+                  <i class="fas fa-plus-circle"></i> Fund Wallet
+                </button>
+                <button class="quick-action-btn" data-dash-tab="orders">
+                  <i class="fas fa-receipt"></i> View All Orders
+                </button>
+                <button class="quick-action-btn" data-dash-tab="support">
+                  <i class="fas fa-headset"></i> Contact Support
+                </button>
+                <button class="quick-action-btn" data-dash-tab="settings">
+                  <i class="fas fa-user-edit"></i> Edit Profile
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended products -->
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h2>Recommended For You</h2>
+              <span class="view-all" data-dash-tab="marketplace">Browse All →</span>
+            </div>
+            <div class="dash-products">
+              <div class="dash-product-card" data-dash-tab="marketplace">
+                <div class="img"><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Instagram" /></div>
+                <div class="info"><h4>Instagram Aged Logs</h4><div class="price">₦2,200</div></div>
+              </div>
+              <div class="dash-product-card" data-dash-tab="marketplace">
+                <div class="img"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Facebook" /></div>
+                <div class="info"><h4>Facebook Ads Account</h4><div class="price">₦2,500</div></div>
+              </div>
+              <div class="dash-product-card" data-dash-tab="marketplace">
+                <div class="img"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Gmail" /></div>
+                <div class="info"><h4>Bulk Gmail (10pcs)</h4><div class="price">₦12,000</div></div>
+              </div>
+              <div class="dash-product-card" data-dash-tab="marketplace">
+                <div class="img"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="TikTok" /></div>
+                <div class="info"><h4>TikTok Aged Logs</h4><div class="price">₦2,000</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder content for other tabs -->
+        <div class="dash-tab-content" id="dash-tab-marketplace" style="display:none;">
+          <div class="dash-panel">
+            <div class="dash-panel-header"><h2>Marketplace</h2></div>
+            <p style="color:var(--text-secondary); font-size:14px;">Browse all available logs. (Full marketplace view — integrate with your product listing page.)</p>
+          </div>
+        </div>
+        <div class="dash-tab-content" id="dash-tab-orders" style="display:none;">
+          <div class="dash-panel">
+            <div class="dash-panel-header"><h2>My Orders</h2></div>
+            <p style="color:var(--text-secondary); font-size:14px;">View your full order history. (Order management page — integrate with your backend.)</p>
+          </div>
+        </div>
+        <div class="dash-tab-content" id="dash-tab-wallet" style="display:none;">
+          <div class="dash-panel">
+            <div class="dash-panel-header"><h2>Wallet</h2></div>
+            <p style="color:var(--text-secondary); font-size:14px;">Manage your wallet balance and transactions. (Wallet page — integrate with payment gateway.)</p>
+          </div>
+        </div>
+        <div class="dash-tab-content" id="dash-tab-settings" style="display:none;">
+          <div class="dash-panel">
+            <div class="dash-panel-header"><h2>Settings</h2></div>
+            <p style="color:var(--text-secondary); font-size:14px;">Edit your profile, password, and preferences. (Settings page.)</p>
+          </div>
+        </div>
+        <div class="dash-tab-content" id="dash-tab-support" style="display:none;">
+          <div class="dash-panel">
+            <div class="dash-panel-header"><h2>Support</h2></div>
+            <p style="color:var(--text-secondary); font-size:14px;">Contact our support team via WhatsApp or email. (Support page.)</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div><!-- /page-dashboard -->
+
   <!-- ======================= SCRIPTS ======================= -->
   <script>
     (function() {
@@ -993,47 +1595,43 @@
       const pages = {
         home: document.getElementById('page-home'),
         login: document.getElementById('page-login'),
-        signup: document.getElementById('page-signup')
+        signup: document.getElementById('page-signup'),
+        dashboard: document.getElementById('page-dashboard')
       };
 
       function showPage(pageName) {
-        // Hide all pages
         Object.values(pages).forEach(p => p.classList.remove('active'));
-        // Show target
         if (pages[pageName]) {
           pages[pageName].classList.add('active');
           window.scrollTo({ top: 0, behavior: 'instant' });
-          // Toggle header visibility (hide on auth pages for cleaner look)
           const header = document.getElementById('header');
           if (pageName === 'home') {
             header.style.display = '';
           } else {
             header.style.display = 'none';
           }
-          // Re-observe sections on home page
           if (pageName === 'home') {
             document.querySelectorAll('#page-home section').forEach(s => {
               s.classList.remove('visible');
               observer.observe(s);
             });
           }
-          // Update URL hash
           if (history.replaceState) {
             history.replaceState(null, '', '#' + pageName);
           }
         }
       }
 
-      // ---------- Global click handler for data-page and data-scroll ----------
+      // ---------- Global click handler ----------
       document.addEventListener('click', function(e) {
         const pageEl = e.target.closest('[data-page]');
         const scrollEl = e.target.closest('[data-scroll]');
+        const dashTabEl = e.target.closest('[data-dash-tab]');
 
         if (scrollEl) {
           e.preventDefault();
           const target = scrollEl.dataset.scroll;
           const currentPage = document.querySelector('.page-view.active');
-          // If not on home page, navigate to home first
           if (currentPage && currentPage.id !== 'page-home') {
             showPage('home');
             setTimeout(() => {
@@ -1050,8 +1648,19 @@
               window.scrollBy(0, -80);
             }
           }
-          // Close mobile menu if open
           closeMobileMenu();
+          return;
+        }
+
+        if (dashTabEl) {
+          e.preventDefault();
+          const tab = dashTabEl.dataset.dashTab;
+          switchDashTab(tab);
+          // Close mobile sidebar if open
+          const sidebar = document.getElementById('sidebar');
+          const overlay = document.getElementById('sidebarOverlay');
+          if (sidebar) sidebar.classList.remove('open');
+          if (overlay) overlay.classList.remove('active');
           return;
         }
 
@@ -1065,7 +1674,20 @@
         }
       });
 
-      // ---------- Header scroll effect (only on home) ----------
+      // ---------- Dashboard tab switching ----------
+      function switchDashTab(tab) {
+        // Hide all tab contents
+        document.querySelectorAll('.dash-tab-content').forEach(c => c.style.display = 'none');
+        const target = document.getElementById('dash-tab-' + tab);
+        if (target) target.style.display = 'block';
+        // Update active state in sidebar
+        document.querySelectorAll('.sidebar-nav a').forEach(a => {
+          a.classList.remove('active');
+          if (a.dataset.dashTab === tab) a.classList.add('active');
+        });
+      }
+
+      // ---------- Header scroll effect ----------
       const header = document.getElementById('header');
       const scrollTopBtn = document.getElementById('scrollTop');
       window.addEventListener('scroll', () => {
@@ -1074,7 +1696,7 @@
       });
       scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      // ---------- Section reveal on scroll ----------
+      // ---------- Section reveal ----------
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1082,7 +1704,7 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
       document.querySelectorAll('#page-home section').forEach(section => observer.observe(section));
 
-      // ---------- Mobile menu ----------
+      // ---------- Mobile menu (landing) ----------
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
       const mobileNav = document.getElementById('mobileNav');
 
@@ -1098,6 +1720,24 @@
         if (mobileNav.classList.contains('active')) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
         else { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
       });
+
+      // ---------- Mobile dashboard sidebar ----------
+      const mobileDashToggle = document.getElementById('mobileDashToggle');
+      const sidebar = document.getElementById('sidebar');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      if (mobileDashToggle) {
+        mobileDashToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+          sidebarOverlay.classList.toggle('active');
+        });
+      }
+      if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('active');
+        });
+      }
 
       // ---------- Marketplace filter ----------
       const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1136,7 +1776,7 @@
       setupPasswordToggle('toggleRegPassword', 'regPassword');
       setupPasswordToggle('toggleConfirmPassword', 'confirmPassword');
 
-      // ---------- Auth: Password strength (signup) ----------
+      // ---------- Auth: Password strength ----------
       const regPasswordInput = document.getElementById('regPassword');
       const confirmPasswordInput = document.getElementById('confirmPassword');
       const passwordStrength = document.getElementById('passwordStrength');
@@ -1181,7 +1821,7 @@
         });
       }
 
-      // ---------- Auth: Login form submission ----------
+      // ---------- Auth: Login form ----------
       const loginForm = document.getElementById('loginForm');
       const loginSubmitBtn = document.getElementById('loginSubmitBtn');
       if (loginForm) {
@@ -1194,11 +1834,18 @@
           loginSubmitBtn.classList.add('loading');
           loginSubmitBtn.disabled = true;
           loginSubmitted = true;
-          setTimeout(() => { loginSubmitted = false; }, 4000);
+          // Simulate login: redirect to dashboard after 1.2 seconds
+          e.preventDefault();
+          setTimeout(() => {
+            showPage('dashboard');
+            loginSubmitBtn.classList.remove('loading');
+            loginSubmitBtn.disabled = false;
+            loginSubmitted = false;
+          }, 1200);
         });
       }
 
-      // ---------- Auth: Register form submission ----------
+      // ---------- Auth: Register form ----------
       const registerForm = document.getElementById('registerForm');
       const registerSubmitBtn = document.getElementById('registerSubmitBtn');
       if (registerForm) {
@@ -1214,7 +1861,14 @@
           registerSubmitBtn.classList.add('loading');
           registerSubmitBtn.disabled = true;
           registerSubmitted = true;
-          setTimeout(() => { registerSubmitted = false; }, 4000);
+          // Simulate registration: redirect to dashboard after 1.2 seconds
+          e.preventDefault();
+          setTimeout(() => {
+            showPage('dashboard');
+            registerSubmitBtn.classList.remove('loading');
+            registerSubmitBtn.disabled = false;
+            registerSubmitted = false;
+          }, 1200);
         });
       }
 
@@ -1240,7 +1894,7 @@
         }
       };
 
-      // ---------- Handle initial hash on load ----------
+      // ---------- Initial hash ----------
       document.addEventListener('DOMContentLoaded', function() {
         const hash = window.location.hash.replace('#', '');
         if (hash && pages[hash]) {
@@ -1248,9 +1902,13 @@
         } else {
           showPage('home');
         }
+        // Hide dashboard header if dashboard is active
+        if (hash === 'dashboard') {
+          document.getElementById('header').style.display = 'none';
+        }
       });
 
-      // Handle back/forward browser navigation
+      // ---------- Hash change ----------
       window.addEventListener('hashchange', function() {
         const hash = window.location.hash.replace('#', '') || 'home';
         if (pages[hash] && !pages[hash].classList.contains('active')) {
@@ -1258,7 +1916,7 @@
         }
       });
 
-      // Re-bind scroll event for header on auth page (hide header)
+      // ---------- Update header visibility after page transitions ----------
       const headerEl = document.getElementById('header');
       function updateHeaderVisibility() {
         const activePage = document.querySelector('.page-view.active');
@@ -1268,7 +1926,6 @@
           headerEl.style.display = 'none';
         }
       }
-      // Call after page transitions
       const originalShowPage2 = showPage;
       showPage = function(pageName) {
         originalShowPage2(pageName);
