@@ -1,765 +1,1971 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORBIT - Next-Gen Creator Platform</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        orbit: {
-                            bg: '#070a08',
-                            card: '#0d140e',
-                            border: '#1b2d1d',
-                            accent: '#20f43c',
-                            accentMuted: '#169929',
-                            accentGlow: 'rgba(32, 244, 60, 0.25)',
-                            text: '#e2f9e5',
-                            dim: '#7c9480'
-                        }
-                    },
-                    fontFamily: {
-                        orbitron: ['Orbitron', 'sans-serif'],
-                        rajdhani: ['Rajdhani', 'sans-serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        /* Custom Glowing & Cyber Styles */
-        body {
-            background-color: #050806;
-            color: #e2f9e5;
-            font-family: 'Inter', sans-serif;
-            user-select: none;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="AccsStores - Premium social account logs & digital solutions. Verified accounts for marketing, business, and growth." />
+  <title>AccsStores | Premium Social Account Logs & Solutions</title>
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    /* ========== GLOBAL RESET & VARIABLES ========== */
+    :root {
+      --primary-blue: #0A66C2;
+      --dark-blue: #004182;
+      --accent-blue: #0084FF;
+      --accent-cyan: #00D4FF;
+      --accent-gold: #FFB800;
+      --gold-light: #FFF4D6;
+      --white: #FFFFFF;
+      --off-white: #FAFBFC;
+      --light-gray: #F5F7FA;
+      --gray: #DDE2E8;
+      --dark-gray: #6C7A89;
+      --black: #0F1419;
+      --gradient-primary: linear-gradient(135deg, #0A66C2 0%, #0084FF 100%);
+      --gradient-accent: linear-gradient(135deg, #00D4FF 0%, #0A66C2 100%);
+      --gradient-gold: linear-gradient(135deg, #FFB800 0%, #FF9500 100%);
+      --gradient-dark: linear-gradient(135deg, #0A1E3A 0%, #0F2847 100%);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 40px rgba(10, 102, 194, 0.15);
+      --shadow-xl: 0 20px 60px rgba(10, 102, 194, 0.2);
+      --radius-card: 32px;
+      --radius-input: 16px;
+    }
 
-        .cyber-border {
-            border: 1px solid #20f43c;
-            box-shadow: 0 0 10px rgba(32, 244, 60, 0.2), inset 0 0 10px rgba(32, 244, 60, 0.1);
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .cyber-border-dim {
-            border: 1px solid rgba(32, 244, 60, 0.3);
-        }
+    html { scroll-behavior: smooth; }
 
-        .glow-text {
-            text-shadow: 0 0 10px rgba(32, 244, 60, 0.7);
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--black);
+      background-color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        .glow-btn {
-            box-shadow: 0 0 15px rgba(32, 244, 60, 0.5);
-            transition: all 0.2s ease-in-out;
-        }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
 
-        .glow-btn:hover {
-            box-shadow: 0 0 25px rgba(32, 244, 60, 0.8);
-            transform: translateY(-1px);
-        }
+    a { text-decoration: none; color: inherit; }
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-        .glow-btn:active {
-            transform: translateY(1px);
-        }
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: 16px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-align: center;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.7s, height 0.7s;
+    }
+    .btn:hover::before { width: 500px; height: 500px; }
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(10, 102, 194, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+    }
+    .btn-outline:hover {
+      background: var(--primary-blue);
+      color: var(--white);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(10, 102, 194, 0.25);
+    }
+    .btn-gold {
+      background: var(--gradient-gold);
+      color: var(--black);
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(255, 184, 0, 0.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(255, 184, 0, 0.4);
+    }
+    .btn-sm { padding: 12px 24px; font-size: 14px; border-radius: 12px; }
 
-        /* Custom scrollbars */
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #070a08;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #20f43c;
-            border-radius: 2px;
-        }
+    /* ========== HEADER & NAV ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: var(--transition);
+    }
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-md);
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      color: var(--black);
+      letter-spacing: -0.03em;
+    }
+    .logo span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo-dot { color: var(--accent-gold); font-size: 38px; margin-left: -2px; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 40px;
+    }
+    .nav-links a {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      position: relative;
+      padding: 8px 0;
+      color: var(--dark-gray);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--primary-blue); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 3px;
+      background: var(--gradient-primary);
+      transition: var(--transition);
+      border-radius: 3px;
+      transform: translateX(-50%);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-btns { display: flex; gap: 14px; }
+    .mobile-menu-btn {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--black);
+      background: rgba(0, 0, 0, 0.04);
+      border: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+    .mobile-menu-btn:hover { background: rgba(0, 0, 0, 0.08); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 76px; left: 0; width: 100%;
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      padding: 24px;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid var(--gray);
+      border-radius: 0 0 24px 24px;
+    }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a {
+      padding: 14px 18px;
+      color: var(--dark-gray);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      border-radius: 14px;
+      transition: var(--transition);
+    }
+    .mobile-nav a:hover { background: var(--light-gray); color: var(--primary-blue); }
+    .mobile-nav .btn { width: 100%; justify-content: center; }
 
-        /* Animated Pulse Grid Background */
-        .bg-cyber-grid {
-            background-image: linear-gradient(to right, rgba(32, 244, 60, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(32, 244, 60, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+    /* ========== HERO ========== */
+    .hero {
+      padding: 180px 0 140px;
+      background: linear-gradient(135deg, #F8FBFF 0%, #F0F5FF 60%, #E8F0FF 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -15%;
+      width: 70%; height: 140%;
+      background: radial-gradient(circle at center, rgba(10, 102, 194, 0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%; left: -10%;
+      width: 50%; height: 80%;
+      background: radial-gradient(circle at center, rgba(255, 184, 0, 0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: 68px;
+      font-weight: 800;
+      margin-bottom: 28px;
+      color: var(--black);
+      line-height: 1.08;
+    }
+    .hero-content h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+    }
+    .hero-content h1 span::after {
+      content: '';
+      position: absolute;
+      bottom: 6px; left: 0;
+      width: 100%; height: 16px;
+      background: rgba(0, 132, 255, 0.12);
+      z-index: -1;
+      border-radius: 8px;
+    }
+    .hero-content p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--dark-gray);
+      margin-bottom: 44px;
+      max-width: 580px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      max-width: 600px;
+    }
+    .stat-item { position: relative; padding-left: 22px; }
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 4px; height: 52px;
+      background: var(--gradient-primary);
+      border-radius: 4px;
+    }
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--primary-blue);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-text { font-size: 15px; color: var(--dark-gray); font-weight: 500; }
+    .hero-image { position: relative; }
+    .hero-image-wrapper {
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(10, 102, 194, 0.2);
+      transition: var(--transition);
+      position: relative;
+    }
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.15) 0%, transparent 100%);
+      z-index: 1;
+    }
+    .hero-image-wrapper:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 40px 100px rgba(10, 102, 194, 0.3);
+    }
+    .hero-image img {
+      width: 100%; height: auto;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+    .hero-image-wrapper:hover img { transform: scale(1.06); }
+    .hero-badge {
+      position: absolute;
+      top: -18px; right: -18px;
+      background: var(--gradient-gold);
+      color: var(--black);
+      padding: 18px 28px;
+      border-radius: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 16px 40px rgba(255, 184, 0, 0.35);
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
 
-        /* Rocket Launch Animation */
-        @keyframes rocketTrajectory {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            50% { transform: translate(120px, -60px) scale(1.2); opacity: 1; }
-            100% { transform: translate(250px, -10px) scale(1); opacity: 1; }
-        }
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 140px 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-label {
+      display: inline-block;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.08), rgba(0, 212, 255, 0.08));
+      color: var(--primary-blue);
+      border-radius: 50px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 26px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid rgba(10, 102, 194, 0.12);
+    }
+    .section-header h2 {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+    .section-header p {
+      color: var(--dark-gray);
+      font-size: 19px;
+      line-height: 1.7;
+    }
 
-        .anim-rocket {
-            animation: rocketTrajectory 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
+    /* services */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 36px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 52px 42px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .service-card:hover::before { opacity: 0.04; }
+    .service-card:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 20px 50px rgba(10, 102, 194, 0.15);
+      border-color: rgba(10, 102, 194, 0.15);
+    }
+    .service-icon {
+      width: 104px; height: 104px;
+      background: var(--gradient-primary);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 34px;
+      font-size: 44px;
+      color: var(--white);
+      transition: var(--transition-bounce);
+      box-shadow: 0 12px 30px rgba(10, 102, 194, 0.25);
+      position: relative;
+    }
+    .service-card:hover .service-icon {
+      transform: scale(1.12) rotate(-8deg);
+      background: var(--gradient-gold);
+      color: var(--black);
+    }
+    .service-card h3 { font-size: 26px; margin-bottom: 18px; color: var(--black); font-weight: 700; }
+    .service-card p { color: var(--dark-gray); margin-bottom: 32px; font-size: 16px; line-height: 1.7; }
 
-        /* Equalizer bars */
-        .eq-bar {
-            animation: eqPulse 1s ease-in-out infinite alternate;
-        }
-        @keyframes eqPulse {
-            0% { height: 15%; }
-            100% { height: 95%; }
-        }
-    </style>
+    /* solutions */
+    .digital-solutions {
+      background: var(--gradient-dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .digital-solutions::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 184, 0, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .digital-solutions .section-label {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .digital-solutions .section-header h2, .digital-solutions .section-header p { color: var(--white); }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      position: relative;
+    }
+    .solution-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-card);
+      padding: 48px 36px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+    .solution-card:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 184, 0, 0.3);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    }
+    .solution-card img {
+      width: 84px; height: 84px;
+      object-fit: cover;
+      border-radius: 22px;
+      margin-bottom: 30px;
+      border: 3px solid var(--accent-gold);
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .solution-card:hover img {
+      transform: scale(1.1) rotate(3deg);
+      border-color: var(--accent-cyan);
+    }
+    .solution-card h3 { font-size: 24px; margin-bottom: 16px; color: var(--white); }
+    .solution-card p { color: rgba(255, 255, 255, 0.8); line-height: 1.7; }
+
+    /* how it works */
+    .how-it-works { background: var(--light-gray); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      position: relative;
+      margin-top: 60px;
+    }
+    .step {
+      text-align: center;
+      background: var(--white);
+      padding: 48px 32px;
+      border-radius: var(--radius-card);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .step:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(10, 102, 194, 0.12);
+      border-color: rgba(10, 102, 194, 0.15);
+    }
+    .step-number {
+      width: 84px; height: 84px;
+      background: var(--gradient-primary);
+      color: var(--white);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      margin: 0 auto 30px;
+      box-shadow: 0 12px 30px rgba(10, 102, 194, 0.25);
+      transition: var(--transition-bounce);
+    }
+    .step:hover .step-number {
+      transform: scale(1.12) rotate(4deg);
+      background: var(--gradient-gold);
+      color: var(--black);
+    }
+    .step h3 { font-size: 22px; margin-bottom: 14px; color: var(--black); }
+    .step p { color: var(--dark-gray); line-height: 1.7; }
+
+    /* marketplace */
+    .marketplace { background: var(--white); }
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 14px 32px;
+      background: var(--light-gray);
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      color: var(--dark-gray);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gradient-primary);
+      color: var(--white);
+      border-color: var(--primary-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(10, 102, 194, 0.25);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(10, 102, 194, 0.15);
+      border-color: rgba(10, 102, 194, 0.15);
+    }
+    .product-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--gradient-gold);
+      color: var(--black);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      z-index: 2;
+      box-shadow: 0 6px 16px rgba(255, 184, 0, 0.35);
+    }
+    .product-image {
+      height: 210px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #F0F5FF 0%, #E8F0FF 100%);
+    }
+    .product-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.12); }
+    .product-header { padding: 28px 28px 16px; text-align: center; }
+    .product-card h3 { font-size: 22px; margin-bottom: 10px; color: var(--black); }
+    .product-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary-blue);
+    }
+    .product-body { padding: 0 28px 28px; text-align: center; }
+
+    /* testimonials */
+    .testimonials { background: var(--light-gray); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 48px 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 30px; right: 36px;
+      font-size: 130px;
+      color: rgba(10, 102, 194, 0.05);
+      font-family: Georgia, serif;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(10, 102, 194, 0.12);
+      border-color: rgba(10, 102, 194, 0.12);
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 32px;
+      color: var(--dark-gray);
+      font-size: 16px;
+      line-height: 1.8;
+      position: relative;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 16px; }
+    .author-avatar {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--primary-blue);
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.2);
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-info h4 { font-size: 18px; margin-bottom: 2px; color: var(--black); }
+    .author-info p { font-size: 14px; color: var(--dark-gray); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--gradient-primary);
+      color: var(--white);
+      text-align: center;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 184, 0, 0.18) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-section h2 { font-size: 56px; font-weight: 800; margin-bottom: 24px; color: var(--white); }
+    .cta-section p { font-size: 20px; max-width: 700px; margin: 0 auto 52px; opacity: 0.95; }
+
+    /* footer */
+    footer { background: var(--black); color: var(--white); padding: 90px 0 36px; }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+    .footer-col h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      margin-bottom: 26px;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .footer-col h3 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-col p { color: var(--gray); line-height: 1.7; margin-bottom: 26px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 14px; }
+    .footer-links a {
+      color: var(--gray);
+      transition: var(--transition);
+      display: inline-block;
+    }
+    .footer-links a:hover { color: var(--accent-cyan); transform: translateX(8px); }
+    .social-links { display: flex; gap: 12px; margin-top: 28px; }
+    .social-link {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+    .social-link:hover {
+      background: var(--gradient-primary);
+      transform: translateY(-5px);
+      color: var(--white);
+      box-shadow: 0 8px 20px rgba(10, 102, 194, 0.3);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+      color: var(--gray);
+    }
+    .copyright a { color: var(--accent-cyan); transition: var(--transition); }
+    .copyright a:hover { color: var(--accent-gold); }
+
+    /* scroll top */
+    .scroll-top {
+      position: fixed;
+      bottom: 36px; right: 36px;
+      width: 58px; height: 58px;
+      background: var(--gradient-primary);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--white);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 99;
+      box-shadow: 0 10px 30px rgba(10, 102, 194, 0.4);
+    }
+    .scroll-top.active { opacity: 1; visibility: visible; }
+    .scroll-top:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10, 102, 194, 0.5); }
+
+    /* ========== AUTH OVERLAY (LOGIN / REGISTER) ========== */
+    .auth-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 20, 40, 0.6);
+      backdrop-filter: blur(12px) saturate(120%);
+      -webkit-backdrop-filter: blur(12px) saturate(120%);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .auth-overlay.active { display: flex; }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(24px);
+      border-radius: 36px;
+      padding: 56px 48px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      margin: 24px 0;
+    }
+    .auth-card.register-card { max-width: 580px; }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--gradient-primary);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .close-auth {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: rgba(0,0,0,0.04);
+      border: none;
+      border-radius: 14px;
+      width: 40px; height: 40px;
+      font-size: 18px;
+      color: var(--dark-gray);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+    .close-auth:hover { background: rgba(0,0,0,0.08); color: var(--black); }
+
+    .auth-header { text-align: center; margin-bottom: 32px; }
+    .auth-header .logo-circle {
+      width: 76px; height: 76px;
+      background: var(--gradient-primary);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 16px 40px rgba(10, 102, 194, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-header .logo-circle::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.25), transparent);
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    .auth-header .logo-circle i { font-size: 34px; color: var(--white); position: relative; z-index: 2; }
+    .auth-brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .auth-brand span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .auth-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .auth-subtitle { font-size: 14px; color: var(--dark-gray); }
+
+    .auth-form { margin-top: 24px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+    .auth-form .form-group { margin-bottom: 18px; }
+    .auth-form .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+    }
+    .required:after { content: '*'; color: #EF4444; margin-left: 4px; }
+
+    .input-wrapper {
+      position: relative;
+      border-radius: var(--radius-input);
+      border: 2px solid var(--gray);
+      transition: var(--transition);
+      background: var(--white);
+    }
+    .input-wrapper:hover { border-color: var(--primary-blue); }
+    .input-wrapper:focus-within {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 4px rgba(10, 102, 194, 0.1);
+      transform: translateY(-2px);
+    }
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dark-gray);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .input-wrapper:focus-within .input-icon { color: var(--primary-blue); }
+    .form-control {
+      width: 100%;
+      padding: 14px 14px 14px 46px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: var(--black);
+      outline: none;
+      border-radius: var(--radius-input);
+      font-family: 'Inter', sans-serif;
+    }
+    .form-control::placeholder { color: var(--dark-gray); opacity: 0.6; }
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--dark-gray);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 8px;
+      transition: var(--transition);
+      border-radius: 10px;
+    }
+    .password-toggle:hover { color: var(--primary-blue); background: rgba(10, 102, 194, 0.06); }
+
+    .password-strength { margin-top: 8px; display: none; }
+    .strength-bar {
+      height: 6px;
+      background: var(--gray);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .strength-fill {
+      height: 100%;
+      width: 0;
+      background: var(--gray);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    .strength-text { font-size: 11px; color: var(--dark-gray); }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .checkbox-wrapper input { display: none; }
+    .custom-checkbox {
+      width: 20px; height: 20px;
+      border: 2px solid var(--gray);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      background: var(--white);
+      flex-shrink: 0;
+    }
+    .checkbox-wrapper:hover .custom-checkbox { border-color: var(--primary-blue); transform: scale(1.05); }
+    .checkbox-wrapper input:checked + .custom-checkbox {
+      background: var(--gradient-primary);
+      border-color: var(--primary-blue);
+    }
+    .checkbox-wrapper input:checked + .custom-checkbox::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .checkbox-label, .terms-text {
+      font-size: 13px;
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+    .terms-text a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .terms-text a:hover { color: var(--accent-blue); text-decoration: underline; }
+    .forgot-link {
+      color: var(--primary-blue);
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .forgot-link:hover { color: var(--accent-blue); text-decoration: underline; }
+
+    .btn-auth {
+      width: 100%;
+      padding: 18px;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-input);
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(10, 102, 194, 0.3);
+      margin-top: 8px;
+    }
+    .btn-auth:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(10, 102, 194, 0.4);
+    }
+    .btn-auth .loading-spinner {
+      display: none;
+      width: 22px; height: 22px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+    }
+    .btn-auth.loading .btn-text { visibility: hidden; }
+    .btn-auth.loading .loading-spinner { display: block; position: absolute; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray);
+      font-size: 14px;
+      color: var(--dark-gray);
+    }
+    .auth-switch a {
+      color: var(--primary-blue);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 6px;
+      transition: var(--transition);
+    }
+    .auth-switch a:hover { color: var(--accent-blue); }
+
+    .security-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.05), rgba(0, 212, 255, 0.05));
+      border-radius: 14px;
+      border: 1px solid rgba(10, 102, 194, 0.1);
+      font-size: 12px;
+      color: var(--dark-gray);
+    }
+    .security-badge i { color: var(--primary-blue); font-size: 14px; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1100px) {
+      .hero-grid { gap: 60px; }
+      .hero-content h1 { font-size: 56px; }
+      .section-header h2 { font-size: 46px; }
+    }
+    @media (max-width: 900px) {
+      .hero { padding: 160px 0 120px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+      .hero-content { text-align: center; }
+      .hero-content h1 { font-size: 48px; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 0 auto; }
+      .hero-badge { top: -14px; right: -14px; padding: 14px 22px; font-size: 13px; }
+    }
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: block; }
+      .nav-links, .nav-btns { display: none; }
+      .section-header h2 { font-size: 38px; }
+      section { padding: 100px 0; }
+      .services-grid, .solutions-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; gap: 0; }
+      .auth-card { padding: 40px 28px; }
+      .auth-card.register-card { padding: 36px 24px; }
+      .hero-content h1 { font-size: 40px; }
+      .hero-content p { font-size: 18px; }
+      .stat-number { font-size: 34px; }
+      .cta-section h2 { font-size: 40px; }
+      .cta-section p { font-size: 18px; }
+    }
+    @media (max-width: 520px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 140px 0 100px; }
+      .hero-content h1 { font-size: 34px; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns .btn { width: 100%; }
+      .hero-stats { grid-template-columns: 1fr; gap: 18px; }
+      .stat-item { padding-left: 18px; }
+      .stat-item::before { height: 44px; }
+      .section-header h2 { font-size: 32px; }
+      .section-header p { font-size: 17px; }
+      .btn { padding: 14px 28px; font-size: 15px; }
+      .stat-number { font-size: 30px; }
+      .cta-section h2 { font-size: 32px; }
+      .cta-section p { font-size: 16px; }
+      .scroll-top { bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 16px; }
+      .auth-card { padding: 32px 22px; border-radius: 28px; }
+      .auth-brand { font-size: 26px; }
+      .auth-title { font-size: 24px; }
+      .footer-content { grid-template-columns: 1fr; gap: 36px; }
+    }
+  </style>
 </head>
-<body class="bg-cyber-grid min-h-screen flex flex-col justify-between items-center p-0 sm:p-4 overflow-x-hidden">
+<body>
 
-    <!-- Mobile Device Frame Container -->
-    <div class="w-full max-w-md h-[100vh] sm:h-[890px] bg-orbit-bg sm:border-2 border-orbit-accent/40 sm:rounded-[36px] flex flex-col justify-between overflow-hidden relative shadow-[0_0_40px_rgba(32,244,60,0.15)]">
-
-        <!-- Top Header Status Bar -->
-        <header class="bg-orbit-card/90 backdrop-blur border-b border-orbit-border p-3 px-4 flex justify-between items-center z-20">
-            <div class="flex items-center space-x-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-orbit-accent animate-ping"></div>
-                <span class="font-orbitron font-bold text-lg tracking-wider text-orbit-accent flex items-center gap-1.5">
-                    <i data-lucide="orbit" class="w-5 h-5 text-orbit-accent"></i> ORBIT
-                </span>
-                <span class="text-[10px] bg-orbit-accent/10 border border-orbit-accent/30 text-orbit-accent px-1.5 py-0.5 rounded font-mono">v3.1.45</span>
-            </div>
-            
-            <div class="flex items-center space-x-3 text-xs text-orbit-dim font-mono">
-                <span id="ghost-status-badge" class="flex items-center gap-1 text-orbit-accent bg-orbit-accent/10 border border-orbit-accent/40 px-2 py-0.5 rounded-full text-[10px]">
-                    <i data-lucide="ghost" class="w-3 h-3"></i> GHOST: ON
-                </span>
-                <span class="text-orbit-accent">83% ⚡</span>
-            </div>
-        </header>
-
-        <!-- Dynamic Main Display Screen Area -->
-        <main id="app-viewport" class="flex-1 overflow-y-auto relative bg-orbit-bg scroll-smooth">
-            
-            <!-- VIEW 1: LIVE FEED (TikTok Vertical Style) -->
-            <section id="view-feed" class="view-panel h-full flex flex-col justify-between relative bg-black">
-                <!-- Video Overlay Container -->
-                <div class="relative w-full h-full flex items-center justify-center bg-zinc-900 overflow-hidden">
-                    <!-- Dynamic Simulated Video Canvas/Background -->
-                    <div id="video-canvas-bg" class="absolute inset-0 bg-gradient-to-b from-emerald-950/40 via-zinc-900 to-black flex items-center justify-center">
-                        <img id="feed-creator-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-80" alt="Video frame">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
-                    </div>
-
-                    <!-- Audio Playing Indicator Tag -->
-                    <div class="absolute top-4 left-4 z-10 bg-black/60 backdrop-blur border border-orbit-accent/30 text-orbit-accent rounded-full px-3 py-1 text-xs flex items-center gap-2">
-                        <i data-lucide="music" class="w-3.5 h-3.5 animate-spin"></i>
-                        <span id="feed-audio-title" class="font-mono text-[11px] truncate max-w-[180px]">Amapiano Chill — ORBIT Original</span>
-                    </div>
-
-                    <!-- Dubbing / Pidgin Badge -->
-                    <div class="absolute top-4 right-4 z-10 bg-orbit-accent text-black font-bold text-[10px] uppercase px-2 py-1 rounded flex items-center gap-1 shadow">
-                        <i data-lucide="languages" class="w-3 h-3"></i> Auto-Dub: Pidgin
-                    </div>
-
-                    <!-- Video Controls Overlay on Right -->
-                    <div class="absolute right-3 bottom-20 z-10 flex flex-col items-center space-y-5">
-                        <!-- Creator Avatar -->
-                        <div class="relative">
-                            <img id="feed-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="w-11 h-11 rounded-full border-2 border-orbit-accent object-cover">
-                            <button class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-orbit-accent text-black rounded-full p-0.5 shadow">
-                                <i data-lucide="plus" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-
-                        <!-- Like Button -->
-                        <button onclick="toggleLike(this)" class="flex flex-col items-center group">
-                            <div class="p-2.5 rounded-full bg-black/40 backdrop-blur border border-white/10 group-active:scale-125 transition">
-                                <i data-lucide="heart" class="w-6 h-6 text-white group-[.active]:text-red-500 group-[.active]:fill-red-500"></i>
-                            </div>
-                            <span id="like-count" class="text-[11px] font-mono text-white mt-1">124.5K</span>
-                        </button>
-
-                        <!-- Comments -->
-                        <button onclick="openComments()" class="flex flex-col items-center">
-                            <div class="p-2.5 rounded-full bg-black/40 backdrop-blur border border-white/10">
-                                <i data-lucide="message-square" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <span class="text-[11px] font-mono text-white mt-1">2.1K</span>
-                        </button>
-
-                        <!-- Duet / Share -->
-                        <button onclick="triggerDuet()" class="flex flex-col items-center">
-                            <div class="p-2.5 rounded-full bg-black/40 backdrop-blur border border-white/10">
-                                <i data-lucide="repeat" class="w-6 h-6 text-orbit-accent"></i>
-                            </div>
-                            <span class="text-[11px] font-mono text-orbit-accent mt-1">Duet 50/50</span>
-                        </button>
-
-                        <!-- Audio Disc -->
-                        <div class="w-9 h-9 rounded-full bg-zinc-800 border-2 border-orbit-accent flex items-center justify-center animate-spin">
-                            <i data-lucide="disc" class="w-5 h-5 text-orbit-accent"></i>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Creator & Caption Details -->
-                    <div class="absolute bottom-4 left-4 right-16 z-10 text-left space-y-2">
-                        <div class="flex items-center gap-2">
-                            <span id="feed-username" class="font-bold text-white text-base">@creator.lagos</span>
-                            <span class="bg-orbit-accent/20 border border-orbit-accent text-orbit-accent text-[10px] px-1.5 py-0.2 rounded font-mono">Verified</span>
-                        </div>
-                        <p id="feed-caption" class="text-sm text-gray-200 line-clamp-2 font-sans">
-                            How far! Check out dis new Afrobeat dance flow from Surulere 🔥 #Afrobeats #LagosVibes #ORBIT
-                        </p>
-                        <!-- Translated Subtitle Preview -->
-                        <div class="bg-black/70 backdrop-blur p-2 rounded-lg border-l-2 border-orbit-accent text-xs text-orbit-accent font-mono flex items-center justify-between">
-                            <span id="feed-translated-text">"How far, make we vibe together with this energy"</span>
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-orbit-accent shrink-0 ml-1"></i>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- VIEW 2: CREATE & STUDIO (Upload, Beats, Duet Pay) -->
-            <section id="view-create" class="view-panel hidden p-4 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="font-orbitron font-bold text-xl text-orbit-accent flex items-center justify-center gap-2">
-                        <i data-lucide="video" class="w-5 h-5"></i> CREATE & CONFIGURE
-                    </h2>
-                    <p class="text-xs text-orbit-dim font-mono">Upload video & route global distribution</p>
-                </div>
-
-                <!-- Video Preview Monitor -->
-                <div class="relative bg-zinc-900 rounded-xl overflow-hidden border border-orbit-accent/40 aspect-video flex flex-col justify-end p-3">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    
-                    <div class="relative z-10 flex justify-between items-end">
-                        <span class="bg-orbit-accent/20 border border-orbit-accent text-orbit-accent px-2 py-0.5 rounded text-[10px] font-mono flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-orbit-accent animate-ping"></span> LIVE PREVIEW
-                        </span>
-                        <span class="text-xs font-mono text-white bg-black/60 px-2 py-0.5 rounded">0:12 / 0:45</span>
-                    </div>
-                </div>
-
-                <!-- Action Controls -->
-                <div class="space-y-3">
-                    <!-- Pidgin Generator Button -->
-                    <div class="bg-orbit-card border border-orbit-border p-3 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 bg-orbit-accent/10 border border-orbit-accent/30 rounded-lg text-orbit-accent">
-                                <i data-lucide="message-square-plus" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Add Pidgin Caption</h4>
-                                <p class="text-[10px] text-orbit-dim">Auto-generate Pidgin AI captions</p>
-                            </div>
-                        </div>
-                        <button onclick="generatePidginCaption()" class="text-xs bg-orbit-accent/20 border border-orbit-accent text-orbit-accent px-3 py-1.5 rounded-lg font-mono hover:bg-orbit-accent hover:text-black transition">
-                            Generate
-                        </button>
-                    </div>
-
-                    <!-- Beat Selector -->
-                    <div class="bg-orbit-card border border-orbit-border p-3 rounded-xl space-y-2">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <i data-lucide="music" class="w-4 h-4 text-orbit-accent"></i>
-                                <span class="text-xs font-bold text-white">Select Beat Pack</span>
-                            </div>
-                            <span class="text-[10px] font-mono text-orbit-accent">Afrobeats Kit 01</span>
-                        </div>
-                        <select id="beat-pack-select" onchange="updateBeatWaveform()" class="w-full bg-zinc-900 border border-orbit-border rounded-lg text-xs p-2 text-white focus:border-orbit-accent outline-none">
-                            <option value="Amapiano Chill">Amapiano Chill — 112 BPM (ORBIT Original)</option>
-                            <option value="Logdrum & Afro-synth">Logdrum & Afro-synth — 118 BPM</option>
-                            <option value="Surulere Street Vibe">Surulere Street Vibe — 105 BPM</option>
-                        </select>
-                        
-                        <!-- Dynamic Audio Waveform -->
-                        <div class="h-10 bg-black/50 rounded border border-orbit-border/50 flex items-center justify-center gap-1 px-2">
-                            <div class="eq-bar w-1 bg-orbit-accent rounded"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.2s"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.4s"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.1s"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.5s"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.3s"></div>
-                            <div class="eq-bar w-1 bg-orbit-accent rounded" style="animation-delay: 0.6s"></div>
-                        </div>
-                    </div>
-
-                    <!-- Toggle Toggles -->
-                    <div class="bg-orbit-card border border-orbit-border p-3 rounded-xl space-y-3">
-                        <!-- Duet Pay Split Switch -->
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <i data-lucide="dollar-sign" class="w-4 h-4 text-orbit-accent"></i>
-                                <div>
-                                    <span class="text-xs font-bold text-white block">Duet Pay 50/50</span>
-                                    <span class="text-[10px] text-orbit-dim">Split monetization with duet creator</span>
-                                </div>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" checked class="sr-only peer">
-                                <div class="w-9 h-5 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orbit-accent"></div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button onclick="showToast('Video published to ORBIT feed!🚀')" class="w-full bg-orbit-accent text-black font-orbitron font-bold py-3 rounded-xl glow-btn flex items-center justify-center gap-2">
-                        POST NOW <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                </div>
-            </section>
-
-            <!-- VIEW 3: GHOST MODE & LOCATION ROUTING -->
-            <section id="view-ghost" class="view-panel hidden p-4 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="font-orbitron font-bold text-xl text-orbit-accent flex items-center justify-center gap-2">
-                        <i data-lucide="ghost" class="w-5 h-5"></i> GHOST MODE
-                    </h2>
-                    <p class="text-xs text-orbit-dim font-mono">Post Abroad • Mask Home Location</p>
-                </div>
-
-                <!-- Map / Masking Graphic Card -->
-                <div class="bg-orbit-card border border-orbit-accent/40 p-4 rounded-xl relative overflow-hidden space-y-3">
-                    <div class="flex justify-between items-center text-xs font-mono">
-                        <span class="text-orbit-accent flex items-center gap-1">
-                            <i data-lucide="shield-check" class="w-4 h-4"></i> MASKING ACTIVE
-                        </span>
-                        <span class="text-red-400">Home: Nigeria 🇳🇬</span>
-                    </div>
-
-                    <!-- World Map Routing Diagram -->
-                    <div class="relative bg-zinc-950 p-4 rounded-lg border border-orbit-border flex items-center justify-between my-2">
-                        <div class="text-center">
-                            <div class="w-10 h-10 rounded-full bg-red-950/80 border border-red-500 flex items-center justify-center mx-auto mb-1">
-                                <i data-lucide="map-pin" class="w-5 h-5 text-red-500"></i>
-                            </div>
-                            <span class="text-[10px] font-mono text-red-400">Nigeria</span>
-                        </div>
-
-                        <!-- Arrow / Route path -->
-                        <div class="flex-1 flex flex-col items-center px-2">
-                            <span class="text-[9px] font-mono text-orbit-accent animate-pulse">Routing Video...</span>
-                            <div class="w-full h-0.5 bg-gradient-to-r from-red-500 via-orbit-accent to-orbit-accent relative my-1">
-                                <div class="absolute -top-1 right-0 w-2 h-2 rounded-full bg-orbit-accent animate-ping"></div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-1.5">
-                            <div class="text-center">
-                                <div class="w-7 h-7 rounded-full bg-zinc-800 border border-orbit-accent flex items-center justify-center text-xs">🇺🇸</div>
-                                <span class="text-[9px] font-mono text-orbit-dim">USA</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-7 h-7 rounded-full bg-zinc-800 border border-orbit-accent flex items-center justify-center text-xs">🇬🇧</div>
-                                <span class="text-[9px] font-mono text-orbit-dim">UK</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-7 h-7 rounded-full bg-zinc-800 border border-orbit-accent flex items-center justify-center text-xs">🇧🇷</div>
-                                <span class="text-[9px] font-mono text-orbit-dim">Brazil</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-black/60 p-2.5 rounded-lg border border-orbit-border text-[11px] text-orbit-dim font-mono">
-                        Hide from Nigeria: <span class="text-orbit-accent">ENABLED</span>. Your content will only appear in target foreign feeds.
-                    </div>
-                </div>
-
-                <!-- Toggles & Settings -->
-                <div class="bg-orbit-card border border-orbit-border rounded-xl p-3 space-y-3 text-xs">
-                    <h3 class="font-bold text-white font-mono uppercase text-[11px]">Ghost Mode Parameters</h3>
-
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">Block Home Country (Nigeria)</span>
-                        <input type="checkbox" checked class="accent-orbit-accent">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">Show as Foreign Creator Tag</span>
-                        <input type="checkbox" checked class="accent-orbit-accent">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">Anonymous Creator Mode</span>
-                        <input type="checkbox" class="accent-orbit-accent">
-                    </div>
-                </div>
-
-                <button onclick="toggleGhostModeState()" id="ghost-activate-btn" class="w-full bg-orbit-accent text-black font-orbitron font-bold py-3 rounded-xl glow-btn">
-                    SAVE & ACTIVATE GHOST MODE
-                </button>
-            </section>
-
-            <!-- VIEW 4: LAUNCH MISSION (Rocket Launch Trajectory) -->
-            <section id="view-launch" class="view-panel hidden p-4 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="font-orbitron font-bold text-xl text-orbit-accent flex items-center justify-center gap-2">
-                        <i data-lucide="rocket" class="w-5 h-5"></i> LAUNCH MISSION
-                    </h2>
-                    <p class="text-xs text-orbit-dim font-mono">Launching video payload across international borders</p>
-                </div>
-
-                <!-- Interactive Trajectory Map -->
-                <div class="bg-zinc-950 border border-orbit-accent/40 rounded-xl p-4 relative overflow-hidden">
-                    <div class="flex justify-between items-center text-xs font-mono mb-2">
-                        <span class="text-orbit-accent font-bold">MISSION: NIGERIA ➔ USA</span>
-                        <span class="text-orbit-accent bg-orbit-accent/20 px-2 py-0.5 rounded text-[10px]">LIVE</span>
-                    </div>
-
-                    <!-- Map Simulation Canvas -->
-                    <div class="h-36 bg-zinc-900/80 rounded-lg border border-orbit-border relative flex items-center justify-between p-4 overflow-hidden">
-                        <!-- Background Grid lines -->
-                        <div class="absolute inset-0 bg-cyber-grid opacity-30"></div>
-
-                        <!-- Start Point -->
-                        <div class="z-10 text-center">
-                            <div class="w-3 h-3 rounded-full bg-orbit-accent animate-ping mx-auto"></div>
-                            <span class="text-[10px] font-mono text-orbit-accent font-bold block mt-1">NIGERIA</span>
-                            <span class="text-[9px] font-mono text-orbit-dim">Launch Point</span>
-                        </div>
-
-                        <!-- Animated Rocket along Curve -->
-                        <div class="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-12 border-t-2 border-dashed border-orbit-accent/40 rounded-t-full"></div>
-                        <div id="rocket-anim-icon" class="z-10 text-orbit-accent transform transition-all duration-1000">
-                            <i data-lucide="rocket" class="w-6 h-6 rotate-45 text-orbit-accent"></i>
-                        </div>
-
-                        <!-- Destination Point -->
-                        <div class="z-10 text-center">
-                            <div class="w-3 h-3 rounded-full bg-blue-500 mx-auto"></div>
-                            <span class="text-[10px] font-mono text-blue-400 font-bold block mt-1">USA</span>
-                            <span class="text-[9px] font-mono text-orbit-dim">Destination</span>
-                        </div>
-                    </div>
-
-                    <!-- Telemetry Data Grid -->
-                    <div class="grid grid-cols-2 gap-2 mt-3 font-mono text-[11px]">
-                        <div class="bg-orbit-card p-2 rounded border border-orbit-border">
-                            <span class="text-orbit-dim block">Payload:</span>
-                            <span class="text-white font-bold">launch_video.mp4</span>
-                        </div>
-                        <div class="bg-orbit-card p-2 rounded border border-orbit-border">
-                            <span class="text-orbit-dim block">Fuel / Orbit Booster:</span>
-                            <span id="fuel-val" class="text-orbit-accent font-bold">100% NOMINAL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Launch Button -->
-                <button onclick="triggerRocketLaunch()" id="launch-btn" class="w-full bg-orbit-accent text-black font-orbitron font-bold py-3.5 rounded-xl glow-btn flex items-center justify-center gap-2">
-                    <i data-lucide="rocket" class="w-5 h-5"></i> LAUNCH MISSION NOW
-                </button>
-
-                <!-- Mission Control Logs -->
-                <div class="bg-black border border-orbit-border p-3 rounded-xl font-mono text-[10px] space-y-1 h-24 overflow-y-auto text-orbit-dim">
-                    <div class="text-orbit-accent">[SYS] Mission Control initialized.</div>
-                    <div>[SYS] Target trajectory verified: Lagos (LOS) -> New York (JFK)</div>
-                    <div id="log-entry">[READY] Awaiting user launch clearance...</div>
-                </div>
-            </section>
-
-            <!-- VIEW 5: GLOBAL FEATURES & TRANSLATION STUDIO -->
-            <section id="view-global" class="view-panel hidden p-4 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="font-orbitron font-bold text-xl text-orbit-accent flex items-center justify-center gap-2">
-                        <i data-lucide="globe" class="w-5 h-5"></i> LINGUA 100+ DUBBING
-                    </h2>
-                    <p class="text-xs text-orbit-dim font-mono">Real-time AI Voice Dubbing & Local Translations</p>
-                </div>
-
-                <!-- Audio Dubbing Feature Box -->
-                <div class="bg-orbit-card border border-orbit-accent/40 p-4 rounded-xl space-y-3">
-                    <div class="flex items-center justify-between border-b border-orbit-border pb-2">
-                        <span class="text-xs font-bold text-white font-mono">SAME VOICE, EVERY LANGUAGE</span>
-                        <span class="text-[10px] bg-orbit-accent/20 text-orbit-accent px-2 py-0.5 rounded font-mono">AI Voice Clone Active</span>
-                    </div>
-
-                    <!-- Language Dubbing Selector Cards -->
-                    <div class="grid grid-cols-3 gap-2 text-center">
-                        <button onclick="selectLanguage('Yoruba', 'Ekaaro, e kaabo si ORBIT!')" class="p-2 bg-zinc-900 border border-orbit-accent rounded-lg hover:border-orbit-accent transition">
-                            <span class="text-lg">🇳🇬</span>
-                            <span class="text-xs font-bold text-white block mt-1">Yoruba</span>
-                        </button>
-                        <button onclick="selectLanguage('Hausa', 'Sannu da zuwa ORBIT!')" class="p-2 bg-zinc-900 border border-orbit-border rounded-lg hover:border-orbit-accent transition">
-                            <span class="text-lg">🇳🇬</span>
-                            <span class="text-xs font-bold text-white block mt-1">Hausa</span>
-                        </button>
-                        <button onclick="selectLanguage('Igbo', 'Nno, welcome to ORBIT!')" class="p-2 bg-zinc-900 border border-orbit-border rounded-lg hover:border-orbit-accent transition">
-                            <span class="text-lg">🇳🇬</span>
-                            <span class="text-xs font-bold text-white block mt-1">Igbo</span>
-                        </button>
-                    </div>
-
-                    <!-- Output Voice Soundwave Box -->
-                    <div class="bg-black p-3 rounded-lg border border-orbit-border space-y-2">
-                        <div class="flex justify-between items-center text-[10px] font-mono text-orbit-dim">
-                            <span>Target Output Audio:</span>
-                            <span id="current-lang-tag" class="text-orbit-accent">Yoruba Dubbed</span>
-                        </div>
-                        <p id="dub-preview-text" class="text-xs text-orbit-accent font-mono italic">"Ekaaro, e kaabo si ORBIT video platform..."</p>
-                        <button onclick="playDubbedAudio()" class="w-full bg-orbit-accent/20 border border-orbit-accent text-orbit-accent text-xs py-1.5 rounded flex items-center justify-center gap-2 font-mono">
-                            <i data-lucide="play" class="w-3.5 h-3.5"></i> Play AI Voice Sample
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Feature Matrix Grid -->
-                <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-                    <div class="bg-orbit-card p-3 rounded-xl border border-orbit-border space-y-1">
-                        <i data-lucide="swords" class="w-5 h-5 text-orbit-accent"></i>
-                        <h4 class="font-bold text-white">Live Battle Global</h4>
-                        <p class="text-[10px] text-orbit-dim">Compete live with creators worldwide</p>
-                    </div>
-                    <div class="bg-orbit-card p-3 rounded-xl border border-orbit-border space-y-1">
-                        <i data-lucide="hourglass" class="w-5 h-5 text-orbit-accent"></i>
-                        <h4 class="font-bold text-white">Time Capsule</h4>
-                        <p class="text-[10px] text-orbit-dim">Lock video memories for future release</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- VIEW 6: WALLET & NAIRA EARNINGS -->
-            <section id="view-wallet" class="view-panel hidden p-4 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="font-orbitron font-bold text-xl text-orbit-accent flex items-center justify-center gap-2">
-                        <i data-lucide="wallet" class="w-5 h-5"></i> ORBIT WALLET
-                    </h2>
-                    <p class="text-xs text-orbit-dim font-mono">Creator Fund Monetization & Payouts</p>
-                </div>
-
-                <!-- Naira Balance Card -->
-                <div class="bg-gradient-to-br from-orbit-card via-zinc-900 to-black border-2 border-orbit-accent/60 p-5 rounded-2xl relative overflow-hidden space-y-3">
-                    <div class="flex justify-between items-center text-xs font-mono text-orbit-dim">
-                        <span>Available Balance</span>
-                        <span class="text-orbit-accent">ORBIT Payout Engine</span>
-                    </div>
-
-                    <div>
-                        <span class="text-xs text-orbit-dim font-mono">NGN (₦)</span>
-                        <h3 id="wallet-balance" class="text-3xl font-orbitron font-extrabold text-white glow-text">₦ 125,400.00</h3>
-                    </div>
-
-                    <div class="flex gap-2 pt-2">
-                        <button onclick="showToast('Withdrawal request sent to Nigerian bank account!')" class="flex-1 bg-orbit-accent text-black font-bold py-2 rounded-lg text-xs font-orbitron glow-btn">
-                            Withdraw
-                        </button>
-                        <button onclick="showToast('Top-up via Paystack / Card active!')" class="flex-1 bg-zinc-800 border border-orbit-accent/40 text-orbit-accent font-bold py-2 rounded-lg text-xs font-orbitron">
-                            Top-Up
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Earnings Breakdown -->
-                <div class="bg-orbit-card border border-orbit-border rounded-xl p-3 space-y-2 text-xs font-mono">
-                    <h4 class="font-bold text-white text-[11px] border-b border-orbit-border pb-1">RECENT REVENUE SOURCES</h4>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-orbit-dim">Duet Pay 50/50 Revenue</span>
-                        <span class="text-orbit-accent">+₦ 45,000.00</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-t border-orbit-border/40">
-                        <span class="text-orbit-dim">US Global Views Rocket Pool</span>
-                        <span class="text-orbit-accent">+₦ 62,400.00</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-t border-orbit-border/40">
-                        <span class="text-orbit-dim">Live Battle Gifts</span>
-                        <span class="text-orbit-accent">+₦ 18,000.00</span>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- Bottom Navigation Bar -->
-        <nav class="bg-orbit-card border-t border-orbit-border p-2 px-3 flex justify-around items-center z-30">
-            <button onclick="switchTab('feed')" id="nav-feed" class="nav-btn text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="play-square" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Feed</span>
-            </button>
-
-            <button onclick="switchTab('create')" id="nav-create" class="nav-btn text-orbit-dim hover:text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="plus-circle" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Create</span>
-            </button>
-
-            <button onclick="switchTab('ghost')" id="nav-ghost" class="nav-btn text-orbit-dim hover:text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="ghost" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Ghost</span>
-            </button>
-
-            <button onclick="switchTab('launch')" id="nav-launch" class="nav-btn text-orbit-dim hover:text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="rocket" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Launch</span>
-            </button>
-
-            <button onclick="switchTab('global')" id="nav-global" class="nav-btn text-orbit-dim hover:text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="languages" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Lingua</span>
-            </button>
-
-            <button onclick="switchTab('wallet')" id="nav-wallet" class="nav-btn text-orbit-dim hover:text-orbit-accent flex flex-col items-center gap-1">
-                <i data-lucide="wallet" class="w-5 h-5"></i>
-                <span class="text-[10px] font-mono">Wallet</span>
-            </button>
-        </nav>
-
-        <!-- Dynamic Notification Toast -->
-        <div id="toast-msg" class="absolute top-16 left-1/2 -translate-x-1/2 bg-orbit-accent text-black font-mono font-bold text-xs px-4 py-2 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
-            <i data-lucide="check-circle" class="w-4 h-4"></i> <span id="toast-text">Action complete</span>
+  <!-- ======================= HEADER ======================= -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">
+          Accs<span>Stores</span><span class="logo-dot">.</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Logs Services</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#marketplace">Marketplace</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+        <div class="nav-btns">
+          <a class="btn btn-outline btn-sm" href="#" id="loginBtnNav">Login</a>
+          <a class="btn btn-primary btn-sm" href="#" id="registerBtnNav">Get Started</a>
         </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
 
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#services">Logs Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#marketplace">Marketplace</a>
+    <a href="#footer">Contact</a>
+    <a class="btn btn-outline" href="#" id="loginBtnMobile">Login</a>
+    <a class="btn btn-primary" href="#" id="registerBtnMobile">Get Started</a>
+  </div>
+
+  <!-- ======================= HERO ======================= -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content animate__animated animate__fadeInLeft">
+          <h1>Premium <span>Social Logs</span> for Global Digital Growth</h1>
+          <p>Access high-quality verified account logs for all major platforms. Secure, instant delivery, and perfect for marketing, business expansion, and social networking.</p>
+          <div class="hero-btns">
+            <a class="btn btn-primary" href="#marketplace"><i class="fas fa-rocket"></i> Explore Logs</a>
+            <a class="btn btn-outline" href="#services">Learn More</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">50K+</div>
+              <div class="stat-text">Active Logs</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">99.9%</div>
+              <div class="stat-text">Uptime Rate</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">24/7</div>
+              <div class="stat-text">Support</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image animate__animated animate__fadeInRight">
+          <div class="hero-image-wrapper">
+            <div class="hero-badge"><i class="fas fa-shield-check"></i> 100% Verified</div>
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team working with laptops and phones on global social platform" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= SERVICES ======================= -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Our Services</div>
+        <h2>Premium Logs Collection</h2>
+        <p>High-quality social account logs for all major platforms — verified, secure, and ready to use instantly for your business needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fab fa-google"></i></div>
+          <h3>Gmail & Google Logs</h3>
+          <p>Verified Gmail accounts with complete recovery details, perfect for email campaigns, business automation, and marketing tools.</p>
+          <a class="btn btn-outline" href="#marketplace">View Logs</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fab fa-facebook"></i></div>
+          <h3>Facebook / Meta Logs</h3>
+          <p>Business & personal profiles with ad accounts ready to use. Fully verified, aged accounts with high trust scores.</p>
+          <a class="btn btn-outline" href="#marketplace">View Logs</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fab fa-instagram"></i></div>
+          <h3>Instagram & TikTok Logs</h3>
+          <p>Aged accounts with authentic engagement, perfect for influencer marketing, brand growth, and social media campaigns.</p>
+          <a class="btn btn-outline" href="#marketplace">View Logs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= DIGITAL SOLUTIONS ======================= -->
+  <section id="solutions" class="digital-solutions">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Complete Ecosystem</div>
+        <h2>Everything You Need for Logs Management</h2>
+        <p>Comprehensive tools and features to manage, verify, and scale with premium account logs efficiently.</p>
+      </div>
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Bulk Access" />
+          <h3>Bulk Logs Access</h3>
+          <p>Purchase accounts in bulk with special discounts. Instant CSV delivery with all credentials and recovery information.</p>
+        </div>
+        <div class="solution-card">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Health Check" />
+          <h3>Account Health Verification</h3>
+          <p>Advanced verification system to check logs quality, session cookies validity, and account status before purchase.</p>
+        </div>
+        <div class="solution-card">
+          <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Automation" />
+          <h3>Automation Integration</h3>
+          <p>Seamlessly integrate logs with automation bots, schedulers, and marketing tools for maximum efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Process</div>
+        <h2>How to Get Your Logs</h2>
+        <p>Simple, fast, and secure process to access premium social media accounts</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create Account</h3>
+          <p>Sign up for free and get instant access to our marketplace with thousands of verified logs.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Select & Purchase</h3>
+          <p>Browse our catalog, choose the logs you need, and complete secure payment in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Instant Delivery</h3>
+          <p>Receive credentials immediately via email or dashboard. Start using your accounts right away!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= MARKETPLACE ======================= -->
+  <section id="marketplace" class="marketplace">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Marketplace</div>
+        <h2>Live Logs Marketplace</h2>
+        <p>Browse our verified premium logs collection with instant delivery and secure transactions</p>
+      </div>
+      <div class="category-filter">
+        <div class="filter-btn active" data-filter="all">All Logs</div>
+        <div class="filter-btn" data-filter="gmail">Gmail</div>
+        <div class="filter-btn" data-filter="facebook">Facebook</div>
+        <div class="filter-btn" data-filter="instagram">Instagram</div>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" data-category="facebook">
+          <div class="product-image" style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Facebook Logs" />
+          </div>
+          <div class="product-header">
+            <h3>Facebook Ads Account</h3>
+            <div class="product-price">₦2,500</div>
+          </div>
+          <div class="product-body">
+            <a class="btn btn-primary" href="#" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+          </div>
+        </div>
+        <div class="product-card" data-category="instagram">
+          <div class="product-image" style="position: relative;">
+            <div class="product-badge">Hot Deal</div>
+            <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Instagram Logs" />
+          </div>
+          <div class="product-header">
+            <h3>Instagram Aged Logs</h3>
+            <div class="product-price">₦2,200</div>
+          </div>
+          <div class="product-body">
+            <a class="btn btn-primary" href="#" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+          </div>
+        </div>
+        <div class="product-card" data-category="gmail">
+          <div class="product-image" style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bulk Gmail" />
+          </div>
+          <div class="product-header">
+            <h3>Bulk Gmail (10pcs)</h3>
+            <div class="product-price">₦12,000</div>
+          </div>
+          <div class="product-body">
+            <a class="btn btn-primary" href="#" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 64px;">
+        <a class="btn btn-gold" href="#" style="font-size: 18px; padding: 20px 48px;"><i class="fas fa-th"></i> View All Logs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= TESTIMONIALS ======================= -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Testimonials</div>
+        <h2>Trusted by Marketers Worldwide</h2>
+        <p>See what our satisfied customers say about their experience with AccsStores</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"AccsStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel Okoro" />
+            </div>
+            <div class="author-info">
+              <h4>Daniel Okoro</h4>
+              <p>Digital Strategist</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Best decision for my agency! AccsStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Okafor" />
+            </div>
+            <div class="author-info">
+              <h4>Michael Okafor</h4>
+              <p>Social Media Manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Scale Your Digital Presence?</h2>
+      <p>Join over 10,000+ businesses and marketers already using AccsStores for their social media growth and marketing success.</p>
+      <a class="btn btn-gold" href="#" id="registerBtnCta" style="font-size: 18px; padding: 20px 48px;"><i class="fas fa-rocket"></i> Get Access Now</a>
+    </div>
+  </section>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>Accs<span>Stores</span></h3>
+          <p>The #1 trusted marketplace for verified premium social media account logs and digital solutions worldwide.</p>
+          <div class="social-links">
+            <a class="social-link" href="#"><i class="fab fa-telegram"></i></a>
+            <a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="social-link" href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Logs Categories</h3>
+          <ul class="footer-links">
+            <li><a href="#">Gmail Logs</a></li>
+            <li><a href="#">Facebook Logs</a></li>
+            <li><a href="#">Instagram Logs</a></li>
+            <li><a href="#">Twitter Logs</a></li>
+            <li><a href="#">TikTok Logs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:support@accsstores.com"><i class="fas fa-envelope"></i> support@accsstores.com</a></li>
+            <li><a href="https://wa.me/23470702"><i class="fab fa-whatsapp"></i> +234 707 582 0202</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2026 <strong>AccsStores</strong>. All rights reserved. | Developed by <a href="https://wa.me/2347075820202" target="_blank">AP Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- ======================= AUTH OVERLAY (LOGIN / REGISTER) ======================= -->
+  <div class="auth-overlay" id="authOverlay">
+    <!-- Login Card -->
+    <div class="auth-card" id="loginCard" style="display: none;">
+      <button class="close-auth" id="closeAuthLogin" aria-label="Close login"><i class="fas fa-times"></i></button>
+      <div class="auth-header">
+        <div class="logo-circle"><i class="fas fa-user-lock"></i></div>
+        <div class="auth-brand">Accs<span>Stores</span></div>
+        <div class="auth-title">Login Now</div>
+        <p class="auth-subtitle">Welcome back! Please enter your details</p>
+      </div>
+      <form action="handle_login.php" method="POST" class="auth-form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email or Username</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="loginEmail" name="email_username" placeholder="Enter your email or username" class="form-control" required autocomplete="username" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" class="form-control" required autocomplete="current-password" />
+            <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-options">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="remember" name="remember" />
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-label">Remember me</span>
+          </label>
+          <a class="forgot-link" href="recover.php">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn-auth" id="loginSubmitBtn">
+          <span class="btn-text">Sign In to Dashboard</span>
+          <div class="loading-spinner"></div>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+      <div class="auth-switch">
+        Don't have an account? <a href="#" id="switchToRegister">Create Account</a>
+      </div>
+      <div class="security-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Secured with 256-bit SSL encryption</span>
+      </div>
     </div>
 
-    <!-- Application Logic Scripts -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+    <!-- Register Card -->
+    <div class="auth-card register-card" id="registerCard" style="display: none;">
+      <button class="close-auth" id="closeAuthRegister" aria-label="Close register"><i class="fas fa-times"></i></button>
+      <div class="auth-header">
+        <div class="logo-circle"><i class="fas fa-user-plus"></i></div>
+        <div class="auth-brand">Accs<span>Stores</span></div>
+        <div class="auth-title">Create Account</div>
+        <p class="auth-subtitle">Join thousands of users accessing premium accounts</p>
+      </div>
+      <form action="handle_register.php" method="POST" class="auth-form" id="registerForm">
+        <input type="hidden" name="csrf_token" value="1e797fae729087f33854994a111976d48228fc9a2bc2563976fb662f9818e01e" />
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label required" for="fullName">Full Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="fullName" name="full_name" placeholder="Enter your full name" class="form-control" required autocomplete="name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label required" for="phoneNumber">WhatsApp Number</label>
+            <div class="input-wrapper">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="tel" id="phoneNumber" name="phone_number" placeholder="+234 123 456 7890" class="form-control" required autocomplete="tel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label required" for="regUsername">Username</label>
+            <div class="input-wrapper">
+              <i class="fas fa-at input-icon"></i>
+              <input type="text" id="regUsername" name="username" placeholder="Choose a username" class="form-control" required minlength="3" autocomplete="username" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label required" for="regEmail">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="regEmail" name="email" placeholder="you@example.com" class="form-control" required autocomplete="email" />
+            </div>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label required" for="regPassword">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="regPassword" name="password" placeholder="Create a strong password" class="form-control" required minlength="8" autocomplete="new-password" />
+              <button type="button" class="password-toggle" id="toggleRegPassword" aria-label="Toggle password visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength">
+              <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+              <div class="strength-text" id="strengthText">Password strength: None</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label required" for="confirmPassword">Confirm Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" class="form-control" required autocomplete="new-password" />
+              <button type="button" class="password-toggle" id="toggleConfirmPassword" aria-label="Toggle confirm password visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="strength-text" id="passwordMatch" style="font-size: 11px; margin-top: 4px; display: none;"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="ref">Referral Code (Optional)</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user-friends input-icon"></i>
+            <input type="text" id="ref" name="ref" placeholder="Enter referral code if you have one" class="form-control" />
+          </div>
+        </div>
+        <div class="terms-container" style="margin: 18px 0; padding: 14px; background: linear-gradient(135deg, rgba(10,102,194,0.05), rgba(0,212,255,0.05)); border-radius: 14px; border: 1px solid rgba(10,102,194,0.1);">
+          <label class="checkbox-wrapper" style="align-items: flex-start;">
+            <input type="checkbox" id="terms" name="terms" required />
+            <span class="custom-checkbox" style="margin-top: 2px;"></span>
+            <span class="terms-text">I agree to the <a href="terms.php" target="_blank">Terms of Service</a> and <a href="privacy.php" target="_blank">Privacy Policy</a>. I understand that I must be at least 18 years old to use this service.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn-auth" id="registerSubmitBtn">
+          <span class="btn-text">Create Account</span>
+          <div class="loading-spinner"></div>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+      <div class="auth-switch">
+        Already have an account? <a href="#" id="switchToLogin">Sign In</a>
+      </div>
+      <div class="security-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Protected with 256-bit SSL encryption</span>
+      </div>
+    </div>
+  </div>
 
-        // State Management
-        let currentTab = 'feed';
-        let ghostModeActive = true;
-        let liked = false;
+  <!-- ======================= SCRIPTS ======================= -->
+  <script>
+    (function() {
+      'use strict';
 
-        // Tab Switching Logic
-        function switchTab(tabId) {
-            currentTab = tabId;
+      // ---------- DOM refs ----------
+      const header = document.getElementById('header');
+      const scrollTopBtn = document.getElementById('scrollTop');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const authOverlay = document.getElementById('authOverlay');
+      const loginCard = document.getElementById('loginCard');
+      const registerCard = document.getElementById('registerCard');
 
-            // Hide all view panels
-            document.querySelectorAll('.view-panel').forEach(panel => {
-                panel.classList.add('hidden');
+      // ---------- Header scroll effect ----------
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        if (window.scrollY > 500) {
+          scrollTopBtn.classList.add('active');
+        } else {
+          scrollTopBtn.classList.remove('active');
+        }
+      });
+
+      // ---------- Scroll to top ----------
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ---------- Section reveal on scroll ----------
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      sections.forEach(section => observer.observe(section));
+
+      // ---------- Mobile menu ----------
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (mobileNav.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // Close mobile menu when a link is clicked
+      document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          // Only close if it's a hash link (not auth buttons)
+          if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
+            mobileNav.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      });
+
+      // ---------- Smooth scrolling for anchor links ----------
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId === '') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
             });
+          }
+        });
+      });
 
-            // Reset navigation button styles
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-orbit-accent');
-                btn.classList.add('text-orbit-dim');
-            });
-
-            // Show selected view panel
-            const selectedPanel = document.getElementById(`view-${tabId}`);
-            if (selectedPanel) {
-                selectedPanel.classList.remove('hidden');
-            }
-
-            // Highlight active nav tab button
-            const activeNavBtn = document.getElementById(`nav-${tabId}`);
-            if (activeNavBtn) {
-                activeNavBtn.classList.remove('text-orbit-dim');
-                activeNavBtn.classList.add('text-orbit-accent');
-            }
-        }
-
-        // Toggle Like Button
-        function toggleLike(btnElement) {
-            liked = !liked;
-            const likeCount = document.getElementById('like-count');
-            if (liked) {
-                btnElement.classList.add('active');
-                likeCount.textContent = "124.6K";
-                showToast("Added to Liked Videos ❤️");
+      // ---------- Marketplace filter ----------
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const products = document.querySelectorAll('.product-card');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          products.forEach(product => {
+            if (filter === 'all' || product.dataset.category === filter) {
+              product.style.display = 'block';
+              setTimeout(() => {
+                product.style.opacity = '1';
+                product.style.transform = 'translateY(0)';
+              }, 10);
             } else {
-                btnElement.classList.remove('active');
-                likeCount.textContent = "124.5K";
+              product.style.opacity = '0';
+              product.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                product.style.display = 'none';
+              }, 250);
             }
+          });
+        });
+      });
+
+      // ---------- AUTH: open/close overlay ----------
+      function openAuth(type) {
+        authOverlay.classList.add('active');
+        if (type === 'login') {
+          loginCard.style.display = 'block';
+          registerCard.style.display = 'none';
+          document.getElementById('loginEmail').focus();
+        } else {
+          loginCard.style.display = 'none';
+          registerCard.style.display = 'block';
+          document.getElementById('fullName').focus();
         }
+        document.body.style.overflow = 'hidden';
+      }
 
-        // Trigger Duet Alert
-        function triggerDuet() {
-            showToast("Duet mode activated! 50/50 revenue split agreed 🤝");
-            switchTab('create');
+      function closeAuth() {
+        authOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        // Reset forms
+        document.getElementById('loginForm').reset();
+        document.getElementById('registerForm').reset();
+        // Reset loading states
+        document.getElementById('loginSubmitBtn').classList.remove('loading');
+        document.getElementById('loginSubmitBtn').disabled = false;
+        document.getElementById('registerSubmitBtn').classList.remove('loading');
+        document.getElementById('registerSubmitBtn').disabled = false;
+        // Reset password strength
+        document.getElementById('passwordStrength').style.display = 'none';
+        document.getElementById('passwordMatch').style.display = 'none';
+      }
+
+      // Attach open buttons
+      document.getElementById('loginBtnNav').addEventListener('click', (e) => { e.preventDefault(); openAuth('login'); });
+      document.getElementById('registerBtnNav').addEventListener('click', (e) => { e.preventDefault(); openAuth('register'); });
+      document.getElementById('loginBtnMobile').addEventListener('click', (e) => { e.preventDefault(); openAuth('login'); });
+      document.getElementById('registerBtnMobile').addEventListener('click', (e) => { e.preventDefault(); openAuth('register'); });
+      document.getElementById('registerBtnCta').addEventListener('click', (e) => { e.preventDefault(); openAuth('register'); });
+
+      // Close buttons
+      document.getElementById('closeAuthLogin').addEventListener('click', closeAuth);
+      document.getElementById('closeAuthRegister').addEventListener('click', closeAuth);
+      authOverlay.addEventListener('click', (e) => {
+        if (e.target === authOverlay) closeAuth();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && authOverlay.classList.contains('active')) closeAuth();
+      });
+
+      // Switch between login/register
+      document.getElementById('switchToRegister').addEventListener('click', (e) => {
+        e.preventDefault();
+        loginCard.style.display = 'none';
+        registerCard.style.display = 'block';
+        document.getElementById('fullName').focus();
+      });
+      document.getElementById('switchToLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        registerCard.style.display = 'none';
+        loginCard.style.display = 'block';
+        document.getElementById('loginEmail').focus();
+      });
+
+      // ---------- Password toggle (login) ----------
+      const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+      const loginPasswordInput = document.getElementById('loginPassword');
+      const loginPasswordIcon = toggleLoginPassword.querySelector('i');
+      toggleLoginPassword.addEventListener('click', () => {
+        const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        loginPasswordInput.setAttribute('type', type);
+        loginPasswordIcon.classList.toggle('fa-eye');
+        loginPasswordIcon.classList.toggle('fa-eye-slash');
+      });
+
+      // ---------- Password toggle & strength (register) ----------
+      const toggleRegPassword = document.getElementById('toggleRegPassword');
+      const regPasswordInput = document.getElementById('regPassword');
+      const regPasswordIcon = toggleRegPassword.querySelector('i');
+      toggleRegPassword.addEventListener('click', () => {
+        const type = regPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        regPasswordInput.setAttribute('type', type);
+        regPasswordIcon.classList.toggle('fa-eye');
+        regPasswordIcon.classList.toggle('fa-eye-slash');
+      });
+
+      const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const confirmPasswordIcon = toggleConfirmPassword.querySelector('i');
+      toggleConfirmPassword.addEventListener('click', () => {
+        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordInput.setAttribute('type', type);
+        confirmPasswordIcon.classList.toggle('fa-eye');
+        confirmPasswordIcon.classList.toggle('fa-eye-slash');
+      });
+
+      // Password strength checker
+      regPasswordInput.addEventListener('input', function() {
+        const password = this.value;
+        const strengthBar = document.getElementById('passwordStrength');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+        if (password.length === 0) {
+          strengthBar.style.display = 'none';
+          return;
         }
+        strengthBar.style.display = 'block';
+        let strength = 0;
+        let color = '#ff4444';
+        let text = 'Weak';
+        if (password.length >= 8) strength += 25;
+        if (password.length >= 12) strength += 10;
+        if (/[a-z]/.test(password)) strength += 15;
+        if (/[A-Z]/.test(password)) strength += 15;
+        if (/[0-9]/.test(password)) strength += 15;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+        if (strength >= 70) { color = '#00C851'; text = 'Strong'; }
+        else if (strength >= 40) { color = '#ffbb33'; text = 'Good'; }
+        strengthFill.style.width = strength + '%';
+        strengthFill.style.background = color;
+        strengthText.textContent = 'Password strength: ' + text;
+        strengthText.style.color = color;
+      });
 
-        // Ghost Mode Toggle
-        function toggleGhostModeState() {
-            ghostModeActive = !ghostModeActive;
-            const badge = document.getElementById('ghost-status-badge');
-            const btn = document.getElementById('ghost-activate-btn');
-
-            if (ghostModeActive) {
-                badge.innerHTML = `<i data-lucide="ghost" class="w-3 h-3"></i> GHOST: ON`;
-                badge.className = "flex items-center gap-1 text-orbit-accent bg-orbit-accent/10 border border-orbit-accent/40 px-2 py-0.5 rounded-full text-[10px]";
-                btn.textContent = "SAVE & ACTIVATE GHOST MODE";
-                showToast("Ghost Mode Enabled! Location hidden from Nigeria 🇳🇬");
-            } else {
-                badge.innerHTML = `<i data-lucide="ghost" class="w-3 h-3"></i> GHOST: OFF`;
-                badge.className = "flex items-center gap-1 text-gray-400 bg-zinc-800 border border-zinc-700 px-2 py-0.5 rounded-full text-[10px]";
-                btn.textContent = "TURN GHOST MODE ON";
-                showToast("Ghost Mode Disabled!");
-            }
-            lucide.createIcons();
+      // Password match
+      confirmPasswordInput.addEventListener('input', function() {
+        const password = regPasswordInput.value;
+        const confirm = this.value;
+        const matchText = document.getElementById('passwordMatch');
+        if (confirm.length === 0) {
+          matchText.style.display = 'none';
+          return;
         }
-
-        // Rocket Launch Sequence
-        function triggerRocketLaunch() {
-            const rocket = document.getElementById('rocket-anim-icon');
-            const fuel = document.getElementById('fuel-val');
-            const log = document.getElementById('log-entry');
-            const btn = document.getElementById('launch-btn');
-
-            btn.disabled = true;
-            btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> LAUNCHING PAYLOAD...`;
-
-            rocket.classList.add('anim-rocket');
-            log.innerHTML = `<span class="text-orbit-accent">[BOOSTER] Thrusters engaged. Trajectory Nigeria -> USA active!</span>`;
-
-            setTimeout(() => {
-                fuel.textContent = "75% IN-FLIGHT";
-            }, 1000);
-
-            setTimeout(() => {
-                rocket.classList.remove('anim-rocket');
-                btn.disabled = false;
-                btn.innerHTML = `<i data-lucide="rocket" class="w-5 h-5"></i> LAUNCH MISSION NOW`;
-                fuel.textContent = "100% NOMINAL";
-                log.innerHTML = `<span class="text-orbit-accent">[SUCCESS] Video successfully delivered to US Trending Feed! 🔥</span>`;
-                showToast("Video launched to USA Feed! 🚀🇺🇸");
-                lucide.createIcons();
-            }, 3000);
+        matchText.style.display = 'block';
+        if (password === confirm) {
+          matchText.textContent = '✓ Passwords match';
+          matchText.style.color = '#00C851';
+        } else {
+          matchText.textContent = '✗ Passwords do not match';
+          matchText.style.color = '#ff4444';
         }
+      });
 
-        // Pidgin Caption Generator
-        function generatePidginCaption() {
-            const captions = [
-                "How far, abeg make we vibe to dis beat! 🇳🇬🔥",
-                "No cap, dis dance step bad die! Who dey check am?",
-                "Omo, surulere energy inside dis video mad oh! 🚀"
-            ];
-            const randomCap = captions[Math.floor(Math.random() * captions.length)];
-            showToast("Pidgin Caption Generated!");
-            document.getElementById('feed-caption').textContent = randomCap;
+      // ---------- Login form submission ----------
+      const loginForm = document.getElementById('loginForm');
+      const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+      loginForm.addEventListener('submit', function(e) {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
+        if (!email || !password) {
+          e.preventDefault();
+          alert('Please fill in all required fields');
+          return;
         }
+        loginSubmitBtn.classList.add('loading');
+        loginSubmitBtn.disabled = true;
+      });
 
-        // Language Dubbing Selector
-        function selectLanguage(lang, sampleText) {
-            document.getElementById('current-lang-tag').textContent = `${lang} Dubbed`;
-            document.getElementById('dub-preview-text').textContent = `"${sampleText}"`;
-            showToast(`Voice switched to ${lang} AI Dubbing!`);
+      // ---------- Register form submission ----------
+      const registerForm = document.getElementById('registerForm');
+      const registerSubmitBtn = document.getElementById('registerSubmitBtn');
+      registerForm.addEventListener('submit', function(e) {
+        const password = regPasswordInput.value;
+        const confirm = confirmPasswordInput.value;
+        const terms = document.getElementById('terms').checked;
+        if (!terms) {
+          e.preventDefault();
+          alert('You must agree to the Terms of Service and Privacy Policy');
+          return;
         }
-
-        // Play Dubbed Audio Simulation
-        function playDubbedAudio() {
-            showToast("Playing AI Voice Dub sample... 🔊");
+        if (password !== confirm) {
+          e.preventDefault();
+          alert('Passwords do not match. Please check and try again.');
+          return;
         }
-
-        // Dynamic Toast System
-        function showToast(message) {
-            const toast = document.getElementById('toast-msg');
-            const toastText = document.getElementById('toast-text');
-            
-            toastText.textContent = message;
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            toast.classList.add('opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 2500);
+        if (password.length < 8) {
+          e.preventDefault();
+          alert('Password must be at least 8 characters long');
+          return;
         }
+        registerSubmitBtn.classList.add('loading');
+        registerSubmitBtn.disabled = true;
+      });
 
-        // Audio Beat wave simulator update
-        function updateBeatWaveform() {
-            const select = document.getElementById('beat-pack-select');
-            document.getElementById('feed-audio-title').textContent = select.value + " — ORBIT Original";
-            showToast("Beat audio pack applied!");
-        }
-    </script>
+      // Prevent double submit (global for both forms)
+      [loginForm, registerForm].forEach(form => {
+        let submitted = false;
+        form.addEventListener('submit', function(e) {
+          if (submitted) {
+            e.preventDefault();
+            return false;
+          }
+          submitted = true;
+          // Re-enable after 4s in case of server error (prevents permanent lock)
+          setTimeout(() => { submitted = false; }, 4000);
+        });
+      });
+
+      // Auto-focus on overlay open
+      document.addEventListener('DOMContentLoaded', () => {
+        // Preload nothing special
+      });
+
+    })();
+  </script>
 </body>
 </html>
