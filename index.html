@@ -65,6 +65,26 @@
     .btn-outline:hover { border-color: var(--charcoal-900); background: var(--charcoal-900); color: var(--off-white); transform: translateY(-3px); box-shadow: var(--shadow-md); }
     .btn-sm { padding: 12px 24px; font-size: 13px; }
 
+    /* Google Authentication Button */
+    .btn-google {
+      width: 100%; padding: 14px; background: var(--white);
+      color: var(--charcoal-900); border: 2px solid var(--border-light);
+      border-radius: var(--radius-md); font-size: 14px; font-weight: 700;
+      font-family: 'Syne', sans-serif; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 20px; box-shadow: var(--shadow-sm);
+    }
+    .btn-google:hover { border-color: var(--charcoal-900); background: var(--off-white); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .auth-divider {
+      display: flex; align-items: center; text-align: center; color: var(--text-muted);
+      font-size: 12px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: ''; flex: 1; border-bottom: 1px solid var(--border-light);
+    }
+    .auth-divider span { padding: 0 10px; font-weight: 600; }
+
     /* ======================= HEADER ======================= */
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
@@ -333,8 +353,13 @@
 
     /* ======================= AUTH PAGES ======================= */
     .auth-page {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      padding: 100px 24px 60px; position: relative; overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 60px;
+      position: relative;
+      overflow: hidden;
     }
     .auth-page::before {
       content: ''; position: fixed; top: -20%; right: -15%; width: 60%; height: 90%;
@@ -347,197 +372,229 @@
       pointer-events: none; z-index: 0;
     }
     .auth-page .auth-page-inner {
-      width: 100%; max-width: 460px; position: relative; z-index: 2;
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      z-index: 2;
       animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
-    .auth-page.signup .auth-page-inner { max-width: 540px; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .auth-card {
-      background: var(--white); border-radius: var(--radius-xl); padding: 48px 40px;
-      box-shadow: var(--shadow-xl); border: 1px solid var(--border-light);
-      position: relative; overflow: hidden;
+    .auth-page.signup .auth-page-inner { max-width: 500px; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .auth-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--lime-500); }
+
+    .auth-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: var(--lime-500);
+    }
+
     .brand-home { display: flex; justify-content: center; margin-bottom: 28px; }
+
     .auth-header { text-align: center; margin-bottom: 24px; }
     .auth-header .logo-circle {
-      width: 68px; height: 68px; background: var(--charcoal-900); border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
-      box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+      width: 68px; height: 68px; background: var(--charcoal-900);
+      border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
     }
-    .auth-header .logo-circle::before {
-      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
-      animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer { 0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); } 100% { transform: translateX(100%) translateY(100%) rotate(45deg); } }
     .auth-header .logo-circle i { font-size: 28px; color: var(--lime-500); position: relative; z-index: 2; }
     .auth-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: var(--charcoal-900); margin-bottom: 6px; }
     .auth-subtitle { font-size: 14px; color: var(--text-muted); }
+
     .auth-form .form-group { margin-bottom: 18px; }
-    .auth-form .form-label { display: block; margin-bottom: 6px; color: var(--text-primary); font-size: 12px; font-weight: 600; font-family: 'Syne', sans-serif; letter-spacing: 0.02em; }
+    .auth-form .form-label {
+      display: block; margin-bottom: 6px; color: var(--text-primary);
+      font-size: 12px; font-weight: 600; font-family: 'Syne', sans-serif;
+      letter-spacing: 0.02em;
+    }
     .required:after { content: '*'; color: var(--lime-600); margin-left: 4px; }
-    .input-wrapper { position: relative; border-radius: var(--radius-md); border: 2px solid var(--border-light); transition: var(--transition); background: var(--white); }
+
+    .input-wrapper {
+      position: relative; border-radius: var(--radius-md);
+      border: 2px solid var(--border-light); transition: var(--transition);
+      background: var(--white);
+    }
     .input-wrapper:hover { border-color: var(--charcoal-300); }
-    .input-wrapper:focus-within { border-color: var(--lime-500); box-shadow: 0 0 0 4px rgba(196, 240, 0, 0.12); }
-    .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; transition: var(--transition); }
+    .input-wrapper:focus-within {
+      border-color: var(--lime-500);
+      box-shadow: 0 0 0 4px rgba(196, 240, 0, 0.12);
+    }
+    .input-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 14px; transition: var(--transition);
+    }
     .input-wrapper:focus-within .input-icon { color: var(--lime-600); }
-    .form-control { width: 100%; padding: 13px 14px 13px 44px; border: none; background: transparent; font-size: 14px; color: var(--text-primary); outline: none; border-radius: var(--radius-md); font-family: 'DM Sans', sans-serif; font-weight: 500; }
+    .form-control {
+      width: 100%; padding: 13px 14px 13px 44px; border: none;
+      background: transparent; font-size: 14px; color: var(--text-primary);
+      outline: none; border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+    }
     .form-control::placeholder { color: var(--text-muted); opacity: 0.7; }
-    .password-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 8px; transition: var(--transition); border-radius: var(--radius-sm); }
+    .password-toggle {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: var(--text-muted);
+      cursor: pointer; font-size: 14px; padding: 8px;
+      transition: var(--transition); border-radius: var(--radius-sm);
+    }
     .password-toggle:hover { color: var(--lime-600); background: var(--lime-100); }
-    .password-strength { margin-top: 8px; display: none; }
-    .strength-bar { height: 4px; background: var(--border-light); border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
-    .strength-fill { height: 100%; width: 0; background: var(--text-muted); border-radius: 2px; transition: var(--transition); }
-    .strength-text { font-size: 11px; color: var(--text-muted); }
+
     .form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
     .checkbox-wrapper { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
     .checkbox-wrapper input { display: none; }
-    .custom-checkbox { width: 18px; height: 18px; border: 2px solid var(--border-light); border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: var(--transition); background: var(--white); flex-shrink: 0; }
+    .custom-checkbox {
+      width: 18px; height: 18px; border: 2px solid var(--border-light);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      transition: var(--transition); background: var(--white); flex-shrink: 0;
+    }
     .checkbox-wrapper:hover .custom-checkbox { border-color: var(--lime-600); }
     .checkbox-wrapper input:checked + .custom-checkbox { background: var(--lime-500); border-color: var(--lime-500); }
     .checkbox-wrapper input:checked + .custom-checkbox::after { content: '✓'; color: var(--charcoal-900); font-size: 11px; font-weight: bold; }
-    .checkbox-label, .terms-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
-    .terms-text a { color: var(--lime-600); text-decoration: none; font-weight: 600; transition: var(--transition); }
-    .terms-text a:hover { color: var(--lime-500); text-decoration: underline; }
-    .forgot-link { color: var(--lime-600); font-size: 12px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+    .checkbox-label { font-size: 12px; color: var(--text-secondary); }
+    .forgot-link { color: var(--lime-600); font-size: 12px; text-decoration: none; font-weight: 600; transition: var(--transition); cursor: pointer; }
     .forgot-link:hover { color: var(--lime-500); text-decoration: underline; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .terms-container { margin: 16px 0; padding: 12px; background: var(--lime-100); border-radius: var(--radius-md); border: 1px solid var(--lime-300); }
-    .terms-container .checkbox-wrapper { align-items: flex-start; }
-    .terms-container .custom-checkbox { margin-top: 2px; }
-    .btn-auth { width: 100%; padding: 16px; background: var(--charcoal-900); color: var(--off-white); border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; box-shadow: var(--shadow-md); letter-spacing: 0.02em; margin-top: 8px; }
+
+    .btn-auth {
+      width: 100%; padding: 16px; background: var(--charcoal-900);
+      color: var(--off-white); border: none; border-radius: var(--radius-md);
+      font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif;
+      cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-md);
+      letter-spacing: 0.02em; margin-top: 8px;
+    }
     .btn-auth:hover { background: var(--charcoal-700); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .btn-auth .loading-spinner { display: none; width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: var(--off-white); animation: spin 0.8s linear infinite; }
-    .btn-auth.loading .btn-text { visibility: hidden; }
-    .btn-auth.loading .loading-spinner { display: block; position: absolute; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .auth-switch { text-align: center; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-secondary); }
+
+    .auth-alert {
+      padding: 12px 16px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 500; margin-bottom: 16px; display: none;
+    }
+    .auth-alert.error { background: #FFE0E0; color: #CC0000; border: 1px solid #FFCCCC; }
+
+    .auth-switch {
+      text-align: center; margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid var(--border-light);
+      font-size: 13px; color: var(--text-secondary);
+    }
     .auth-switch a { color: var(--lime-600); font-weight: 700; text-decoration: none; margin-left: 4px; transition: var(--transition); cursor: pointer; }
     .auth-switch a:hover { color: var(--lime-500); }
-    .security-badge { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 18px; padding: 12px 14px; background: var(--lime-100); border-radius: var(--radius-md); border: 1px solid var(--lime-300); font-size: 11px; color: var(--text-secondary); }
-    .security-badge i { color: var(--lime-600); font-size: 13px; }
-    .back-home { text-align: center; margin-top: 24px; }
-    .back-home a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: var(--radius-full); background: var(--white); border: 1px solid var(--border-light); transition: var(--transition); cursor: pointer; }
-    .back-home a:hover { color: var(--charcoal-900); border-color: var(--lime-500); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .back-home i { transition: var(--transition); }
-    .back-home a:hover i { transform: translateX(-3px); }
 
-    /* ======================= DASHBOARD ======================= */
+    .security-badge {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 18px; padding: 12px 14px; background: var(--lime-100);
+      border-radius: var(--radius-md); border: 1px solid var(--lime-300);
+      font-size: 11px; color: var(--text-secondary);
+    }
+    .security-badge i { color: var(--lime-600); font-size: 13px; }
+
+    .back-home { text-align: center; margin-top: 24px; }
+    .back-home a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-secondary); font-size: 13px; font-weight: 600;
+      padding: 10px 18px; border-radius: var(--radius-full);
+      background: var(--white); border: 1px solid var(--border-light);
+      transition: var(--transition); cursor: pointer;
+    }
+    .back-home a:hover { color: var(--charcoal-900); border-color: var(--lime-500); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ======================= DASHBOARD PAGE ======================= */
     .dashboard-page { display: flex; min-height: 100vh; background: var(--off-white); }
-    .sidebar { width: 260px; background: var(--charcoal-900); color: var(--off-white); padding: 28px 20px; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: var(--transition); }
-    .sidebar-brand { display: flex; align-items: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--off-white); letter-spacing: -0.04em; padding: 0 8px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 24px; cursor: pointer; }
+    .sidebar {
+      width: 260px; background: var(--charcoal-900); color: var(--off-white);
+      padding: 28px 20px; display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: var(--transition);
+    }
+    .sidebar-brand {
+      display: flex; align-items: center; font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 22px; color: var(--off-white);
+      letter-spacing: -0.04em; padding: 0 8px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 24px; cursor: pointer;
+    }
     .sidebar-brand span { color: var(--lime-400); }
     .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; flex: 1; }
-    .sidebar-nav li a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-sm); color: rgba(247, 245, 240, 0.6); font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px; transition: var(--transition); cursor: pointer; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      border-radius: var(--radius-sm); color: rgba(247, 245, 240, 0.6);
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
+      transition: var(--transition); cursor: pointer;
+    }
     .sidebar-nav li a:hover { background: rgba(255, 255, 255, 0.06); color: var(--off-white); }
     .sidebar-nav li a.active { background: rgba(196, 240, 0, 0.12); color: var(--lime-400); }
     .sidebar-nav li a i { width: 20px; text-align: center; font-size: 15px; }
-    .sidebar-nav li a .badge { margin-left: auto; background: var(--lime-500); color: var(--charcoal-900); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); }
-    .sidebar-user { padding: 16px; background: rgba(255, 255, 255, 0.04); border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; gap: 12px; }
-    .sidebar-user .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--lime-500); color: var(--charcoal-900); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+    .sidebar-user {
+      padding: 16px; background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sidebar-user .avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--lime-500);
+      color: var(--charcoal-900); display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; flex-shrink: 0;
+    }
     .sidebar-user .user-info { flex: 1; min-width: 0; }
     .sidebar-user .user-info .name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; color: var(--off-white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sidebar-user .user-info .plan { font-size: 11px; color: var(--lime-400); font-weight: 500; }
-    .sidebar-user .logout-btn { background: none; border: none; color: rgba(247, 245, 240, 0.5); cursor: pointer; font-size: 14px; padding: 4px; transition: var(--transition); }
+    .sidebar-user .logout-btn {
+      background: none; border: none; color: rgba(247, 245, 240, 0.5);
+      cursor: pointer; font-size: 14px; padding: 4px; transition: var(--transition);
+    }
     .sidebar-user .logout-btn:hover { color: var(--lime-400); }
+
     .dashboard-main { flex: 1; margin-left: 260px; padding: 32px 40px 60px; min-height: 100vh; }
     .dashboard-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
     .dashboard-topbar h1 { font-size: 30px; font-weight: 800; color: var(--charcoal-900); }
     .dashboard-topbar h1 span { color: var(--lime-600); }
-    .topbar-actions { display: flex; gap: 12px; align-items: center; }
-    .topbar-search { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-full); padding: 10px 18px; transition: var(--transition); min-width: 240px; }
-    .topbar-search:focus-within { border-color: var(--lime-500); box-shadow: 0 0 0 3px rgba(196, 240, 0, 0.1); }
-    .topbar-search i { color: var(--text-muted); font-size: 14px; }
-    .topbar-search input { border: none; background: transparent; outline: none; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-primary); width: 100%; }
-    .topbar-search input::placeholder { color: var(--text-muted); }
-    .topbar-icon { width: 42px; height: 42px; background: var(--white); border: 1px solid var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer; transition: var(--transition); position: relative; }
-    .topbar-icon:hover { border-color: var(--lime-500); color: var(--lime-600); }
-    .topbar-icon .dot { position: absolute; top: 8px; right: 10px; width: 8px; height: 8px; background: var(--lime-500); border-radius: 50%; border: 2px solid var(--white); }
-    .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 32px; }
-    .dash-stat-card { background: var(--white); border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border-light); transition: var(--transition); position: relative; overflow: hidden; }
-    .dash-stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--lime-500); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-    .dash-stat-card:hover::before { transform: scaleX(1); }
-    .dash-stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
-    .dash-stat-card .stat-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--lime-100); color: var(--lime-600); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
-    .dash-stat-card .stat-value { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--charcoal-900); line-height: 1; margin-bottom: 6px; letter-spacing: -0.03em; }
-    .dash-stat-card .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .dash-stat-card .stat-trend { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--lime-600); }
-    .dash-panel { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 28px; margin-bottom: 32px; }
-    .dash-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-    .dash-panel-header h2 { font-size: 20px; font-weight: 700; color: var(--charcoal-900); }
-    .dash-panel-header .view-all { color: var(--lime-600); font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); }
-    .dash-panel-header .view-all:hover { color: var(--lime-500); text-decoration: underline; }
-    .dash-table { width: 100%; border-collapse: collapse; }
-    .dash-table th { text-align: left; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
-    .dash-table td { padding: 14px 12px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border-light); }
-    .dash-table tr:last-child td { border-bottom: none; }
-    .dash-table tr:hover td { background: var(--off-white); }
-    .dash-table .badge { display: inline-block; padding: 4px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
-    .badge-completed { background: var(--lime-100); color: var(--lime-600); }
-    .badge-pending { background: #FFF4D6; color: #B8860B; }
-    .badge-failed { background: #FFE0E0; color: #CC0000; }
-    .dash-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-    .dash-product-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden; transition: var(--transition); cursor: pointer; }
-    .dash-product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
-    .dash-product-card .img { height: 120px; background: var(--off-white); overflow: hidden; }
-    .dash-product-card .img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .dash-product-card:hover .img img { transform: scale(1.08); }
-    .dash-product-card .info { padding: 16px; }
-    .dash-product-card .info h4 { font-size: 14px; font-weight: 700; color: var(--charcoal-900); margin-bottom: 4px; }
-    .dash-product-card .info .price { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--lime-600); }
-    .dash-columns { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
-    .quick-actions { display: flex; flex-direction: column; gap: 10px; }
-    .quick-action-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--off-white); border: 1px solid var(--border-light); border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text-secondary); width: 100%; text-align: left; }
-    .quick-action-btn:hover { background: var(--lime-100); border-color: var(--lime-300); color: var(--charcoal-900); }
-    .quick-action-btn i { color: var(--lime-600); font-size: 16px; width: 20px; text-align: center; }
 
-    /* Dashboard responsive */
-    @media (max-width: 1100px) { .dash-columns { grid-template-columns: 1fr; } }
-    @media (max-width: 900px) { .sidebar { width: 220px; padding: 20px 14px; } .dashboard-main { margin-left: 220px; padding: 24px 24px 50px; } .sidebar-user .user-info .name { font-size: 12px; } }
-    @media (max-width: 768px) {
-      .sidebar { transform: translateX(-100%); width: 260px; } .sidebar.open { transform: translateX(0); }
-      .dashboard-main { margin-left: 0; padding: 20px; } .dash-stats { grid-template-columns: repeat(2, 1fr); }
-      .dash-table { font-size: 12px; } .dash-table th, .dash-table td { padding: 10px 8px; } .mobile-dash-toggle { display: flex !important; }
+    .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 32px; }
+    .dash-stat-card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 24px;
+      border: 1px solid var(--border-light); transition: var(--transition); position: relative; overflow: hidden;
     }
-    @media (max-width: 520px) { .dash-stats { grid-template-columns: 1fr; } .dashboard-topbar h1 { font-size: 24px; } .topbar-search { min-width: auto; flex: 1; } .dash-columns { grid-template-columns: 1fr; } }
-    .mobile-dash-toggle { display: none; align-items: center; justify-content: center; width: 42px; height: 42px; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 18px; color: var(--charcoal-900); cursor: pointer; margin-right: 12px; }
-    .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 13, 0.5); z-index: 99; }
+    .dash-stat-card .stat-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--lime-100);
+      color: var(--lime-600); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px;
+    }
+    .dash-stat-card .stat-value { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--charcoal-900); line-height: 1; margin-bottom: 6px; }
+    .dash-stat-card .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+    .dash-panel { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 28px; margin-bottom: 32px; }
+    .dash-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .dash-panel-header h2 { font-size: 20px; font-weight: 700; color: var(--charcoal-900); }
+    
+    .mobile-dash-toggle {
+      display: none; align-items: center; justify-content: center;
+      width: 42px; height: 42px; background: var(--white);
+      border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+      font-size: 18px; color: var(--charcoal-900); cursor: pointer; margin-right: 12px;
+    }
+    .sidebar-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(13, 13, 13, 0.5); z-index: 99;
+    }
     .sidebar-overlay.active { display: block; }
 
-    /* ======================= RESPONSIVE ======================= */
-    @media (max-width: 1100px) { .hero-grid { gap: 50px; } .hero-content h1 { font-size: 52px; } .section-header h2 { font-size: 38px; } }
-    @media (max-width: 900px) {
-      .hero { padding: 150px 0 100px; } .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-      .hero-content { text-align: center; } .hero-content h1 { font-size: 44px; }
-      .hero-content p { margin-left: auto; margin-right: auto; } .hero-btns { justify-content: center; }
-      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 0 auto; }
-      .hero-badge { top: -10px; right: -10px; padding: 12px 20px; font-size: 11px; }
-    }
     @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); width: 260px; }
+      .sidebar.open { transform: translateX(0); }
+      .dashboard-main { margin-left: 0; padding: 20px; }
+      .mobile-dash-toggle { display: flex !important; }
       .mobile-menu-btn { display: block; } .nav-links, .nav-btns { display: none; }
-      .section-header h2 { font-size: 32px; } section { padding: 80px 0; }
-      .services-grid, .solutions-grid, .testimonials-grid { grid-template-columns: 1fr; }
-      .products-grid { grid-template-columns: 1fr; }
-      .hero-content h1 { font-size: 36px; } .hero-content p { font-size: 16px; }
-      .stat-number { font-size: 30px; } .cta-section h2 { font-size: 34px; } .cta-section p { font-size: 16px; }
-      .form-grid { grid-template-columns: 1fr; gap: 0; } .auth-card { padding: 36px 24px; }
-    }
-    @media (max-width: 520px) {
-      .container { padding: 0 20px; } .hero { padding: 130px 0 80px; } .hero-content h1 { font-size: 30px; }
-      .hero-btns { flex-direction: column; align-items: stretch; } .hero-btns .btn { width: 100%; }
-      .hero-stats { grid-template-columns: 1fr; gap: 14px; } .stat-item { padding-left: 14px; }
-      .stat-item::before { height: 38px; } .section-header h2 { font-size: 26px; }
-      .section-header p { font-size: 15px; } .btn { padding: 14px 26px; font-size: 13px; }
-      .stat-number { font-size: 26px; } .cta-section h2 { font-size: 28px; } .cta-section p { font-size: 14px; }
-      .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; border-radius: var(--radius-sm); }
-      .footer-content { grid-template-columns: 1fr; gap: 28px; } .auth-card { padding: 32px 22px; border-radius: var(--radius-lg); } .auth-title { font-size: 22px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ======================= HEADER (Landing only) ======================= -->
+  <!-- ======================= HEADER ======================= -->
   <header id="header">
     <div class="container">
       <nav>
@@ -547,15 +604,12 @@
           <li><a data-page="home" data-scroll="#services">Logs Services</a></li>
           <li><a data-page="home" data-scroll="#solutions">Solutions</a></li>
           <li><a data-page="home" data-scroll="#marketplace">Marketplace</a></li>
-          <li><a data-page="home" data-scroll="#footer">Contact</a></li>
         </ul>
         <div class="nav-btns">
           <a class="btn btn-outline btn-sm" data-page="login">Login</a>
           <a class="btn btn-lime btn-sm" data-page="signup">Get Started</a>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
       </nav>
     </div>
   </header>
@@ -565,14 +619,12 @@
     <a data-page="home" data-scroll="#services">Logs Services</a>
     <a data-page="home" data-scroll="#solutions">Solutions</a>
     <a data-page="home" data-scroll="#marketplace">Marketplace</a>
-    <a data-page="home" data-scroll="#footer">Contact</a>
     <a class="btn btn-outline" data-page="login">Login</a>
     <a class="btn btn-lime" data-page="signup">Get Started</a>
   </div>
 
   <!-- ======================= LANDING PAGE ======================= -->
   <div id="page-home" class="page-view active">
-
     <section id="home" class="hero">
       <div class="container">
         <div class="hero-grid">
@@ -592,201 +644,78 @@
           <div class="hero-image">
             <div class="hero-image-wrapper">
               <div class="hero-badge"><i class="fas fa-shield-check"></i> 100% Verified</div>
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team working with laptops and phones" />
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team working" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="services">
       <div class="container">
         <div class="section-header">
           <div class="section-label">Our Services</div>
           <h2>Premium Logs Collection</h2>
-          <p>High-quality social account logs for all major platforms — verified, secure, and ready to use instantly for your business needs.</p>
+          <p>High-quality social account logs for all major platforms — verified, secure, and ready to use instantly.</p>
         </div>
         <div class="services-grid">
           <div class="service-card">
             <div class="service-icon"><i class="fab fa-google"></i></div>
             <h3>Gmail & Google Logs</h3>
-            <p>Verified Gmail accounts with complete recovery details, perfect for email campaigns, business automation, and marketing tools.</p>
+            <p>Verified Gmail accounts with complete recovery details for campaigns and automation.</p>
             <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
           </div>
           <div class="service-card">
             <div class="service-icon"><i class="fab fa-facebook"></i></div>
             <h3>Facebook / Meta Logs</h3>
-            <p>Business & personal profiles with ad accounts ready to use. Fully verified, aged accounts with high trust scores.</p>
+            <p>Business & personal profiles with ad accounts ready to use. Aged accounts with high trust scores.</p>
             <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
           </div>
           <div class="service-card">
             <div class="service-icon"><i class="fab fa-instagram"></i></div>
             <h3>Instagram & TikTok Logs</h3>
-            <p>Aged accounts with authentic engagement, perfect for influencer marketing, brand growth, and social media campaigns.</p>
+            <p>Aged accounts with authentic engagement, perfect for influencer marketing and brand growth.</p>
             <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="solutions" class="digital-solutions">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-label">Complete Ecosystem</div>
-          <h2>Everything You Need for Logs Management</h2>
-          <p>Comprehensive tools and features to manage, verify, and scale with premium account logs efficiently.</p>
-        </div>
-        <div class="solutions-grid">
-          <div class="solution-card">
-            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Bulk Access" />
-            <h3>Bulk Logs Access</h3>
-            <p>Purchase accounts in bulk with special discounts. Instant CSV delivery with all credentials and recovery information.</p>
-          </div>
-          <div class="solution-card">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Health Check" />
-            <h3>Account Health Verification</h3>
-            <p>Advanced verification system to check logs quality, session cookies validity, and account status before purchase.</p>
-          </div>
-          <div class="solution-card">
-            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Automation" />
-            <h3>Automation Integration</h3>
-            <p>Seamlessly integrate logs with automation bots, schedulers, and marketing tools for maximum efficiency.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-label">Process</div>
-          <h2>How to Get Your Logs</h2>
-          <p>Simple, fast, and secure process to access premium social media accounts</p>
-        </div>
-        <div class="steps">
-          <div class="step"><div class="step-number">1</div><h3>Create Account</h3><p>Sign up for free and get instant access to our marketplace with thousands of verified logs.</p></div>
-          <div class="step"><div class="step-number">2</div><h3>Select & Purchase</h3><p>Browse our catalog, choose the logs you need, and complete secure payment in seconds.</p></div>
-          <div class="step"><div class="step-number">3</div><h3>Instant Delivery</h3><p>Receive credentials immediately via email or dashboard. Start using your accounts right away!</p></div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Marketplace Section -->
     <section id="marketplace" class="marketplace">
       <div class="container">
         <div class="section-header">
           <div class="section-label">Marketplace</div>
           <h2>Live Logs Marketplace</h2>
-          <p>Browse our verified premium logs collection with instant delivery and secure transactions</p>
-        </div>
-        <div class="category-filter">
-          <div class="filter-btn active" data-filter="all">All Logs</div>
-          <div class="filter-btn" data-filter="gmail">Gmail</div>
-          <div class="filter-btn" data-filter="facebook">Facebook</div>
-          <div class="filter-btn" data-filter="instagram">Instagram</div>
+          <p>Browse our verified premium logs collection with instant delivery</p>
         </div>
         <div class="products-grid">
-          <div class="product-card" data-category="facebook">
-            <div class="product-image" style="position: relative;"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Facebook Logs" /></div>
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Facebook" /></div>
             <div class="product-header"><h3>Facebook Ads Account</h3><div class="product-price">₦2,500</div></div>
-            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
           </div>
-          <div class="product-card" data-category="instagram">
-            <div class="product-image" style="position: relative;">
-              <div class="product-badge">Hot Deal</div>
-              <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Instagram Logs" />
-            </div>
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Instagram" /></div>
             <div class="product-header"><h3>Instagram Aged Logs</h3><div class="product-price">₦2,200</div></div>
-            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
           </div>
-          <div class="product-card" data-category="gmail">
-            <div class="product-image" style="position: relative;"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bulk Gmail" /></div>
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gmail" /></div>
             <div class="product-header"><h3>Bulk Gmail (10pcs)</h3><div class="product-price">₦12,000</div></div>
-            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Buy Now</a></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
           </div>
         </div>
-        <div style="text-align: center; margin-top: 48px;">
-          <a class="btn btn-dark" data-page="signup" style="font-size: 15px; padding: 16px 36px;"><i class="fas fa-th"></i> View All Logs</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-label">Testimonials</div>
-          <h2>Trusted by Marketers Worldwide</h2>
-          <p>See what our satisfied customers say about their experience with EasyStores</p>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <p class="testimonial-text">"EasyStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively. Highly recommended!"</p>
-            <div class="testimonial-author">
-              <div class="author-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel Okoro" /></div>
-              <div class="author-info"><h4>Daniel Okoro</h4><p>Digital Strategist</p></div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p class="testimonial-text">"Best decision for my agency! EasyStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Okafor" /></div>
-              <div class="author-info"><h4>Michael Okafor</h4><p>Social Media Manager</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="container">
-        <h2>Ready to Scale Your Digital Presence?</h2>
-        <p>Join over 10,000+ businesses and marketers already using EasyStores for their social media growth and marketing success.</p>
-        <a class="btn btn-lime" data-page="signup" style="font-size: 15px; padding: 16px 36px;"><i class="fas fa-rocket"></i> Get Access Now</a>
       </div>
     </section>
 
     <footer id="footer">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-col">
-            <h3>Easy<span>Stores</span></h3>
-            <p>The #1 trusted marketplace for verified premium social media account logs and digital solutions worldwide.</p>
-            <div class="social-links">
-              <a class="social-link" href="#"><i class="fab fa-telegram"></i></a>
-              <a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="social-link" href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-          </div>
-          <div class="footer-col">
-            <h3>Logs Categories</h3>
-            <ul class="footer-links">
-              <li><a href="#">Gmail Logs</a></li><li><a href="#">Facebook Logs</a></li>
-              <li><a href="#">Instagram Logs</a></li><li><a href="#">Twitter Logs</a></li><li><a href="#">TikTok Logs</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Support</h3>
-            <ul class="footer-links">
-              <li><a href="#">FAQ</a></li><li><a href="#">Refund Policy</a></li>
-              <li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Contact Support</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Contact</h3>
-            <ul class="footer-links">
-              <li><a href="mailto:support@easystores.com"><i class="fas fa-envelope"></i> support@easystores.com</a></li>
-              <li><a href="https://wa.me/23470702"><i class="fab fa-whatsapp"></i> +234 707 582 0202</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="copyright">
-          <p>© 2026 <strong>EasyStores</strong>. All rights reserved. | Developed by <a href="https://wa.me/2347075820202" target="_blank">AP Technologies</a></p>
-        </div>
+        <div class="copyright"><p>© 2026 <strong>EasyStores</strong>. All rights reserved.</p></div>
       </div>
     </footer>
-
-    <div class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></div>
-
+    <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
   </div><!-- /page-home -->
 
   <!-- ======================= LOGIN PAGE ======================= -->
@@ -794,62 +723,42 @@
     <div class="auth-page">
       <div class="auth-page-inner">
         <div class="auth-card">
-          <div class="brand-home">
-            <a class="logo" data-page="home">Easy<span>Stores</span><span class="logo-dot">.</span></a>
-          </div>
-
+          <div class="brand-home"><a class="logo" data-page="home">Easy<span>Stores</span>.</a></div>
           <div class="auth-header">
-            <div class="logo-circle"><i class="fas fa-user-lock"></i></div>
             <div class="auth-title">Welcome Back</div>
             <p class="auth-subtitle">Sign in to access your dashboard</p>
           </div>
+          <div id="loginAlert" class="auth-alert error"></div>
+
+          <button type="button" class="btn-google" id="googleLoginBtn">
+            <i class="fab fa-google" style="color: #ea4335;"></i> Continue with Google
+          </button>
+          <div class="auth-divider"><span>OR</span></div>
 
           <form class="auth-form" id="loginForm">
             <div class="form-group">
-              <label class="form-label" for="loginEmail">Email or Username</label>
-              <div class="input-wrapper">
-                <i class="fas fa-user input-icon"></i>
-                <input type="email" id="loginEmail" name="email_username" placeholder="Enter your email" class="form-control" required autocomplete="username" />
-              </div>
+              <label class="form-label" for="loginEmail">Email Address</label>
+              <div class="input-wrapper"><i class="fas fa-envelope input-icon"></i><input type="email" id="loginEmail" placeholder="you@example.com" class="form-control" required autocomplete="username" /></div>
             </div>
             <div class="form-group">
               <label class="form-label" for="loginPassword">Password</label>
               <div class="input-wrapper">
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" class="form-control" required autocomplete="current-password" />
-                <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Toggle password visibility">
-                  <i class="fas fa-eye"></i>
-                </button>
+                <input type="password" id="loginPassword" placeholder="Enter your password" class="form-control" required autocomplete="current-password" />
+                <button type="button" class="password-toggle" id="toggleLoginPassword"><i class="fas fa-eye"></i></button>
               </div>
             </div>
             <div class="form-options">
               <label class="checkbox-wrapper">
-                <input type="checkbox" id="remember" name="remember" />
-                <span class="custom-checkbox"></span>
-                <span class="checkbox-label">Remember me</span>
+                <input type="checkbox" id="remember" /><span class="custom-checkbox"></span><span class="checkbox-label">Remember me</span>
               </label>
-              <a class="forgot-link" href="#">Forgot password?</a>
+              <a class="forgot-link" id="forgotPasswordBtn">Forgot password?</a>
             </div>
-            <button type="submit" class="btn-auth" id="loginSubmitBtn">
-              <span class="btn-text">Sign In to Dashboard</span>
-              <div class="loading-spinner"></div>
-              <i class="fas fa-arrow-right"></i>
-            </button>
+            <button type="submit" class="btn-auth" id="loginSubmitBtn"><span class="btn-text">Sign In to Dashboard</span></button>
           </form>
-
-          <div class="auth-switch">
-            Don't have an account? <a data-page="signup">Create Account</a>
-          </div>
-
-          <div class="security-badge">
-            <i class="fas fa-shield-alt"></i>
-            <span>Secured with 256-bit SSL encryption</span>
-          </div>
+          <div class="auth-switch">Don't have an account? <a data-page="signup">Create Account</a></div>
         </div>
-
-        <div class="back-home">
-          <a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        </div>
+        <div class="back-home"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
       </div>
     </div>
   </div><!-- /page-login -->
@@ -859,111 +768,48 @@
     <div class="auth-page signup">
       <div class="auth-page-inner">
         <div class="auth-card">
-          <div class="brand-home">
-            <a class="logo" data-page="home">Easy<span>Stores</span><span class="logo-dot">.</span></a>
-          </div>
-
+          <div class="brand-home"><a class="logo" data-page="home">Easy<span>Stores</span>.</a></div>
           <div class="auth-header">
-            <div class="logo-circle"><i class="fas fa-user-plus"></i></div>
             <div class="auth-title">Create Account</div>
             <p class="auth-subtitle">Join thousands of users accessing premium accounts</p>
           </div>
+          <div id="signupAlert" class="auth-alert error"></div>
+
+          <button type="button" class="btn-google" id="googleSignupBtn">
+            <i class="fab fa-google" style="color: #ea4335;"></i> Sign up with Google
+          </button>
+          <div class="auth-divider"><span>OR</span></div>
 
           <form class="auth-form" id="registerForm">
-            <input type="hidden" name="csrf_token" value="1e797fae729087f33854994a111976d48228fc9a2bc2563976fb662f9818e01e" />
-            <div class="form-grid">
-              <div class="form-group">
-                <label class="form-label required" for="fullName">Full Name</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-user input-icon"></i>
-                  <input type="text" id="fullName" name="full_name" placeholder="Enter your full name" class="form-control" required autocomplete="name" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label required" for="phoneNumber">WhatsApp Number</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-phone input-icon"></i>
-                  <input type="tel" id="phoneNumber" name="phone_number" placeholder="+234 123 456 7890" class="form-control" required autocomplete="tel" />
-                </div>
-              </div>
+            <div class="form-group">
+              <label class="form-label required" for="fullName">Full Name</label>
+              <div class="input-wrapper"><i class="fas fa-user input-icon"></i><input type="text" id="fullName" placeholder="Enter your full name" class="form-control" required /></div>
             </div>
-            <div class="form-grid">
-              <div class="form-group">
-                <label class="form-label required" for="regUsername">Username</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-at input-icon"></i>
-                  <input type="text" id="regUsername" name="username" placeholder="Choose a username" class="form-control" required minlength="3" autocomplete="username" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label required" for="regEmail">Email Address</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-envelope input-icon"></i>
-                  <input type="email" id="regEmail" name="email" placeholder="you@example.com" class="form-control" required autocomplete="email" />
-                </div>
-              </div>
+            <div class="form-group">
+              <label class="form-label required" for="regEmail">Email Address</label>
+              <div class="input-wrapper"><i class="fas fa-envelope input-icon"></i><input type="email" id="regEmail" placeholder="you@example.com" class="form-control" required /></div>
             </div>
-            <div class="form-grid">
-              <div class="form-group">
-                <label class="form-label required" for="regPassword">Password</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-lock input-icon"></i>
-                  <input type="password" id="regPassword" name="password" placeholder="Create a strong password" class="form-control" required minlength="8" autocomplete="new-password" />
-                  <button type="button" class="password-toggle" id="toggleRegPassword" aria-label="Toggle password visibility">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                </div>
-                <div class="password-strength" id="passwordStrength">
-                  <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
-                  <div class="strength-text" id="strengthText">Password strength: None</div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label required" for="confirmPassword">Confirm Password</label>
-                <div class="input-wrapper">
-                  <i class="fas fa-lock input-icon"></i>
-                  <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" class="form-control" required autocomplete="new-password" />
-                  <button type="button" class="password-toggle" id="toggleConfirmPassword" aria-label="Toggle confirm password visibility">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                </div>
-                <div class="strength-text" id="passwordMatch" style="font-size: 11px; margin-top: 4px; display: none;"></div>
+            <div class="form-group">
+              <label class="form-label required" for="regPassword">Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="regPassword" placeholder="Create a strong password (min 8 chars)" class="form-control" required minlength="8" />
+                <button type="button" class="password-toggle" id="toggleRegPassword"><i class="fas fa-eye"></i></button>
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label" for="ref">Referral Code (Optional)</label>
+              <label class="form-label required" for="confirmPassword">Confirm Password</label>
               <div class="input-wrapper">
-                <i class="fas fa-user-friends input-icon"></i>
-                <input type="text" id="ref" name="ref" placeholder="Enter referral code if you have one" class="form-control" />
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="confirmPassword" placeholder="Re-enter your password" class="form-control" required />
+                <button type="button" class="password-toggle" id="toggleConfirmPassword"><i class="fas fa-eye"></i></button>
               </div>
             </div>
-            <div class="terms-container">
-              <label class="checkbox-wrapper">
-                <input type="checkbox" id="terms" name="terms" required />
-                <span class="custom-checkbox"></span>
-                <span class="terms-text">I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>. I understand that I must be at least 18 years old to use this service.</span>
-              </label>
-            </div>
-            <button type="submit" class="btn-auth" id="registerSubmitBtn">
-              <span class="btn-text">Create Account</span>
-              <div class="loading-spinner"></div>
-              <i class="fas fa-arrow-right"></i>
-            </button>
+            <button type="submit" class="btn-auth" id="registerSubmitBtn"><span class="btn-text">Create Account</span></button>
           </form>
-
-          <div class="auth-switch">
-            Already have an account? <a data-page="login">Sign In</a>
-          </div>
-
-          <div class="security-badge">
-            <i class="fas fa-shield-alt"></i>
-            <span>Protected with 256-bit SSL encryption</span>
-          </div>
+          <div class="auth-switch">Already have an account? <a data-page="login">Sign In</a></div>
         </div>
-
-        <div class="back-home">
-          <a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        </div>
+        <div class="back-home"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
       </div>
     </div>
   </div><!-- /page-signup -->
@@ -971,224 +817,60 @@
   <!-- ======================= DASHBOARD PAGE ======================= -->
   <div id="page-dashboard" class="page-view">
     <div class="dashboard-page">
-
-      <!-- Sidebar overlay for mobile -->
       <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-      <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
-        <div class="sidebar-brand" data-page="home">
-          Easy<span>Stores</span>.
-        </div>
+        <div class="sidebar-brand" data-page="home">Easy<span>Stores</span>.</div>
         <ul class="sidebar-nav">
           <li><a class="active" data-dash-tab="overview"><i class="fas fa-grid-2"></i> Overview</a></li>
           <li><a data-dash-tab="marketplace"><i class="fas fa-store"></i> Marketplace</a></li>
-          <li><a data-dash-tab="orders"><i class="fas fa-receipt"></i> My Orders <span class="badge">3</span></a></li>
-          <li><a data-dash-tab="wallet"><i class="fas fa-wallet"></i> Wallet</a></li>
-          <li><a data-dash-tab="settings"><i class="fas fa-gear"></i> Settings</a></li>
-          <li><a data-dash-tab="support"><i class="fas fa-headset"></i> Support</a></li>
         </ul>
         <div class="sidebar-user">
-          <div class="avatar" id="userAvatar">JD</div>
+          <div class="avatar" id="dashUserAvatar">U</div>
           <div class="user-info">
-            <div class="name" id="userNameDisplay">John Doe</div>
-            <div class="plan">Premium Member</div>
+            <div class="name" id="dashUserName">User</div>
+            <div class="plan">Member</div>
           </div>
           <button class="logout-btn" id="logoutBtn" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
         </div>
       </aside>
 
-      <!-- Main Content -->
       <main class="dashboard-main">
-        <!-- Topbar -->
         <div class="dashboard-topbar">
           <div style="display:flex; align-items:center; gap:8px;">
             <button class="mobile-dash-toggle" id="mobileDashToggle"><i class="fas fa-bars"></i></button>
-            <h1>Welcome back, <span id="userFirstName">John</span> 👋</h1>
-          </div>
-          <div class="topbar-actions">
-            <div class="topbar-search">
-              <i class="fas fa-search"></i>
-              <input type="text" placeholder="Search logs, orders..." />
-            </div>
-            <div class="topbar-icon" title="Notifications">
-              <i class="fas fa-bell"></i>
-              <span class="dot"></span>
-            </div>
-            <div class="topbar-icon" title="Messages">
-              <i class="fas fa-envelope"></i>
-            </div>
+            <h1>Welcome back, <span id="dashGreetingName">User</span> 👋</h1>
           </div>
         </div>
-
-        <!-- Overview Tab Content -->
         <div class="dash-tab-content" id="dash-tab-overview">
-          <!-- Stats -->
           <div class="dash-stats">
             <div class="dash-stat-card">
-              <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
-              <div class="stat-value">24</div>
-              <div class="stat-label">Total Orders</div>
-              <div class="stat-trend"><i class="fas fa-arrow-up"></i> +12% this month</div>
-            </div>
-            <div class="dash-stat-card">
               <div class="stat-icon"><i class="fas fa-wallet"></i></div>
-              <div class="stat-value">₦48,500</div>
+              <div class="stat-value">₦0.00</div>
               <div class="stat-label">Wallet Balance</div>
-              <div class="stat-trend"><i class="fas fa-arrow-up"></i> +₦12,000 this week</div>
-            </div>
-            <div class="dash-stat-card">
-              <div class="stat-icon"><i class="fas fa-key"></i></div>
-              <div class="stat-value">18</div>
-              <div class="stat-label">Active Logs</div>
-              <div class="stat-trend"><i class="fas fa-check-circle"></i> All verified</div>
-            </div>
-            <div class="dash-stat-card">
-              <div class="stat-icon"><i class="fas fa-star"></i></div>
-              <div class="stat-value">4.9</div>
-              <div class="stat-label">Trust Score</div>
-              <div class="stat-trend"><i class="fas fa-arrow-up"></i> Excellent</div>
-            </div>
-          </div>
-
-          <!-- Two column: recent orders + quick actions -->
-          <div class="dash-columns">
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <h2>Recent Orders</h2>
-                <span class="view-all" data-dash-tab="orders">View All →</span>
-              </div>
-              <table class="dash-table">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>#ES-1042</td>
-                    <td>Instagram Aged Logs</td>
-                    <td>₦2,200</td>
-                    <td><span class="badge badge-completed">Completed</span></td>
-                  </tr>
-                  <tr>
-                    <td>#ES-1038</td>
-                    <td>Bulk Gmail (10pcs)</td>
-                    <td>₦12,000</td>
-                    <td><span class="badge badge-completed">Completed</span></td>
-                  </tr>
-                  <tr>
-                    <td>#ES-1021</td>
-                    <td>Facebook Ads Account</td>
-                    <td>₦2,500</td>
-                    <td><span class="badge badge-pending">Pending</span></td>
-                  </tr>
-                  <tr>
-                    <td>#ES-1015</td>
-                    <td>Instagram Aged Logs</td>
-                    <td>₦2,200</td>
-                    <td><span class="badge badge-failed">Failed</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <h2>Quick Actions</h2>
-              </div>
-              <div class="quick-actions">
-                <button class="quick-action-btn" data-dash-tab="marketplace">
-                  <i class="fas fa-store"></i> Browse Marketplace
-                </button>
-                <button class="quick-action-btn" data-dash-tab="wallet">
-                  <i class="fas fa-plus-circle"></i> Fund Wallet
-                </button>
-                <button class="quick-action-btn" data-dash-tab="orders">
-                  <i class="fas fa-receipt"></i> View All Orders
-                </button>
-                <button class="quick-action-btn" data-dash-tab="support">
-                  <i class="fas fa-headset"></i> Contact Support
-                </button>
-                <button class="quick-action-btn" data-dash-tab="settings">
-                  <i class="fas fa-user-edit"></i> Edit Profile
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recommended products -->
-          <div class="dash-panel">
-            <div class="dash-panel-header">
-              <h2>Recommended For You</h2>
-              <span class="view-all" data-dash-tab="marketplace">Browse All →</span>
-            </div>
-            <div class="dash-products">
-              <div class="dash-product-card" data-dash-tab="marketplace">
-                <div class="img"><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Instagram" /></div>
-                <div class="info"><h4>Instagram Aged Logs</h4><div class="price">₦2,200</div></div>
-              </div>
-              <div class="dash-product-card" data-dash-tab="marketplace">
-                <div class="img"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Facebook" /></div>
-                <div class="info"><h4>Facebook Ads Account</h4><div class="price">₦2,500</div></div>
-              </div>
-              <div class="dash-product-card" data-dash-tab="marketplace">
-                <div class="img"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Gmail" /></div>
-                <div class="info"><h4>Bulk Gmail (10pcs)</h4><div class="price">₦12,000</div></div>
-              </div>
-              <div class="dash-product-card" data-dash-tab="marketplace">
-                <div class="img"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="TikTok" /></div>
-                <div class="info"><h4>TikTok Aged Logs</h4><div class="price">₦2,000</div></div>
-              </div>
             </div>
           </div>
         </div>
-
-        <!-- Placeholder content for other tabs -->
-        <div class="dash-tab-content" id="dash-tab-marketplace" style="display:none;">
-          <div class="dash-panel">
-            <div class="dash-panel-header"><h2>Marketplace</h2></div>
-            <p style="color:var(--text-secondary); font-size:14px;">Browse all available logs. (Full marketplace view — integrate with your product listing page.)</p>
-          </div>
-        </div>
-        <div class="dash-tab-content" id="dash-tab-orders" style="display:none;">
-          <div class="dash-panel">
-            <div class="dash-panel-header"><h2>My Orders</h2></div>
-            <p style="color:var(--text-secondary); font-size:14px;">View your full order history. (Order management page — integrate with your backend.)</p>
-          </div>
-        </div>
-        <div class="dash-tab-content" id="dash-tab-wallet" style="display:none;">
-          <div class="dash-panel">
-            <div class="dash-panel-header"><h2>Wallet</h2></div>
-            <p style="color:var(--text-secondary); font-size:14px;">Manage your wallet balance and transactions. (Wallet page — integrate with payment gateway.)</p>
-          </div>
-        </div>
-        <div class="dash-tab-content" id="dash-tab-settings" style="display:none;">
-          <div class="dash-panel">
-            <div class="dash-panel-header"><h2>Settings</h2></div>
-            <p style="color:var(--text-secondary); font-size:14px;">Edit your profile, password, and preferences. (Settings page.)</p>
-          </div>
-        </div>
-        <div class="dash-tab-content" id="dash-tab-support" style="display:none;">
-          <div class="dash-panel">
-            <div class="dash-panel-header"><h2>Support</h2></div>
-            <p style="color:var(--text-secondary); font-size:14px;">Contact our support team via WhatsApp or email. (Support page.)</p>
-          </div>
-        </div>
-
       </main>
     </div>
   </div><!-- /page-dashboard -->
 
-  <!-- ======================= SCRIPTS ======================= -->
+  <!-- ======================= SCRIPTS & FIREBASE ======================= -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      signOut, 
+      onAuthStateChanged,
+      updateProfile,
+      sendPasswordResetEmail,
+      GoogleAuthProvider,
+      signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
 
-    // 1. FIREBASE CONFIGURATION (Your exact config)
+    // Your Firebase SDK configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBqBR_52bRD3JCe2b5YVMvbiYTnY44DxaE",
       authDomain: "easystores0.firebaseapp.com",
@@ -1199,294 +881,180 @@
       measurementId: "G-12QGSPRP34"
     };
 
-    // 2. INITIALIZE FIREBASE
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
 
-    // Make globally accessible for the UI script
-    window.firebaseAuth = auth;
-    window.firebaseSignIn = signInWithEmailAndPassword;
-    window.firebaseCreateUser = createUserWithEmailAndPassword;
-    window.firebaseSignOut = signOut;
-    window.firebaseOnAuthStateChanged = onAuthStateChanged;
+    // Router Logic
+    const pages = {
+      home: document.getElementById('page-home'),
+      login: document.getElementById('page-login'),
+      signup: document.getElementById('page-signup'),
+      dashboard: document.getElementById('page-dashboard')
+    };
 
-    // 3. UI & ROUTING LOGIC
-    (function() {
-      'use strict';
-
-      const pages = {
-        home: document.getElementById('page-home'),
-        login: document.getElementById('page-login'),
-        signup: document.getElementById('page-signup'),
-        dashboard: document.getElementById('page-dashboard')
-      };
-
-      function showPage(pageName) {
-        Object.values(pages).forEach(p => p.classList.remove('active'));
-        if (pages[pageName]) {
-          pages[pageName].classList.add('active');
-          window.scrollTo({ top: 0, behavior: 'instant' });
-          const header = document.getElementById('header');
-          if (pageName === 'home') {
-            header.style.display = '';
-          } else {
-            header.style.display = 'none';
-          }
-          if (pageName === 'home') {
-            document.querySelectorAll('#page-home section').forEach(s => {
-              s.classList.remove('visible');
-              observer.observe(s);
-            });
-          }
-          if (history.replaceState) {
-            history.replaceState(null, '', '#' + pageName);
-          }
-        }
+    function showPage(pageName) {
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages[pageName]) {
+        pages[pageName].classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        const header = document.getElementById('header');
+        if (header) header.style.display = (pageName === 'home') ? '' : 'none';
+        if (history.replaceState) history.replaceState(null, '', '#' + pageName);
       }
+    }
 
-      // Global click handler for routing
-      document.addEventListener('click', function(e) {
-        const pageEl = e.target.closest('[data-page]');
-        const scrollEl = e.target.closest('[data-scroll]');
-        const dashTabEl = e.target.closest('[data-dash-tab]');
-
-        if (pageEl) {
-          e.preventDefault();
-          // If trying to access dashboard, ensure logged in
-          if (pageEl.dataset.page === 'dashboard' && !auth.currentUser) {
-             showPage('login');
-          } else {
-             showPage(pageEl.dataset.page);
-          }
-          return;
-        }
-
-        if (dashTabEl) {
-          e.preventDefault();
-          switchDashTab(dashTabEl.dataset.dashTab);
-          const sidebar = document.getElementById('sidebar');
-          const overlay = document.getElementById('sidebarOverlay');
-          if (sidebar) sidebar.classList.remove('open');
-          if (overlay) overlay.classList.remove('active');
-          return;
-        }
-
-        if (scrollEl) {
-          e.preventDefault();
-          const target = scrollEl.dataset.scroll;
-          const currentPage = document.querySelector('.page-view.active');
-          if (currentPage && currentPage.id !== 'page-home') {
-            showPage('home');
-            setTimeout(() => {
-              const el = document.querySelector(target);
-              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-          } else {
-            const el = document.querySelector(target);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }
-      });
-
-      // Dashboard Tabs
-      function switchDashTab(tab) {
-        document.querySelectorAll('.dash-tab-content').forEach(c => c.style.display = 'none');
-        const target = document.getElementById('dash-tab-' + tab);
-        if (target) target.style.display = 'block';
+    // Monitor Firebase Auth Persistence
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const name = user.displayName || user.email.split('@')[0];
+        document.getElementById('dashUserName').textContent = name;
+        document.getElementById('dashGreetingName').textContent = name.split(' ')[0];
+        document.getElementById('dashUserAvatar').textContent = name.charAt(0).toUpperCase();
         
-        document.querySelectorAll('.sidebar-nav a').forEach(a => {
-          a.classList.remove('active');
-          if (a.dataset.dashTab === tab) a.classList.add('active');
-        });
-      }
-
-      // AUTH: Login Form
-      const loginForm = document.getElementById('loginForm');
-      if (loginForm) {
-        loginForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const email = document.getElementById('loginEmail').value.trim();
-          const password = document.getElementById('loginPassword').value.trim();
-          const btn = document.getElementById('loginSubmitBtn');
-
-          if (!email || !password) { alert('Please fill in all fields'); return; }
-          
-          btn.classList.add('loading');
-          btn.disabled = true;
-
-          try {
-            await window.firebaseSignIn(window.firebaseAuth, email, password);
-            showPage('dashboard');
-          } catch (error) {
-            console.error(error);
-            alert('Login failed: ' + error.message);
-          } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-          }
-        });
-      }
-
-      // AUTH: Register Form
-      const registerForm = document.getElementById('registerForm');
-      if (registerForm) {
-        registerForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const email = document.getElementById('regEmail').value.trim();
-          const password = document.getElementById('regPassword').value;
-          const confirm = document.getElementById('confirmPassword').value;
-          const terms = document.getElementById('terms').checked;
-          const btn = document.getElementById('registerSubmitBtn');
-
-          if (!terms) { alert('You must agree to the Terms'); return; }
-          if (password !== confirm) { alert('Passwords do not match'); return; }
-          if (password.length < 8) { alert('Password must be at least 8 characters'); return; }
-
-          btn.classList.add('loading');
-          btn.disabled = true;
-
-          try {
-            await window.firebaseCreateUser(window.firebaseAuth, email, password);
-            showPage('dashboard');
-          } catch (error) {
-            console.error(error);
-            alert('Registration failed: ' + error.message);
-          } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-          }
-        });
-      }
-
-      // AUTH: Logout
-      const logoutBtn = document.getElementById('logoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', async (e) => {
-          e.preventDefault();
-          try {
-            await window.firebaseSignOut(window.firebaseAuth);
-            showPage('home');
-          } catch (error) {
-            console.error('Logout error', error);
-          }
-        });
-      }
-
-      // Helper: Update UI with User Info
-      function updateUserUI(user) {
-        if (!user) return;
-        const name = user.email.split('@')[0];
-        const initial = name.charAt(0).toUpperCase();
-        
-        const userAvatar = document.getElementById('userAvatar');
-        const userNameDisplay = document.getElementById('userNameDisplay');
-        const userFirstName = document.getElementById('userFirstName');
-        
-        if(userAvatar) userAvatar.textContent = initial;
-        if(userNameDisplay) userNameDisplay.textContent = name;
-        if(userFirstName) userFirstName.textContent = name;
-      }
-
-      // Auth State Listener
-      window.firebaseOnAuthStateChanged(auth, (user) => {
-        if (user) {
-          updateUserUI(user);
-          if (window.location.hash === '#login' || window.location.hash === '#signup' || window.location.hash === '') {
-            showPage('dashboard');
-          }
-        } else {
-          if (window.location.hash === '#dashboard') {
-            showPage('login');
-          }
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'login' || hash === 'signup' || hash === '' || hash === 'home') {
+          showPage('dashboard');
         }
+      } else {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'dashboard') {
+          showPage('login');
+        }
+      }
+    });
+
+    // Email/Password Signup Handler
+    const registerForm = document.getElementById('registerForm');
+    const signupAlert = document.getElementById('signupAlert');
+
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      signupAlert.style.display = 'none';
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        signupAlert.textContent = "Passwords do not match.";
+        signupAlert.style.display = 'block';
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(userCredential.user, { displayName: fullName });
+        showPage('dashboard');
+      } catch (err) {
+        signupAlert.textContent = err.message.replace("Firebase: ", "");
+        signupAlert.style.display = 'block';
+      }
+    });
+
+    // Email/Password Login Handler
+    const loginForm = document.getElementById('loginForm');
+    const loginAlert = document.getElementById('loginAlert');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginAlert.style.display = 'none';
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        showPage('dashboard');
+      } catch (err) {
+        loginAlert.textContent = err.message.replace("Firebase: ", "");
+        loginAlert.style.display = 'block';
+      }
+    });
+
+    // Google Authentication Popup Handler
+    const handleGoogleAuth = async (alertElementId) => {
+      try {
+        await signInWithPopup(auth, googleProvider);
+        showPage('dashboard');
+      } catch (err) {
+        const alertEl = document.getElementById(alertElementId);
+        alertEl.textContent = err.message.replace("Firebase: ", "");
+        alertEl.style.display = 'block';
+      }
+    };
+
+    document.getElementById('googleLoginBtn').addEventListener('click', () => handleGoogleAuth('loginAlert'));
+    document.getElementById('googleSignupBtn').addEventListener('click', () => handleGoogleAuth('signupAlert'));
+
+    // Password Reset
+    document.getElementById('forgotPasswordBtn').addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!email) {
+        alert("Please enter your email address in the email field above first.");
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        alert("Password reset email sent! Check your inbox.");
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+    });
+
+    // Logout Handler
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      showPage('home');
+    });
+
+    // Password Visibility Toggles
+    function setupPasswordToggle(toggleId, inputId) {
+      const toggle = document.getElementById(toggleId);
+      const input = document.getElementById(inputId);
+      if (!toggle || !input) return;
+      const icon = toggle.querySelector('i');
+      toggle.addEventListener('click', () => {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
       });
+    }
+    setupPasswordToggle('toggleLoginPassword', 'loginPassword');
+    setupPasswordToggle('toggleRegPassword', 'regPassword');
+    setupPasswordToggle('toggleConfirmPassword', 'confirmPassword');
 
-      // Initial Load
-      const initialHash = window.location.hash.replace('#', '') || 'home';
-      showPage(initialHash);
+    // Global Click Router Listener
+    document.addEventListener('click', (e) => {
+      const pageEl = e.target.closest('[data-page]');
+      const scrollEl = e.target.closest('[data-scroll]');
 
-      // ----------------------------------------------------
-      // UI EXTRAS (Scroll, Sidebar, Password toggles)
-      // ----------------------------------------------------
-      const header = document.getElementById('header');
-      const scrollTopBtn = document.getElementById('scrollTop');
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      const sidebar = document.getElementById('sidebar');
-      const sidebarOverlay = document.getElementById('sidebarOverlay');
-      const mobileDashToggle = document.getElementById('mobileDashToggle');
-
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-        if (scrollTopBtn && window.scrollY > 500) scrollTopBtn.classList.add('active'); else if (scrollTopBtn) scrollTopBtn.classList.remove('active');
-      });
-
-      if (scrollTopBtn) scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('#page-home section').forEach(section => observer.observe(section));
-
-      if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-          mobileNav.classList.toggle('active');
-          const icon = mobileMenuBtn.querySelector('i');
-          if (mobileNav.classList.contains('active')) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
-          else { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
-        });
+      if (scrollEl) {
+        e.preventDefault();
+        const target = scrollEl.dataset.scroll;
+        showPage('home');
+        setTimeout(() => {
+          const el = document.querySelector(target);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      } else if (pageEl) {
+        e.preventDefault();
+        showPage(pageEl.dataset.page);
       }
+    });
 
-      if (mobileDashToggle) {
-        mobileDashToggle.addEventListener('click', () => {
-          sidebar.classList.toggle('open');
-          sidebarOverlay.classList.toggle('active');
-        });
+    // Handle Hash on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && pages[hash]) {
+        showPage(hash);
+      } else {
+        showPage('home');
       }
-      if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', () => {
-          sidebar.classList.remove('open');
-          sidebarOverlay.classList.remove('active');
-        });
-      }
-
-      function setupPasswordToggle(toggleId, inputId) {
-        const toggle = document.getElementById(toggleId);
-        const input = document.getElementById(inputId);
-        if (!toggle || !input) return;
-        const icon = toggle.querySelector('i');
-        toggle.addEventListener('click', () => {
-          const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-          input.setAttribute('type', type);
-          icon.classList.toggle('fa-eye');
-          icon.classList.toggle('fa-eye-slash');
-        });
-      }
-      setupPasswordToggle('toggleLoginPassword', 'loginPassword');
-      setupPasswordToggle('toggleRegPassword', 'regPassword');
-      setupPasswordToggle('toggleConfirmPassword', 'confirmPassword');
-
-      // Marketplace filter
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const products = document.querySelectorAll('.product-card');
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const filter = btn.dataset.filter;
-          products.forEach(product => {
-            if (filter === 'all' || product.dataset.category === filter) {
-              product.style.display = 'block';
-              setTimeout(() => { product.style.opacity = '1'; product.style.transform = 'translateY(0)'; }, 10);
-            } else {
-              product.style.opacity = '0'; product.style.transform = 'translateY(20px)';
-              setTimeout(() => { product.style.display = 'none'; }, 250);
-            }
-          });
-        });
-      });
-
-    })();
+    });
   </script>
 </body>
 </html>
