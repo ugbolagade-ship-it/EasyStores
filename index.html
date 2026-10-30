@@ -1,740 +1,1040 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="EasyStores - Premium verified social account logs & digital solutions for modern marketers." />
-<title>EasyStores | Premium Social Account Logs & Solutions</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f2f6fa;
-  --panel:#ffffff;
-  --ink:#0b1b33;
-  --ink2:#3b4d66;
-  --muted:#6b7a8f;
-  --line:#e2eaf2;
-  --brand:#16a34a;
-  --brand2:#22c55e;
-  --brand-soft:#ecfdf5;
-  --accent:#0f172a;
-  --sky:#0ea5e9;
-  --lime:#d9f99d;
-  --radius-sm:12px;
-  --radius:18px;
-  --radius-lg:26px;
-  --shadow-sm:0 4px 12px rgba(11,27,51,.04);
-  --shadow:0 18px 44px rgba(11,27,51,.07);
-  --shadow-lg:0 30px 70px rgba(11,27,51,.09);
-  --tr:.25s cubic-bezier(.4,0,.2,1);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.03em;line-height:1.12}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-.container{max-width:1200px;margin:auto;padding:0 24px}
-.page-view{display:none}
-.page-view.active{display:block;animation:fade .3s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:13px;border:1px solid transparent;font-weight:700;font-size:14px;cursor:pointer;transition:var(--tr);letter-spacing:.01em}
-.btn-primary{background:var(--ink);color:#fff;box-shadow:0 4px 14px rgba(11,27,51,.15)}
-.btn-primary:hover{background:#000;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.btn-brand{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 10px 28px rgba(34,197,94,.25)}
-.btn-brand:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(34,197,94,.35)}
-.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:var(--shadow-sm)}
-.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
-.btn-sm{padding:10px 18px;font-size:13px;border-radius:11px}
-.badge{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;background:var(--brand-soft);color:#047857;font-size:12px;font-weight:800;border:1px solid #a7f3d0;letter-spacing:.01em}
-/* Header */
-.site-header{position:sticky;top:0;z-index:100;background:rgba(242,246,250,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(226,234,242,.8);transition:box-shadow .3s}
-.site-header.scrolled{box-shadow:0 4px 24px rgba(11,27,51,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
-.logo{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:-.02em}
-.logo-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-size:16px;box-shadow:0 6px 18px rgba(34,197,94,.3)}
-.nav-links{display:flex;gap:2px;list-style:none}
-.nav-links a{padding:9px 15px;border-radius:10px;color:var(--ink2);font-size:14px;font-weight:600;transition:var(--tr)}
-.nav-links a:hover{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
-.nav-actions{display:flex;gap:10px}
-.menu-btn{display:none;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:12px;font-size:17px;cursor:pointer;color:var(--ink)}
-.mobile-menu{display:none;position:fixed;top:76px;left:16px;right:16px;z-index:99;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow-lg)}
-.mobile-menu.active{display:block;animation:fade .25s ease}
-.mobile-menu a{display:block;padding:12px 15px;border-radius:12px;font-weight:600;color:var(--ink2);font-size:14px}
-.mobile-menu a:hover{background:#f1f5f9;color:var(--ink)}
-.mobile-menu .btn{width:100%;margin-top:8px}
-/* Hero */
-.hero{padding:96px 0 88px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-220px;right:-160px;width:620px;height:620px;background:radial-gradient(circle,rgba(34,197,94,.16),transparent 65%);filter:blur(20px);pointer-events:none}
-.hero::after{content:"";position:absolute;bottom:-180px;left:-120px;width:460px;height:460px;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 60%);filter:blur(30px);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;position:relative}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:800;color:var(--ink2);box-shadow:var(--shadow-sm);letter-spacing:.02em}
-.hero h1{font-size:clamp(2.5rem,5vw,3.9rem);margin:24px 0 20px;line-height:1.06}
-.gradient{background:linear-gradient(120deg,var(--brand),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--ink2);font-size:17.5px;max-width:560px;margin-bottom:32px;line-height:1.65}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
-.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:560px}
-.metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm);transition:var(--tr)}
-.metric:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.metric b{display:block;font-family:'Space Grotesk';font-size:28px;line-height:1.2;letter-spacing:-.03em}
-.metric span{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.02em}
-.hero-visual{position:relative}
-.hero-card{background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
-.hero-card img{height:400px;width:100%;object-fit:cover}
-.hero-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,27,51,.08),transparent 40%);pointer-events:none}
-.float-card{position:absolute;left:-20px;bottom:28px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow);display:flex;gap:13px;align-items:center;animation:float 5s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.float-card i{width:40px;height:40px;border-radius:13px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:16px}
-.float-card b{font-size:13px;display:block;font-weight:800}
-.float-card span{font-size:11.5px;color:var(--muted);font-weight:500}
-/* Sections */
-.section{padding:88px 0}
-.section-head{max-width:680px;margin:0 auto 52px;text-align:center}
-.section-head h2{font-size:clamp(1.9rem,3.2vw,2.6rem);margin:18px 0 14px;line-height:1.1}
-.section-head p{color:var(--ink2);font-size:16px;line-height:1.65}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);transition:var(--tr);position:relative;overflow:hidden}
-.card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
-.icon-box{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:#f1f5f9;color:var(--ink);font-size:22px;margin-bottom:22px;transition:var(--tr)}
-.card:hover .icon-box{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;transform:scale(1.05) rotate(-3deg)}
-.card h3{font-size:20px;margin-bottom:10px;letter-spacing:-.02em}
-.card p{color:var(--ink2);font-size:14px;margin-bottom:22px;line-height:1.65}
-.dark-section{background:#0b1120;color:#fff;position:relative;overflow:hidden}
-.dark-section::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 350px at 15% 20%,rgba(34,197,94,.14),transparent 60%),radial-gradient(700px 350px at 85% 80%,rgba(14,165,233,.12),transparent 60%);pointer-events:none}
-.dark-section .section-head h2{color:#fff}
-.dark-section .section-head p{color:rgba(255,255,255,.65)}
-.dark-section .card{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.09);box-shadow:none;backdrop-filter:blur(16px)}
-.dark-section .card:hover{border-color:rgba(34,197,94,.4);background:rgba(255,255,255,.07)}
-.dark-section .card h3{color:#fff}
-.dark-section .card p{color:rgba(255,255,255,.62)}
-.dark-section .icon-box{background:rgba(34,197,94,.14);color:#86efac}
-.dark-section .card:hover .icon-box{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
-/* Steps */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:44px}
-.step{text-align:center;padding:36px 28px}
-.step-num{width:56px;height:56px;margin:0 auto 20px;border-radius:18px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:22px;box-shadow:0 8px 20px rgba(11,27,51,.2);transition:var(--tr)}
-.card:hover .step-num{background:linear-gradient(135deg,var(--brand),var(--brand2));transform:translateY(-3px)}
-/* Marketplace */
-.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:40px}
-.chip{padding:10px 22px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink2);font-size:13px;font-weight:700;cursor:pointer;transition:var(--tr);box-shadow:var(--shadow-sm)}
-.chip.active,.chip:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-2px)}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
-.product{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm);transition:var(--tr);position:relative}
-.product:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
-.product-img{height:200px;overflow:hidden;position:relative;background:#f1f5f9}
-.product-img img{width:100%;height:100%;object-fit:cover;transition:.5s cubic-bezier(.4,0,.2,1)}
-.product:hover .product-img img{transform:scale(1.07)}
-.tag{position:absolute;top:14px;right:14px;background:#fff;color:var(--brand);font-size:11px;font-weight:800;padding:7px 14px;border-radius:999px;box-shadow:var(--shadow-sm);z-index:2;letter-spacing:.03em}
-.product-body{padding:24px}
-.product-body h3{font-size:18px;margin-bottom:6px;letter-spacing:-.02em}
-.price{font-family:'Space Grotesk';font-size:24px;font-weight:700;margin-bottom:18px;color:var(--ink)}
-/* Testimonials */
-.quote{position:relative;padding:34px}
-.quote::before{content:"\201C";position:absolute;top:12px;left:22px;font-family:'Space Grotesk';font-size:64px;line-height:1;color:var(--brand);opacity:.18;font-weight:700}
-.quote p{color:var(--ink2);font-size:14.5px;margin-bottom:26px;line-height:1.7;position:relative;z-index:1}
-.person{display:flex;gap:13px;align-items:center}
-.avatar{width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid #dcfce7;flex-shrink:0;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.person b{font-size:14px;display:block;font-weight:800}
-.person span{font-size:12px;color:var(--muted);font-weight:600}
-/* CTA / footer */
-.cta{background:#0b1120;color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
-.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 350px at 50% 0%,rgba(34,197,94,.18),transparent 60%);pointer-events:none}
-.cta h2{font-size:clamp(1.9rem,3.2vw,2.7rem);margin-bottom:16px;position:relative}
-.cta p{color:rgba(255,255,255,.68);max-width:620px;margin:0 auto 34px;font-size:16px;position:relative;line-height:1.65}
-footer{background:#0b1120;color:#fff;padding:68px 0 28px;border-top:1px solid rgba(255,255,255,.07)}
-.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;margin-bottom:44px}
-footer h4{font-size:15px;margin-bottom:18px;color:#fff;font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.01em}
-footer p,footer a{color:rgba(255,255,255,.55);font-size:13.5px;line-height:1.7}
-footer li{list-style:none;margin-bottom:10px}
-footer a:hover{color:#86efac;transition:var(--tr)}
-.socials{display:flex;gap:9px;margin-top:20px}
-.socials a{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.07);transition:var(--tr);color:#fff;font-size:14px}
-.socials a:hover{background:var(--brand);color:#fff;transform:translateY(-3px)}
-.copyright{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.4)}
-.copyright a{color:#86efac;font-weight:600}
-/* Auth */
-.auth-wrap{min-height:100vh;display:grid;place-items:center;padding:110px 24px 60px;background:radial-gradient(800px 450px at 80% 0%,rgba(34,197,94,.13),transparent 60%),radial-gradient(600px 400px at 0% 100%,rgba(14,165,233,.08),transparent 60%),var(--bg)}
-.auth-card{width:100%;max-width:460px;background:#fff;border:1px solid var(--line);border-radius:26px;padding:40px 34px;box-shadow:var(--shadow-lg)}
-.auth-wrap.signup .auth-card{max-width:590px}
-.auth-head{text-align:center;margin-bottom:28px}
-.auth-head .logo-mark{margin:0 auto 18px;width:58px;height:58px;border-radius:19px;font-size:23px}
-.auth-head h2{font-size:25px;margin-bottom:7px;letter-spacing:-.03em}
-.auth-head p{color:var(--muted);font-size:14px}
-.field{margin-bottom:17px}
-label{display:block;font-size:12.5px;font-weight:800;margin-bottom:7px;letter-spacing:.02em;color:var(--ink2)}
-.input{position:relative}
-.input i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
-.input input{width:100%;padding:14px 46px 14px 46px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font-size:14px;outline:none;transition:var(--tr);font-family:'Inter',sans-serif;color:var(--ink)}
-.input input:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(34,197,94,.12)}
-.input input::placeholder{color:#9aa8b9}
-.toggle-pass{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);cursor:pointer;padding:9px;border-radius:8px;transition:var(--tr)}
-.toggle-pass:hover{color:var(--ink);background:#f1f5f9}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--ink2);line-height:1.6}
-.check input{margin-top:3px;accent-color:var(--brand);width:15px;height:15px;cursor:pointer}
-.strength{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:9px;display:none}
-.strength div{height:100%;width:0;background:var(--brand);transition:.3s}
-.auth-alt{text-align:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
-.auth-alt a{color:var(--brand);font-weight:800;cursor:pointer}
-.secure{margin-top:18px;padding:12px;background:var(--brand-soft);border:1px solid #bbf7d0;border-radius:13px;font-size:11.5px;color:#166534;text-align:center;font-weight:600}
-.back{display:flex;justify-content:center;margin-top:22px}
-.back a{display:inline-flex;gap:8px;align-items:center;padding:10px 20px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:700;color:var(--ink2);box-shadow:var(--shadow-sm);transition:var(--tr);cursor:pointer}
-.back a:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
-/* Dashboard */
-.shell{display:flex;min-height:100vh}
-.sidebar{width:268px;background:#0b1120;color:#fff;padding:26px 16px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;z-index:100;transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.side-brand{display:flex;align-items:center;gap:11px;padding:0 10px 24px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:22px;font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:-.02em;cursor:pointer}
-.side-nav{flex:1;display:flex;flex-direction:column;gap:4px;list-style:none}
-.side-nav a{display:flex;align-items:center;gap:13px;padding:12px 15px;border-radius:13px;color:rgba(255,255,255,.6);font-size:14px;font-weight:600;transition:var(--tr);cursor:pointer}
-.side-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
-.side-nav a.active{background:rgba(34,197,94,.16);color:#86efac}
-.side-nav a i{width:18px;text-align:center;font-size:15px}
-.side-nav .count{margin-left:auto;background:var(--brand);color:#fff;font-size:10px;font-weight:800;padding:2px 9px;border-radius:999px}
-.user-box{display:flex;align-items:center;gap:11px;padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;margin-top:16px}
-.user-box .avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-weight:800;border:0;font-size:14px}
-.user-box b{font-size:13px;display:block;font-weight:700}
-.user-box span{font-size:11px;color:#86efac;font-weight:600}
-.main{flex:1;margin-left:268px;padding:30px 34px 64px;background:var(--bg);min-height:100vh}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.topbar h1{font-size:27px;letter-spacing:-.03em}
-.search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 20px;min-width:270px;box-shadow:var(--shadow-sm)}
-.search i{color:var(--muted);font-size:14px}
-.search input{border:0;outline:0;background:none;width:100%;font-size:13px;font-family:'Inter',sans-serif;color:var(--ink)}
-.search input::placeholder{color:#9aa8b9}
-.icon-btn{width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink2);cursor:pointer;position:relative;transition:var(--tr);box-shadow:var(--shadow-sm)}
-.icon-btn:hover{color:var(--ink);border-color:#cbd5e1;transform:translateY(-2px)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-bottom:26px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow-sm);transition:var(--tr)}
-.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.stat i{width:46px;height:46px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-bottom:16px;font-size:18px}
-.stat b{font-family:'Space Grotesk';font-size:27px;display:block;letter-spacing:-.02em;line-height:1.2}
-.stat span{font-size:12.5px;color:var(--muted);font-weight:700}
-.trend{margin-top:10px;font-size:12px;color:var(--brand);font-weight:800}
-.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;margin-bottom:24px;box-shadow:var(--shadow-sm);transition:var(--tr)}
-.panel:hover{box-shadow:var(--shadow)}
-.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.panel-head h2{font-size:18px;letter-spacing:-.02em}
-.link{color:var(--brand);font-size:13px;font-weight:800;cursor:pointer;transition:var(--tr)}
-.link:hover{color:var(--brand2);text-decoration:underline}
-table{width:100%;border-collapse:collapse}
-th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:10px;border-bottom:1px solid var(--line);font-weight:800}
-td{padding:15px 10px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink2);font-weight:500}
-tr:last-child td{border-bottom:0}
-tr:hover td{background:#f8fafc}
-.status{padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.02em}
-.s-ok{background:#dcfce7;color:#15803d}
-.s-warn{background:#fef3c7;color:#b45309}
-.s-bad{background:#fee2e2;color:#b91c1c}
-.columns{display:grid;grid-template-columns:1.6fr 1fr;gap:22px}
-.actions{display:flex;flex-direction:column;gap:10px}
-.action{display:flex;align-items:center;gap:13px;padding:14px 16px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;font-size:14px;font-weight:700;color:var(--ink2);cursor:pointer;transition:var(--tr);text-align:left;width:100%;font-family:'Inter',sans-serif}
-.action:hover{background:var(--brand-soft);border-color:#a7f3d0;color:var(--ink);transform:translateX(3px)}
-.action i{color:var(--brand);width:18px;text-align:center;font-size:15px}
-.mini-products{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
-.mini{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;transition:var(--tr)}
-.mini:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cbd5e1}
-.mini img{height:120px;width:100%;object-fit:cover;transition:.4s}
-.mini:hover img{transform:scale(1.05)}
-.mini div{padding:15px}
-.mini h4{font-size:13.5px;margin-bottom:5px;letter-spacing:-.01em}
-.mini b{color:var(--brand);font-family:'Space Grotesk';font-size:16px}
-.dash-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:12px;margin-right:12px;cursor:pointer;color:var(--ink);font-size:16px}
-.overlay{display:none;position:fixed;inset:0;background:rgba(11,27,51,.5);z-index:99;backdrop-filter:blur(2px)}
-.overlay.active{display:block}
-/* Responsive */
-@media(max-width:1024px){
-  .columns{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:44px}
-  .hero-card img{height:320px}
-  .sidebar{width:250px}
-  .main{margin-left:250px;padding:26px}
-  .hero{padding:72px 0 64px}
-}
-@media(max-width:768px){
-  .nav-links,.nav-actions{display:none}
-  .menu-btn{display:block}
-  .section{padding:68px 0}
-  .sidebar{transform:translateX(-102%);width:286px;box-shadow:20px 0 60px rgba(0,0,0,.3)}
-  .sidebar.open{transform:none}
-  .main{margin-left:0;padding:22px}
-  .dash-toggle{display:block}
-  .row{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .topbar h1{font-size:22px}
-  .hero-metrics{grid-template-columns:1fr 1fr}
-  .columns{grid-template-columns:1fr}
-}
-@media(max-width:520px){
-  .hero-metrics{grid-template-columns:1fr}
-  .products,.grid-3{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr}
-  .search{min-width:0;flex:1}
-  .container{padding:0 18px}
-  .auth-card{padding:32px 24px}
-  .nav{height:70px}
-  .mobile-menu{top:70px}
-  .cta{padding:72px 0}
-}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EasyStores - Premium verified social account logs & digital solutions for modern marketers." />
+    <title>EasyStores | Premium Social Account Logs & Solutions</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        dark: {
+                            bg: '#090d16',
+                            card: '#111827',
+                            border: '#1f2937',
+                            hover: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .glass-header {
+            background: rgba(9, 13, 22, 0.85);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.15);
+            border-radius: 99px;
+        }
+        .badge-glow {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-800 dark:text-slate-100 transition-colors duration-200 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
 
-<header class="site-header" id="header">
-  <div class="container nav">
-    <a class="logo" data-page="home"><span class="logo-mark"><i class="fas fa-bolt"></i></span>EasyStores</a>
-    <ul class="nav-links">
-      <li><a data-page="home" data-scroll="#home">Home</a></li>
-      <li><a data-page="home" data-scroll="#services">Logs Services</a></li>
-      <li><a data-page="home" data-scroll="#solutions">Solutions</a></li>
-      <li><a data-page="home" data-scroll="#marketplace">Marketplace</a></li>
-      <li><a data-page="home" data-scroll="#footer">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a class="btn btn-ghost btn-sm" data-page="login">Login</a>
-      <a class="btn btn-brand btn-sm" data-page="signup">Get Started</a>
-    </div>
-    <button class="menu-btn" id="mobileMenuBtn" aria-label="Open menu"><i class="fas fa-bars"></i></button>
-  </div>
-</header>
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo -->
+            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white text-lg shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <span class="font-heading font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+                    Easy<span class="text-brand-500">Stores</span>
+                </span>
+            </a>
 
-<div class="mobile-menu" id="mobileNav">
-  <a data-page="home" data-scroll="#home">Home</a>
-  <a data-page="home" data-scroll="#services">Logs Services</a>
-  <a data-page="home" data-scroll="#solutions">Solutions</a>
-  <a data-page="home" data-scroll="#marketplace">Marketplace</a>
-  <a data-page="home" data-scroll="#footer">Contact</a>
-  <a class="btn btn-ghost" data-page="login">Login</a>
-  <a class="btn btn-brand" data-page="signup">Get Started</a>
-</div>
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-800/50 p-1.5 rounded-full border border-slate-200/60 dark:border-slate-700/50">
+                <a href="#home" onclick="navigateTo('home'); scrollToSection('home')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Home</a>
+                <a href="#services" onclick="navigateTo('home'); scrollToSection('services')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Logs Services</a>
+                <a href="#solutions" onclick="navigateTo('home'); scrollToSection('solutions')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Solutions</a>
+                <a href="#marketplace" onclick="navigateTo('home'); scrollToSection('marketplace')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Marketplace</a>
+                <a href="#footer" onclick="navigateTo('home'); scrollToSection('footer')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Contact</a>
+            </nav>
 
-<!-- HOME -->
-<div id="page-home" class="page-view active">
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow"><i class="fas fa-shield-halved"></i> 100% Verified Accounts</span>
-        <h1>Premium <span class="gradient">Social Logs</span> for Global Digital Growth</h1>
-        <p>Access high-quality verified account logs for all major platforms. Secure, instant delivery, and perfect for marketing, business expansion, and social networking.</p>
-        <div class="hero-actions">
-          <a class="btn btn-brand" data-page="signup"><i class="fas fa-rocket"></i> Explore Logs</a>
-          <a class="btn btn-ghost" data-scroll="#services">Learn More</a>
-        </div>
-        <div class="hero-metrics">
-          <div class="metric"><b>50K+</b><span>Active Logs</span></div>
-          <div class="metric"><b>99.9%</b><span>Uptime Rate</span></div>
-          <div class="metric"><b>24/7</b><span>Support</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-card">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Team working with laptops and phones">
-        </div>
-        <div class="float-card"><i class="fas fa-shield-halved"></i><div><b>Verified Inventory</b><span>Quality-checked before delivery</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-head">
-        <span class="badge">Our Services</span>
-        <h2>Premium Logs Collection</h2>
-        <p>High-quality social account logs for all major platforms — verified, secure, and ready to use instantly for your business needs.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card"><div class="icon-box"><i class="fab fa-google"></i></div><h3>Gmail & Google Logs</h3><p>Verified Gmail accounts with complete recovery details, perfect for email campaigns, business automation, and marketing tools.</p><a class="btn btn-ghost btn-sm" data-page="signup">View Logs</a></div>
-        <div class="card"><div class="icon-box"><i class="fab fa-facebook"></i></div><h3>Facebook / Meta Logs</h3><p>Business & personal profiles with ad accounts ready to use. Fully verified, aged accounts with high trust scores.</p><a class="btn btn-ghost btn-sm" data-page="signup">View Logs</a></div>
-        <div class="card"><div class="icon-box"><i class="fab fa-instagram"></i></div><h3>Instagram & TikTok Logs</h3><p>Aged accounts with authentic engagement, perfect for influencer marketing, brand growth, and social media campaigns.</p><a class="btn btn-ghost btn-sm" data-page="signup">View Logs</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark-section" id="solutions">
-    <div class="container">
-      <div class="section-head">
-        <span class="badge" style="background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.3);color:#86efac">Complete Ecosystem</span>
-        <h2>Everything You Need for Logs Management</h2>
-        <p>Comprehensive tools and features to manage, verify, and scale with premium account logs efficiently.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card"><div class="icon-box"><i class="fas fa-layer-group"></i></div><h3>Bulk Logs Access</h3><p>Purchase accounts in bulk with special discounts. Instant CSV delivery with all credentials and recovery information.</p></div>
-        <div class="card"><div class="icon-box"><i class="fas fa-heart-pulse"></i></div><h3>Account Health Verification</h3><p>Advanced verification system to check logs quality, session cookies validity, and account status before purchase.</p></div>
-        <div class="card"><div class="icon-box"><i class="fas fa-robot"></i></div><h3>Automation Integration</h3><p>Seamlessly integrate logs with automation bots, schedulers, and marketing tools for maximum efficiency.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><span class="badge">Process</span><h2>How to Get Your Logs</h2><p>Simple, fast, and secure process to access premium social media accounts</p></div>
-      <div class="steps">
-        <div class="card step"><div class="step-num">1</div><h3>Create Account</h3><p>Sign up for free and get instant access to our marketplace with thousands of verified logs.</p></div>
-        <div class="card step"><div class="step-num">2</div><h3>Select & Purchase</h3><p>Browse our catalog, choose the logs you need, and complete secure payment in seconds.</p></div>
-        <div class="card step"><div class="step-num">3</div><h3>Instant Delivery</h3><p>Receive credentials immediately via email or dashboard. Start using your accounts right away!</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="marketplace" style="background:#fff">
-    <div class="container">
-      <div class="section-head"><span class="badge">Marketplace</span><h2>Live Logs Marketplace</h2><p>Browse our verified premium logs collection with instant delivery and secure transactions</p></div>
-      <div class="filters">
-        <button class="chip active" data-filter="all">All Logs</button>
-        <button class="chip" data-filter="gmail">Gmail</button>
-        <button class="chip" data-filter="facebook">Facebook</button>
-        <button class="chip" data-filter="instagram">Instagram</button>
-      </div>
-      <div class="products" id="productsGrid">
-        <article class="product" data-category="facebook">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Facebook Logs"></div>
-          <div class="product-body"><h3>Facebook Ads Account</h3><div class="price">₦2,500</div><a class="btn btn-brand btn-sm" data-page="signup" style="width:100%"><i class="fas fa-cart-shopping"></i> Buy Now</a></div>
-        </article>
-        <article class="product" data-category="instagram">
-          <div class="product-img"><span class="tag">Hot Deal</span><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Instagram Logs"></div>
-          <div class="product-body"><h3>Instagram Aged Logs</h3><div class="price">₦2,200</div><a class="btn btn-brand btn-sm" data-page="signup" style="width:100%"><i class="fas fa-cart-shopping"></i> Buy Now</a></div>
-        </article>
-        <article class="product" data-category="gmail">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Bulk Gmail"></div>
-          <div class="product-body"><h3>Bulk Gmail (10pcs)</h3><div class="price">₦12,000</div><a class="btn btn-brand btn-sm" data-page="signup" style="width:100%"><i class="fas fa-cart-shopping"></i> Buy Now</a></div>
-        </article>
-      </div>
-      <div style="text-align:center;margin-top:44px"><a class="btn btn-primary" data-page="signup"><i class="fas fa-table-cells"></i> View All Logs</a></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><span class="badge">Testimonials</span><h2>Trusted by Marketers Worldwide</h2><p>See what our satisfied customers say about their experience with EasyStores</p></div>
-      <div class="grid-3">
-        <div class="card quote"><p>“EasyStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively. Highly recommended!”</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel Okoro"></div><div><b>Daniel Okoro</b><span>Digital Strategist</span></div></div></div>
-        <div class="card quote"><p>“Best decision for my agency! EasyStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent.”</p><div class="person"><div class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Okafor"></div><div><b>Michael Okafor</b><span>Social Media Manager</span></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="container">
-      <h2>Ready to Scale Your Digital Presence?</h2>
-      <p>Join over 10,000+ businesses and marketers already using EasyStores for their social media growth and marketing success.</p>
-      <a class="btn btn-brand" data-page="signup"><i class="fas fa-rocket"></i> Get Access Now</a>
-    </div>
-  </section>
-
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="logo" style="color:#fff;margin-bottom:16px"><span class="logo-mark"><i class="fas fa-bolt"></i></span>EasyStores</div>
-          <p>The #1 trusted marketplace for verified premium social media account logs and digital solutions worldwide.</p>
-          <div class="socials">
-            <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        <div><h4>Logs Categories</h4><ul><li><a href="#">Gmail Logs</a></li><li><a href="#">Facebook Logs</a></li><li><a href="#">Instagram Logs</a></li><li><a href="#">Twitter Logs</a></li><li><a href="#">TikTok Logs</a></li></ul></div>
-        <div><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Refund Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Contact Support</a></li></ul></div>
-        <div><h4>Contact</h4><ul><li><a href="mailto:support@easystores.com"><i class="fas fa-envelope"></i> support@easystores.com</a></li><li><a href="https://wa.me/23470702"><i class="fab fa-whatsapp"></i> +234 707 582 0202</a></li></ul></div>
-      </div>
-      <div class="copyright"><p>© 2026 <strong>EasyStores</strong>. All rights reserved. | Developed by <a href="https://wa.me/2347075820202" target="_blank">AP Technologies</a></p></div>
-    </div>
-  </footer>
-</div>
-
-<!-- LOGIN -->
-<div id="page-login" class="page-view">
-  <div class="auth-wrap">
-    <div class="auth-card">
-      <div class="auth-head">
-        <div class="logo-mark"><i class="fas fa-user-lock"></i></div>
-        <h2>Welcome Back</h2><p>Sign in to access your dashboard</p>
-      </div>
-      <form id="loginForm">
-        <div class="field"><label for="loginEmail">Email or Username</label><div class="input"><i class="fas fa-user"></i><input type="email" id="loginEmail" placeholder="Enter your email" required autocomplete="username"></div></div>
-        <div class="field"><label for="loginPassword">Password</label><div class="input"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password"><button type="button" class="toggle-pass" data-target="loginPassword"><i class="fas fa-eye"></i></button></div></div>
-        <div class="field" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-          <label class="check" style="margin:0"><input type="checkbox" id="remember"> Remember me</label>
-          <a href="#" style="color:var(--brand);font-weight:800;font-size:12.5px">Forgot password?</a>
-        </div>
-        <button type="submit" class="btn btn-primary" id="loginSubmitBtn" style="width:100%"><span class="btn-text">Sign In to Dashboard</span><i class="fas fa-arrow-right"></i></button>
-      </form>
-      <div class="auth-alt">Don't have an account? <a data-page="signup">Create Account</a></div>
-      <div class="secure"><i class="fas fa-shield-halved"></i> Secured with 256-bit SSL encryption</div>
-      <div class="back"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- SIGNUP -->
-<div id="page-signup" class="page-view">
-  <div class="auth-wrap signup">
-    <div class="auth-card">
-      <div class="auth-head">
-        <div class="logo-mark"><i class="fas fa-user-plus"></i></div>
-        <h2>Create Account</h2><p>Join thousands of users accessing premium accounts</p>
-      </div>
-      <form id="registerForm">
-        <div class="row">
-          <div class="field"><label class="required" for="fullName">Full Name *</label><div class="input"><i class="fas fa-user"></i><input type="text" id="fullName" placeholder="Enter your full name" required autocomplete="name"></div></div>
-          <div class="field"><label class="required" for="phoneNumber">WhatsApp Number *</label><div class="input"><i class="fas fa-phone"></i><input type="tel" id="phoneNumber" placeholder="+234 123 456 7890" required autocomplete="tel"></div></div>
-        </div>
-        <div class="row">
-          <div class="field"><label class="required" for="regUsername">Username *</label><div class="input"><i class="fas fa-at"></i><input type="text" id="regUsername" placeholder="Choose a username" required minlength="3" autocomplete="username"></div></div>
-          <div class="field"><label class="required" for="regEmail">Email Address *</label><div class="input"><i class="fas fa-envelope"></i><input type="email" id="regEmail" placeholder="you@example.com" required autocomplete="email"></div></div>
-        </div>
-        <div class="row">
-          <div class="field"><label class="required" for="regPassword">Password *</label><div class="input"><i class="fas fa-lock"></i><input type="password" id="regPassword" placeholder="Create a strong password" required minlength="8" autocomplete="new-password"><button type="button" class="toggle-pass" data-target="regPassword"><i class="fas fa-eye"></i></button></div><div class="strength" id="passwordStrength"><div id="strengthFill"></div></div><div style="font-size:11px;color:var(--muted);margin-top:6px;font-weight:600" id="strengthText">Password strength: None</div></div>
-          <div class="field"><label class="required" for="confirmPassword">Confirm Password *</label><div class="input"><i class="fas fa-lock"></i><input type="password" id="confirmPassword" placeholder="Re-enter your password" required autocomplete="new-password"><button type="button" class="toggle-pass" data-target="confirmPassword"><i class="fas fa-eye"></i></button></div><div style="font-size:11px;margin-top:6px;display:none;font-weight:700" id="passwordMatch"></div></div>
-        </div>
-        <div class="field"><label for="ref">Referral Code (Optional)</label><div class="input"><i class="fas fa-user-group"></i><input type="text" id="ref" placeholder="Enter referral code if you have one"></div></div>
-        <div class="field"><label class="check"><input type="checkbox" id="terms" required><span>I agree to the <a href="#" style="color:var(--brand);font-weight:800">Terms of Service</a> and <a href="#" style="color:var(--brand);font-weight:800">Privacy Policy</a>. I understand that I must be at least 18 years old to use this service.</span></label></div>
-        <button type="submit" class="btn btn-brand" id="registerSubmitBtn" style="width:100%"><span class="btn-text">Create Account</span><i class="fas fa-arrow-right"></i></button>
-      </form>
-      <div class="auth-alt">Already have an account? <a data-page="login">Sign In</a></div>
-      <div class="secure"><i class="fas fa-shield-halved"></i> Protected with 256-bit SSL encryption</div>
-      <div class="back"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="page-dashboard" class="page-view">
-  <div class="shell">
-    <div class="overlay" id="sidebarOverlay"></div>
-    <aside class="sidebar" id="sidebar">
-      <div class="side-brand" data-page="home"><span class="logo-mark"><i class="fas fa-bolt"></i></span>EasyStores</div>
-      <ul class="side-nav">
-        <li><a class="active" data-dash-tab="overview"><i class="fas fa-chart-pie"></i> Overview</a></li>
-        <li><a data-dash-tab="marketplace"><i class="fas fa-store"></i> Marketplace</a></li>
-        <li><a data-dash-tab="orders"><i class="fas fa-receipt"></i> My Orders <span class="count">3</span></a></li>
-        <li><a data-dash-tab="wallet"><i class="fas fa-wallet"></i> Wallet</a></li>
-        <li><a data-dash-tab="settings"><i class="fas fa-gear"></i> Settings</a></li>
-        <li><a data-dash-tab="support"><i class="fas fa-headset"></i> Support</a></li>
-      </ul>
-      <div class="user-box">
-        <div class="avatar" id="userAvatar">JD</div>
-        <div style="flex:1;min-width:0"><b id="userNameDisplay">John Doe</b><span>Premium Member</span></div>
-        <button id="logoutBtn" title="Logout" style="background:none;border:0;color:rgba(255,255,255,.55);cursor:pointer;padding:5px;border-radius:8px;transition:.2s"><i class="fas fa-right-from-bracket"></i></button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <div class="topbar">
-        <div style="display:flex;align-items:center">
-          <button class="dash-toggle" id="mobileDashToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
-          <h1>Welcome back, <span id="userFirstName" style="color:var(--brand)">John</span> 👋</h1>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <div class="search"><i class="fas fa-search"></i><input type="text" placeholder="Search logs, orders..."></div>
-          <div class="icon-btn" title="Notifications"><i class="fas fa-bell"></i><span style="position:absolute;top:10px;right:11px;width:8px;height:8px;background:var(--brand);border-radius:50%;border:2px solid #fff"></span></div>
-          <div class="icon-btn" title="Messages"><i class="fas fa-envelope"></i></div>
-        </div>
-      </div>
-
-      <div class="dash-tab" id="dash-tab-overview">
-        <div class="stats">
-          <div class="stat"><i class="fas fa-bag-shopping"></i><b>24</b><span>Total Orders</span><div class="trend"><i class="fas fa-arrow-up"></i> +12% this month</div></div>
-          <div class="stat"><i class="fas fa-wallet"></i><b>₦48,500</b><span>Wallet Balance</span><div class="trend"><i class="fas fa-arrow-up"></i> +₦12,000 this week</div></div>
-          <div class="stat"><i class="fas fa-key"></i><b>18</b><span>Active Logs</span><div class="trend"><i class="fas fa-circle-check"></i> All verified</div></div>
-          <div class="stat"><i class="fas fa-star"></i><b>4.9</b><span>Trust Score</span><div class="trend"><i class="fas fa-arrow-up"></i> Excellent</div></div>
-        </div>
-
-        <div class="columns">
-          <div class="panel">
-            <div class="panel-head"><h2>Recent Orders</h2><span class="link" data-dash-tab="orders">View All →</span></div>
-            <table><thead><tr><th>Order ID</th><th>Item</th><th>Amount</th><th>Status</th></tr></thead><tbody>
-              <tr><td>#ES-1042</td><td>Instagram Aged Logs</td><td>₦2,200</td><td><span class="status s-ok">Completed</span></td></tr>
-              <tr><td>#ES-1038</td><td>Bulk Gmail (10pcs)</td><td>₦12,000</td><td><span class="status s-ok">Completed</span></td></tr>
-              <tr><td>#ES-1021</td><td>Facebook Ads Account</td><td>₦2,500</td><td><span class="status s-warn">Pending</span></td></tr>
-              <tr><td>#ES-1015</td><td>Instagram Aged Logs</td><td>₦2,200</td><td><span class="status s-bad">Failed</span></td></tr>
-            </tbody></table>
-          </div>
-          <div class="panel">
-            <div class="panel-head"><h2>Quick Actions</h2></div>
-            <div class="actions">
-              <button class="action" data-dash-tab="marketplace"><i class="fas fa-store"></i> Browse Marketplace</button>
-              <button class="action" data-dash-tab="wallet"><i class="fas fa-circle-plus"></i> Fund Wallet</button>
-              <button class="action" data-dash-tab="orders"><i class="fas fa-receipt"></i> View All Orders</button>
-              <button class="action" data-dash-tab="support"><i class="fas fa-headset"></i> Contact Support</button>
-              <button class="action" data-dash-tab="settings"><i class="fas fa-user-pen"></i> Edit Profile</button>
+            <!-- Nav Action Buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 flex items-center justify-center transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button onclick="navigateTo('login')" class="px-5 py-2.5 text-xs font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                    Sign In
+                </button>
+                <button onclick="navigateTo('signup')" class="px-5 py-2.5 text-xs font-bold rounded-xl text-white bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                    <span>Get Started</span>
+                    <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
             </div>
-          </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="flex items-center gap-2 md:hidden">
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 flex items-center justify-center">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="panel">
-          <div class="panel-head"><h2>Recommended For You</h2><span class="link" data-dash-tab="marketplace">Browse All →</span></div>
-          <div class="mini-products">
-            <div class="mini" data-dash-tab="marketplace"><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Instagram"><div><h4>Instagram Aged Logs</h4><b>₦2,200</b></div></div>
-            <div class="mini" data-dash-tab="marketplace"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Facebook"><div><h4>Facebook Ads Account</h4><b>₦2,500</b></div></div>
-            <div class="mini" data-dash-tab="marketplace"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gmail"><div><h4>Bulk Gmail (10pcs)</h4><b>₦12,000</b></div></div>
-            <div class="mini" data-dash-tab="marketplace"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="TikTok"><div><h4>TikTok Aged Logs</h4><b>₦2,000</b></div></div>
-          </div>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileNav" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+            <a href="#services" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Logs Services</a>
+            <a href="#solutions" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Solutions</a>
+            <a href="#marketplace" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Marketplace</a>
+            <a href="#footer" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+                <button onclick="navigateTo('login'); toggleMobileMenu();" class="w-full py-3 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800">Sign In</button>
+                <button onclick="navigateTo('signup'); toggleMobileMenu();" class="w-full py-3 text-sm font-bold rounded-xl text-white bg-brand-600">Get Started</button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="dash-tab" id="dash-tab-marketplace" style="display:none"><div class="panel"><div class="panel-head"><h2>Marketplace</h2></div><p style="color:var(--ink2);font-size:14px">Browse all available logs. (Full marketplace view — integrate with your product listing page.)</p></div></div>
-      <div class="dash-tab" id="dash-tab-orders" style="display:none"><div class="panel"><div class="panel-head"><h2>My Orders</h2></div><p style="color:var(--ink2);font-size:14px">View your full order history. (Order management page — integrate with your backend.)</p></div></div>
-      <div class="dash-tab" id="dash-tab-wallet" style="display:none"><div class="panel"><div class="panel-head"><h2>Wallet</h2></div><p style="color:var(--ink2);font-size:14px">Manage your wallet balance and transactions. (Wallet page — integrate with payment gateway.)</p></div></div>
-      <div class="dash-tab" id="dash-tab-settings" style="display:none"><div class="panel"><div class="panel-head"><h2>Settings</h2></div><p style="color:var(--ink2);font-size:14px">Edit your profile, password, and preferences. (Settings page.)</p></div></div>
-      <div class="dash-tab" id="dash-tab-support" style="display:none"><div class="panel"><div class="panel-head"><h2>Support</h2></div><p style="color:var(--ink2);font-size:14px">Contact our support team via WhatsApp or email. (Support page.)</p></div></div>
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- PAGE: HOME -->
+        <div id="page-home" class="page-view block transition-opacity duration-300">
+            
+            <!-- Hero Section -->
+            <section id="home" class="relative pt-12 pb-20 md:py-28 overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute top-1/2 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/50 border border-brand-200 dark:border-brand-800/60 text-brand-700 dark:text-brand-300 text-xs font-bold tracking-wide">
+                                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                <span>#1 Verified Social Account Provider</span>
+                            </div>
+
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                                Premium <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-400">Social Account Logs</span> for Growth
+                            </h1>
+
+                            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                                Access aged, fully-verified social media logs across top platforms. Instant automated delivery, 100% replacement warranty, and enterprise-grade reliability for marketers worldwide.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                                <button onclick="navigateTo('signup')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold text-sm shadow-xl shadow-brand-500/30 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Explore Inventory</span>
+                                </button>
+                                <button onclick="scrollToSection('services')" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-sm transition-all flex items-center justify-center gap-2">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-chevron-down text-xs opacity-70"></i>
+                                </button>
+                            </div>
+
+                            <!-- Trust Badges -->
+                            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80 dark:border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
+                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">50K+</span>
+                                    <span class="text-xs text-slate-500 font-medium">Active Logs</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
+                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">99.9%</span>
+                                    <span class="text-xs text-slate-500 font-medium">Uptime Guarantee</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
+                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">24/7</span>
+                                    <span class="text-xs text-slate-500 font-medium">Instant Support</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Hero Graphic / Card -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-dark-card shadow-2xl p-3">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="EasyStores Digital Platform" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white rounded-2xl">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <span class="px-2.5 py-1 rounded-md bg-brand-500 text-white text-[10px] font-extrabold tracking-wider uppercase">Verified Stock</span>
+                                            <h3 class="text-lg font-bold font-heading mt-1">High-Authority Logs</h3>
+                                        </div>
+                                        <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                                            <i class="fas fa-shield-check text-brand-400 text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Floating Card -->
+                            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xl flex items-center gap-4 animate-float">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fas fa-circle-check"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Automated Delivery</div>
+                                    <div class="text-sm font-bold text-slate-900 dark:text-white">Instant CSV Access</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES SECTION -->
+            <section id="services" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Premium Selection</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Verified Account Collections</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">High-trust, aged logs carefully tested for maximum stability and instant deployment.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Gmail & Google Logs</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Fully phone-verified Gmail accounts with recovery email included. Ideal for cold outreach and SaaS automation.</p>
+                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
+                                <span>View Category</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Facebook / Meta Ads</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Aged personal profiles, high-limit Business Managers, and active ad accounts ready for ad scaling.</p>
+                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
+                                <span>View Category</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-pink-500/10 text-pink-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Instagram & TikTok</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Established social logs with authentic history, suitable for organic growth, branding, and influencer networks.</p>
+                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
+                                <span>View Category</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOLUTIONS SECTION -->
+            <section id="solutions" class="py-20 bg-dark-bg text-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold uppercase tracking-wider">Enterprise Tools</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Built for High-Scale Digital Operations</h2>
+                        <p class="text-slate-400 text-sm sm:text-base mt-3">We provide the technical backbone for marketers, agencies, and automation experts.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2">Bulk API & CSV Exports</h3>
+                            <p class="text-slate-400 text-sm">Download large inventory batches instantly with standard cookie formats, 2FA tokens, and recovery keys.</p>
+                        </div>
+
+                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
+                                <i class="fas fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2">Pre-Check Health Assurance</h3>
+                            <p class="text-slate-400 text-sm">Automated ping verification ensures session validity right before delivery so you never get dead logs.</p>
+                        </div>
+
+                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2">Anti-Detect Compatibility</h3>
+                            <p class="text-slate-400 text-sm">Fully compatible with Dolphin Anty, AdsPower, Multilogin, and standard browser proxy setups.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW IT WORKS -->
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Simple Workflow</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Get Started in 3 Easy Steps</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg">1</div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Create Account</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm">Sign up for free in under 30 seconds to access our live inventory catalog.</p>
+                        </div>
+
+                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-500/30">2</div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Select & Pay</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm">Choose desired logs, select quantity, and pay securely via instant wallet funding.</p>
+                        </div>
+
+                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg">3</div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Instant Access</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm">Credentials & cookies are unlocked immediately on your dashboard for download.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARKETPLACE SECTION -->
+            <section id="marketplace" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                        <div>
+                            <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Live Inventory</span>
+                            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Explore Marketplace</h2>
+                        </div>
+
+                        <!-- Category Filters -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="filterMarketplace('all', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md">All Logs</button>
+                            <button onclick="filterMarketplace('gmail', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Gmail</button>
+                            <button onclick="filterMarketplace('facebook', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Facebook</button>
+                            <button onclick="filterMarketplace('instagram', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Instagram</button>
+                        </div>
+                    </div>
+
+                    <!-- Marketplace Grid -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="homeMarketplaceGrid">
+                        <!-- Item 1 -->
+                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="facebook">
+                            <div class="relative h-48 overflow-hidden bg-slate-900">
+                                <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="FB Ads Account" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                                <span class="absolute top-3 right-3 bg-brand-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Verified</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Facebook Ads Account</h3>
+                                <p class="text-slate-500 text-xs mb-4">Aged 2021+ Account, High limit BM ready with cookie logs.</p>
+                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦2,500</div>
+                                    <button onclick="openBuyModal('Facebook Ads Account', '₦2,500')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Buy Now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="instagram">
+                            <div class="relative h-48 overflow-hidden bg-slate-900">
+                                <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="IG Aged Logs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                                <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Hot Deal</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Instagram Aged Logs</h3>
+                                <p class="text-slate-500 text-xs mb-4">500+ Organic Followers, Aged 2+ Years with Original Mail.</p>
+                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦2,200</div>
+                                    <button onclick="openBuyModal('Instagram Aged Logs', '₦2,200')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Buy Now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="gmail">
+                            <div class="relative h-48 overflow-hidden bg-slate-900">
+                                <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bulk Gmail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                                <span class="absolute top-3 right-3 bg-blue-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Bulk Pack</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Bulk Gmail (10 Pack)</h3>
+                                <p class="text-slate-500 text-xs mb-4">Phone verified, recovery added, immediate CSV download.</p>
+                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦12,000</div>
+                                    <button onclick="openBuyModal('Bulk Gmail (10 Pack)', '₦12,000')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Buy Now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-12">
+                        <button onclick="navigateTo('signup')" class="px-8 py-3.5 bg-slate-900 dark:bg-slate-800 hover:bg-black text-white text-xs font-bold rounded-xl transition-all">
+                            View Full Inventory Marketplace →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTIMONIALS -->
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Social Proof</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Trusted by 10,000+ Marketers</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl shadow-sm">
+                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">"EasyStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Daniel Okoro</h4>
+                                    <span class="text-xs text-slate-500">Digital Strategist</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl shadow-sm">
+                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">"Best decision for my agency! EasyStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Michael Okafor</h4>
+                                    <span class="text-xs text-slate-500">Social Media Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA SECTION -->
+            <section class="py-20 bg-gradient-to-br from-slate-900 via-dark-bg to-slate-950 text-white relative overflow-hidden">
+                <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Ready to Scale Your Digital Reach?</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-8">Join thousands of businesses relying on EasyStores for verified account logs and social infrastructure.</p>
+                    <button onclick="navigateTo('signup')" class="px-8 py-4 bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm rounded-xl shadow-xl shadow-brand-500/25 transition-all">
+                        Create Free Account Now
+                    </button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PAGE: LOGIN -->
+        <div id="page-login" class="page-view hidden py-16 px-4">
+            <div class="max-w-md mx-auto bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h2>
+                    <p class="text-xs text-slate-500 mt-1">Sign in to your EasyStores dashboard</p>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email or Username</label>
+                        <div class="relative">
+                            <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="email" required placeholder="name@example.com" class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Password</label>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="password" required id="loginPass" placeholder="••••••••" class="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                            <button type="button" onclick="togglePass('loginPass')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs p-1">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-400">
+                            <input type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="javascript:void(0)" class="text-brand-600 dark:text-brand-400 font-bold">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                        Sign In to Account
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-xs text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    Don't have an account? <a href="javascript:void(0)" onclick="navigateTo('signup')" class="text-brand-600 dark:text-brand-400 font-bold">Create one</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: SIGNUP -->
+        <div id="page-signup" class="page-view hidden py-16 px-4">
+            <div class="max-w-lg mx-auto bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Create EasyStores Account</h2>
+                    <p class="text-xs text-slate-500 mt-1">Join over 10,000 active members</p>
+                </div>
+
+                <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name *</label>
+                            <input type="text" id="regFullName" required placeholder="John Doe" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">WhatsApp Phone *</label>
+                            <input type="tel" required placeholder="+234 800 000 0000" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Username *</label>
+                            <input type="text" required placeholder="johndoe" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address *</label>
+                            <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Password *</label>
+                        <div class="relative">
+                            <input type="password" required id="regPass" oninput="checkStrength(this.value)" placeholder="••••••••" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
+                            <button type="button" onclick="togglePass('regPass')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs p-1">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <!-- Strength Meter -->
+                        <div class="h-1 bg-slate-200 dark:bg-slate-800 rounded-full mt-2 overflow-hidden">
+                            <div id="strengthBar" class="h-full w-0 bg-brand-500 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-500">
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input type="checkbox" required class="mt-0.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <span>I agree to the Terms of Service & Privacy Policy. I am at least 18 years old.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                        Register Account
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-xs text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    Already have an account? <a href="javascript:void(0)" onclick="navigateTo('login')" class="text-brand-600 dark:text-brand-400 font-bold">Sign In</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: DASHBOARD -->
+        <div id="page-dashboard" class="page-view hidden">
+            <div class="flex min-h-[calc(100vh-80px)]">
+                
+                <!-- Sidebar Nav -->
+                <aside id="dashSidebar" class="w-64 bg-white dark:bg-dark-card border-r border-slate-200 dark:border-slate-800 p-6 flex-col justify-between hidden md:flex">
+                    <div class="space-y-6">
+                        <div class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Navigation</div>
+                        <nav class="space-y-1.5">
+                            <button onclick="switchDashTab('overview', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Overview</span>
+                            </button>
+                            <button onclick="switchDashTab('marketplace', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <i class="fas fa-store"></i>
+                                <span>Marketplace</span>
+                            </button>
+                            <button onclick="switchDashTab('orders', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <i class="fas fa-receipt"></i>
+                                <span>My Orders</span>
+                                <span class="ml-auto bg-brand-500 text-white text-[10px] px-2 py-0.5 rounded-full">3</span>
+                            </button>
+                            <button onclick="switchDashTab('wallet', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <i class="fas fa-wallet"></i>
+                                <span>Wallet</span>
+                            </button>
+                            <button onclick="switchDashTab('settings', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <i class="fas fa-gear"></i>
+                                <span>Settings</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- User Footer Box -->
+                    <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-brand-500 text-white font-bold text-xs flex items-center justify-center">JD</div>
+                            <div class="text-left">
+                                <div id="dashUserDisplay" class="text-xs font-bold text-slate-900 dark:text-white">John Doe</div>
+                                <div class="text-[10px] text-brand-500 font-semibold">Verified Member</div>
+                            </div>
+                        </div>
+                        <button onclick="navigateTo('login')" class="text-slate-400 hover:text-red-500 transition-colors">
+                            <i class="fas fa-right-from-bracket text-sm"></i>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Dashboard Content Main -->
+                <div class="flex-1 p-6 md:p-10 bg-slate-50 dark:bg-dark-bg">
+                    
+                    <!-- Top Bar -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+                        <div>
+                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome, <span id="dashGreeting" class="text-brand-500">John</span> 👋</h1>
+                            <p class="text-xs text-slate-500">Here is what's happening with your inventory today.</p>
+                        </div>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <button onclick="openWalletModal()" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-2">
+                                <i class="fas fa-[#+] fa-plus"></i>
+                                <span>Fund Wallet</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TAB: OVERVIEW -->
+                    <div id="dash-tab-overview" class="dash-content-tab space-y-8">
+                        
+                        <!-- Metric Cards Grid -->
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-base mb-4">
+                                    <i class="fas fa-bag-shopping"></i>
+                                </div>
+                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">24</div>
+                                <div class="text-xs text-slate-500 mt-1">Total Purchases</div>
+                            </div>
+
+                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-base mb-4">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">₦48,500</div>
+                                <div class="text-xs text-slate-500 mt-1">Wallet Balance</div>
+                            </div>
+
+                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-base mb-4">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">18</div>
+                                <div class="text-xs text-slate-500 mt-1">Active Logs</div>
+                            </div>
+
+                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-base mb-4">
+                                    <i class="fas fa-shield-halved"></i>
+                                </div>
+                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">100%</div>
+                                <div class="text-xs text-slate-500 mt-1">Warranty Active</div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Table & Quick Panel Grid -->
+                        <div class="grid lg:grid-cols-3 gap-8">
+                            
+                            <!-- Table -->
+                            <div class="lg:col-span-2 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-base text-slate-900 dark:text-white mb-4">Recent Transactions</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left text-xs">
+                                        <thead class="border-b border-slate-100 dark:border-slate-800 text-slate-400 uppercase font-semibold">
+                                            <tr>
+                                                <th class="py-3 px-2">Order ID</th>
+                                                <th class="py-3 px-2">Item</th>
+                                                <th class="py-3 px-2">Amount</th>
+                                                <th class="py-3 px-2">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                                            <tr>
+                                                <td class="py-3.5 px-2 font-mono">#ES-1042</td>
+                                                <td class="py-3.5 px-2">Instagram Aged Logs</td>
+                                                <td class="py-3.5 px-2 font-bold">₦2,200</td>
+                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold">Completed</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-3.5 px-2 font-mono">#ES-1038</td>
+                                                <td class="py-3.5 px-2">Bulk Gmail (10 Pack)</td>
+                                                <td class="py-3.5 px-2 font-bold">₦12,000</td>
+                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold">Completed</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-3.5 px-2 font-mono">#ES-1021</td>
+                                                <td class="py-3.5 px-2">Facebook Ads Account</td>
+                                                <td class="py-3.5 px-2 font-bold">₦2,500</td>
+                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 font-bold">Pending</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Action Quick List -->
+                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm space-y-3">
+                                <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2">Quick Shortcuts</h3>
+                                <button onclick="switchDashTab('marketplace')" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                                    <span>Browse All Marketplace</span>
+                                    <i class="fas fa-arrow-right text-brand-500"></i>
+                                </button>
+                                <button onclick="openWalletModal()" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                                    <span>Top-up Account Wallet</span>
+                                    <i class="fas fa-plus text-brand-500"></i>
+                                </button>
+                                <button onclick="switchDashTab('orders')" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                                    <span>Download Purchased Credentials</span>
+                                    <i class="fas fa-download text-brand-500"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- TAB: MARKETPLACE -->
+                    <div id="dash-tab-marketplace" class="dash-content-tab hidden space-y-6">
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Internal Marketplace</h3>
+                            <p class="text-xs text-slate-500">Full access to verified logs inventory.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB: ORDERS -->
+                    <div id="dash-tab-orders" class="dash-content-tab hidden space-y-6">
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">My Purchased Orders</h3>
+                            <p class="text-xs text-slate-500">View logs history and export format credentials anytime.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB: WALLET -->
+                    <div id="dash-tab-wallet" class="dash-content-tab hidden space-y-6">
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Wallet Management</h3>
+                            <p class="text-xs text-slate-500">Instant deposit via card or crypto.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB: SETTINGS -->
+                    <div id="dash-tab-settings" class="dash-content-tab hidden space-y-6">
+                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Account Settings</h3>
+                            <p class="text-xs text-slate-500">Update security parameters and personal information.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </main>
-  </div>
-</div>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script>
-const firebaseConfig={
-  apiKey:"AIzaSyBqBR_52bRD3JCe2b5YVMvbiYTnY44DxaE",
-  authDomain:"easystores0.firebaseapp.com",
-  projectId:"easystores0",
-  storageBucket:"easystores0.firebasestorage.app",
-  messagingSenderId:"272577987630",
-  appId:"1:272577987630:web:ed21cedf7488588e13cbbf"
-};
-firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
+    <!-- FOOTER -->
+    <footer id="footer" class="bg-dark-bg text-white border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                
+                <div class="col-span-2 md:col-span-1 space-y-4">
+                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white text-sm font-bold">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span class="font-heading font-bold text-lg text-white">EasyStores</span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed">The premier destination for high-authority social account logs and digital marketing assets.</p>
+                </div>
 
-const pages={
-  home:document.getElementById('page-home'),
-  login:document.getElementById('page-login'),
-  signup:document.getElementById('page-signup'),
-  dashboard:document.getElementById('page-dashboard')
-};
-function showPage(n){
-  Object.values(pages).forEach(p=>p.classList.remove('active'));
-  if(pages[n]){
-    pages[n].classList.add('active');
-    window.scrollTo({top:0,behavior:'instant'});
-    document.getElementById('header').style.display=n==='home'?'':'none';
-    if(n==='home')observeSections();
-    if(history.replaceState)history.replaceState(null,'','#'+n);
-  }
-}
-function closeMobileMenu(){document.getElementById('mobileNav').classList.remove('active');}
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Categories</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Gmail Accounts</a></li>
+                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Facebook Business</a></li>
+                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Instagram Aged</a></li>
+                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">TikTok Growth</a></li>
+                    </ul>
+                </div>
 
-document.addEventListener('click',e=>{
-  const page=e.target.closest('[data-page]'),
-        scroll=e.target.closest('[data-scroll]'),
-        tab=e.target.closest('[data-dash-tab]');
-  if(scroll){
-    e.preventDefault();
-    const t=scroll.dataset.scroll;
-    if(document.querySelector('.page-view.active').id!=='page-home')showPage('home');
-    setTimeout(()=>{
-      const el=document.querySelector(t);
-      if(el){el.scrollIntoView({behavior:'smooth'});window.scrollBy(0,-88);}
-    },80);
-    closeMobileMenu();
-    return;
-  }
-  if(tab){
-    e.preventDefault();
-    switchTab(tab.dataset.dashTab);
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('sidebarOverlay').classList.remove('active');
-    return;
-  }
-  if(page){e.preventDefault();showPage(page.dataset.page);closeMobileMenu();}
-});
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Support</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Documentation</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Privacy Guarantee</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Replacement Policy</a></li>
+                    </ul>
+                </div>
 
-function switchTab(t){
-  document.querySelectorAll('.dash-tab').forEach(x=>x.style.display='none');
-  const el=document.getElementById('dash-tab-'+t);
-  if(el)el.style.display='block';
-  document.querySelectorAll('.side-nav a').forEach(a=>a.classList.toggle('active',a.dataset.dashTab===t));
-}
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Contact Direct</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><i class="fas fa-envelope mr-2 text-brand-400"></i>support@easystores.com</li>
+                        <li><i class="fab fa-whatsapp mr-2 text-brand-400"></i>+234 707 582 0202</li>
+                    </ul>
+                </div>
 
-document.getElementById('mobileMenuBtn').onclick=()=>document.getElementById('mobileNav').classList.toggle('active');
-document.getElementById('mobileDashToggle').onclick=()=>{
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sidebarOverlay').classList.add('active');
-};
-document.getElementById('sidebarOverlay').onclick=()=>{
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('active');
-};
-document.getElementById('logoutBtn').onclick=()=>{auth.signOut();showPage('home');};
+            </div>
 
-document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
-  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-  c.classList.add('active');
-  const f=c.dataset.filter;
-  document.querySelectorAll('.product').forEach(p=>p.style.display=(f==='all'||p.dataset.category===f)?'':'none');
-});
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                © 2026 <strong>EasyStores</strong>. All rights reserved. Powered by AP Technologies.
+            </div>
+        </div>
+    </footer>
 
-document.querySelectorAll('.toggle-pass').forEach(b=>b.onclick=()=>{
-  const i=document.getElementById(b.dataset.target);
-  i.type=i.type==='password'?'text':'password';
-  b.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';
-});
+    <!-- BUY MODAL -->
+    <div id="buyModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1" id="modalTitle">Item Checkout</h3>
+            <p class="text-xs text-slate-500 mb-4">Price: <span id="modalPrice" class="font-bold text-brand-500"></span></p>
 
-const pw=document.getElementById('regPassword');
-pw.addEventListener('input',()=>{
-  const v=pw.value;let s=0;
-  if(v.length>=8)s++;
-  if(/[A-Z]/.test(v))s++;
-  if(/[0-9]/.test(v))s++;
-  if(/[^A-Za-z0-9]/.test(v))s++;
-  const bar=document.getElementById('passwordStrength'),
-        fill=document.getElementById('strengthFill'),
-        txt=document.getElementById('strengthText');
-  bar.style.display=v?'block':'none';
-  fill.style.width=(s/4*100)+'%';
-  fill.style.background=['#ef4444','#f59e0b','#eab308','#22c55e'][Math.max(0,s-1)]||'#ef4444';
-  txt.textContent='Password strength: '+['None','Weak','Fair','Good','Strong'][s];
-});
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Quantity</label>
+                    <input type="number" min="1" value="1" class="w-full px-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white">
+                </div>
+                <button onclick="confirmPurchase()" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md">
+                    Confirm & Complete Purchase
+                </button>
+                <button onclick="closeBuyModal()" class="w-full py-2 text-xs font-semibold text-slate-400">Cancel</button>
+            </div>
+        </div>
+    </div>
 
-document.getElementById('confirmPassword').addEventListener('input',e=>{
-  const m=document.getElementById('passwordMatch');
-  m.style.display='block';
-  m.textContent=e.target.value===pw.value?'Passwords match':'Passwords do not match';
-  m.style.color=e.target.value===pw.value?'var(--brand)':'#dc2626';
-});
+    <!-- WALLET MODAL -->
+    <div id="walletModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Fund Wallet Balance</h3>
+            <p class="text-xs text-slate-500 mb-4">Enter amount to top-up instantly.</p>
 
-document.getElementById('loginForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const btn=document.getElementById('loginSubmitBtn');
-  btn.disabled=true;btn.querySelector('.btn-text').textContent='Signing in...';
-  auth.signInWithEmailAndPassword(document.getElementById('loginEmail').value,document.getElementById('loginPassword').value)
-    .then(()=>{setUser('John Doe');showPage('dashboard');})
-    .catch(err=>alert(err.message))
-    .finally(()=>{btn.disabled=false;btn.querySelector('.btn-text').textContent='Sign In to Dashboard';});
-});
+            <div class="space-y-4">
+                <input type="number" placeholder="Enter Amount (₦)" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white">
+                <button onclick="closeWalletModal()" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl">Proceed to Payment</button>
+                <button onclick="closeWalletModal()" class="w-full py-2 text-xs font-semibold text-slate-400">Cancel</button>
+            </div>
+        </div>
+    </div>
 
-document.getElementById('registerForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  if(document.getElementById('regPassword').value!==document.getElementById('confirmPassword').value)return alert('Passwords do not match');
-  const btn=document.getElementById('registerSubmitBtn');
-  btn.disabled=true;btn.querySelector('.btn-text').textContent='Creating account...';
-  auth.createUserWithEmailAndPassword(document.getElementById('regEmail').value,document.getElementById('regPassword').value)
-    .then(()=>{setUser(document.getElementById('fullName').value);showPage('dashboard');})
-    .catch(err=>alert(err.message))
-    .finally(()=>{btn.disabled=false;btn.querySelector('.btn-text').textContent='Create Account';});
-});
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // DARK MODE TOGGLE
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
 
-function setUser(name){
-  const parts=(name||'John Doe').trim().split(' ');
-  document.getElementById('userNameDisplay').textContent=name||'John Doe';
-  document.getElementById('userFirstName').textContent=parts[0]||'John';
-  document.getElementById('userAvatar').textContent=(parts[0][0]||'J')+(parts[1]?.[0]||'').toUpperCase();
-}
+        // MOBILE DRAWER MENU TOGGLE
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('hidden');
+        }
 
-auth.onAuthStateChanged(u=>{if(u){setUser(u.displayName||'John Doe');showPage('dashboard');}});
+        // SINGLE PAGE ROUTING NAVIGATION
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('block');
+            });
 
-const observer=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');}),{threshold:.12});
-function observeSections(){document.querySelectorAll('#page-home section').forEach(s=>observer.observe(s));}
-observeSections();
-window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>10));
-if(location.hash&&pages[location.hash.slice(1)])showPage(location.hash.slice(1));
-</script>
+            const activePage = document.getElementById('page-' + pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+                activePage.classList.add('block');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SMOOTH SCROLL FOR HOME SECTIONS
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // MARKETPLACE CATEGORY FILTERING
+        function filterMarketplace(category, btn) {
+            const buttons = document.querySelectorAll('.chip-btn');
+            buttons.forEach(b => {
+                b.className = "chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200";
+            });
+            btn.className = "chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md";
+
+            const items = document.querySelectorAll('#homeMarketplaceGrid .product-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // PASSWORD STRENGTH CHECKER
+        function checkStrength(val) {
+            const bar = document.getElementById('strengthBar');
+            let strength = 0;
+            if (val.length > 5) strength += 33;
+            if (val.length > 8) strength += 33;
+            if (/[A-Z]/.test(val) && /[0-9]/.test(val)) strength += 34;
+            
+            bar.style.width = strength + '%';
+        }
+
+        // SHOW/HIDE PASSWORD
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        // HANDLERS FOR LOGIN & REGISTER
+        function handleLogin(e) {
+            e.preventDefault();
+            navigateTo('dashboard');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regFullName').value || 'John Doe';
+            document.getElementById('dashGreeting').innerText = name.split(' ')[0];
+            document.getElementById('dashUserDisplay').innerText = name;
+            navigateTo('dashboard');
+        }
+
+        // DASHBOARD TABS SWITCHING
+        function switchDashTab(tabId, btn) {
+            const tabs = document.querySelectorAll('.dash-content-tab');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            const targetTab = document.getElementById('dash-tab-' + tabId);
+            if (targetTab) targetTab.classList.remove('hidden');
+
+            if (btn) {
+                const navBtns = document.querySelectorAll('.dash-tab-btn');
+                navBtns.forEach(b => {
+                    b.className = "dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800";
+                });
+                btn.className = "dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400";
+            }
+        }
+
+        // BUY MODAL LOGIC
+        function openBuyModal(title, price) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('buyModal').classList.remove('hidden');
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buyModal').classList.add('hidden');
+        }
+
+        function confirmPurchase() {
+            closeBuyModal();
+            navigateTo('dashboard');
+        }
+
+        // WALLET MODAL LOGIC
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.remove('hidden');
+        }
+
+        function closeWalletModal() {
+            document.getElementById('walletModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
