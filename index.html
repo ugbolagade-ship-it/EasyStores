@@ -1,1040 +1,829 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="EasyStores - Premium verified social account logs & digital solutions for modern marketers." />
-    <title>EasyStores | Premium Social Account Logs & Solutions</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="EasyStores - Premium verified social account logs & digital solutions for modern marketers." />
+  <title>EasyStores | Premium Social Account Logs & Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ======================= GLOBAL ======================= */
+    :root {
+      --charcoal-900: #0D0D0D; --charcoal-800: #1A1A1A; --charcoal-700: #2A2A2A;
+      --charcoal-600: #3D3D3D; --charcoal-500: #555555; --charcoal-400: #777777;
+      --charcoal-300: #999999; --charcoal-200: #BBBBBB; --charcoal-100: #E0E0E0;
+      --lime-600: #A8D500; --lime-500: #C4F000; --lime-400: #D4FF33;
+      --lime-300: #E2FF80; --lime-200: #F0FFC2; --lime-100: #F7FFE0;
+      --off-white: #F7F5F0; --off-white-dark: #EDEBE4; --white: #FFFFFF;
+      --text-primary: #0D0D0D; --text-secondary: #555555; --text-muted: #999999;
+      --border-light: #E0DDD6;
+      --shadow-sm: 0 2px 8px rgba(13, 13, 13, 0.04);
+      --shadow-md: 0 8px 24px rgba(13, 13, 13, 0.08);
+      --shadow-lg: 0 16px 48px rgba(13, 13, 13, 0.12);
+      --shadow-xl: 0 24px 64px rgba(13, 13, 13, 0.16);
+      --shadow-lime: 0 12px 36px rgba(168, 213, 0, 0.25);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px;
+      --radius-xl: 30px; --radius-full: 100px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary); background-color: var(--off-white);
+      line-height: 1.65; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.03em; color: var(--charcoal-900);
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        },
-                        dark: {
-                            bg: '#090d16',
-                            card: '#111827',
-                            border: '#1f2937',
-                            hover: '#1e293b'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Space Grotesk', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-8px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    /* Page Routing */
+    .page-view { display: none; }
+    .page-view.active { display: block; }
 
-    <!-- FontAwesome & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    /* ======================= BUTTONS ======================= */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 34px; border-radius: var(--radius-full);
+      font-family: 'Syne', sans-serif; font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: var(--transition); border: 2px solid transparent;
+      text-align: center; white-space: nowrap; position: relative;
+      overflow: hidden; letter-spacing: 0.01em;
+    }
+    .btn-dark { background: var(--charcoal-900); color: var(--off-white); border-color: var(--charcoal-900); }
+    .btn-dark:hover { background: var(--charcoal-700); border-color: var(--charcoal-700); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .btn-lime { background: var(--lime-500); color: var(--charcoal-900); border-color: var(--lime-500); box-shadow: var(--shadow-lime); }
+    .btn-lime:hover { background: var(--lime-400); border-color: var(--lime-400); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(168, 213, 0, 0.35); }
+    .btn-outline { background: transparent; color: var(--charcoal-800); border: 2px solid var(--charcoal-200); }
+    .btn-outline:hover { border-color: var(--charcoal-900); background: var(--charcoal-900); color: var(--off-white); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .btn-sm { padding: 12px 24px; font-size: 13px; }
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .glass-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .dark .glass-header {
-            background: rgba(9, 13, 22, 0.85);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(0,0,0,0.15);
-            border-radius: 99px;
-        }
-        .badge-glow {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
-        }
-    </style>
+    /* ======================= HEADER ======================= */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(247, 245, 240, 0.9);
+      backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(13, 13, 13, 0.05); transition: var(--transition);
+    }
+    header.scrolled { background: rgba(247, 245, 240, 0.98); box-shadow: var(--shadow-sm); border-bottom-color: rgba(13, 13, 13, 0.08); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+    .logo {
+      display: flex; align-items: center; font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 24px; color: var(--charcoal-900); letter-spacing: -0.04em;
+      cursor: pointer;
+    }
+    .logo span { color: var(--lime-600); }
+    .logo-dot { color: var(--lime-600); font-size: 30px; margin-left: 2px; line-height: 1; }
+    .nav-links { display: flex; list-style: none; gap: 36px; }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+      position: relative; padding: 8px 0; color: var(--text-secondary); transition: var(--transition);
+      cursor: pointer;
+    }
+    .nav-links a:hover { color: var(--lime-600); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--lime-600); transition: var(--transition); border-radius: 2px;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-btns { display: flex; gap: 12px; }
+    .mobile-menu-btn {
+      display: none; font-size: 22px; cursor: pointer; color: var(--charcoal-900);
+      background: transparent; border: 2px solid var(--border-light);
+      padding: 10px 14px; border-radius: var(--radius-sm); transition: var(--transition);
+    }
+    .mobile-menu-btn:hover { border-color: var(--lime-600); color: var(--lime-600); }
+    .mobile-nav {
+      display: none; position: fixed; top: 76px; left: 0; width: 100%;
+      background: var(--off-white); box-shadow: var(--shadow-lg); z-index: 999;
+      padding: 24px; flex-direction: column; gap: 8px;
+      border-top: 1px solid var(--border-light); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a {
+      padding: 14px 18px; color: var(--text-secondary);
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+      border-radius: var(--radius-sm); transition: var(--transition);
+      cursor: pointer;
+    }
+    .mobile-nav a:hover { background: var(--off-white-dark); color: var(--lime-600); }
+    .mobile-nav .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* ======================= LANDING PAGE ======================= */
+    .hero { padding: 170px 0 120px; background: var(--off-white); position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+      background: radial-gradient(circle at 70% 40%, rgba(196, 240, 0, 0.08) 0%, transparent 60%); pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 40%; height: 60%;
+      background: radial-gradient(circle at 30% 80%, rgba(13, 13, 13, 0.03) 0%, transparent 60%); pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 60px; position: relative; z-index: 2; }
+    .hero-content h1 { font-size: 62px; font-weight: 800; margin-bottom: 24px; color: var(--charcoal-900); line-height: 1.05; letter-spacing: -0.04em; }
+    .hero-content h1 span { color: var(--lime-600); position: relative; display: inline-block; }
+    .hero-content h1 span::after {
+      content: ''; position: absolute; bottom: 6px; left: 0; width: 100%; height: 14px;
+      background: rgba(196, 240, 0, 0.25); z-index: -1; border-radius: 4px;
+    }
+    .hero-content p { font-size: 18px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 36px; max-width: 520px; font-weight: 400; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 520px; }
+    .stat-item { position: relative; padding-left: 16px; }
+    .stat-item::before {
+      content: ''; position: absolute; left: 0; top: 4px; width: 3px; height: 44px;
+      background: var(--lime-500); border-radius: 3px;
+    }
+    .stat-number { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--charcoal-900); line-height: 1; margin-bottom: 4px; letter-spacing: -0.03em; }
+    .stat-text { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .hero-image { position: relative; }
+    .hero-image-wrapper {
+      border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl);
+      transition: var(--transition); position: relative; border: 1px solid rgba(13, 13, 13, 0.06);
+    }
+    .hero-image-wrapper::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(196, 240, 0, 0.1) 0%, transparent 100%); z-index: 1;
+    }
+    .hero-image-wrapper:hover { transform: translateY(-10px) scale(1.01); box-shadow: 0 36px 90px rgba(13, 13, 13, 0.2); }
+    .hero-image img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+    .hero-image-wrapper:hover img { transform: scale(1.05); }
+    .hero-badge {
+      position: absolute; top: -14px; right: -14px; background: var(--lime-500); color: var(--charcoal-900);
+      padding: 14px 24px; border-radius: var(--radius-full); font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 12px; box-shadow: var(--shadow-lime);
+      animation: float 4s ease-in-out infinite; z-index: 2; display: flex; align-items: center; gap: 8px;
+      letter-spacing: 0.02em;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    section { padding: 120px 0; opacity: 1; transform: translateY(0); }
+    .section-header { text-align: center; margin-bottom: 64px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .section-label {
+      display: inline-block; padding: 8px 18px; background: var(--lime-100); color: var(--charcoal-800);
+      border-radius: var(--radius-full); font-family: 'Syne', sans-serif; font-size: 11px;
+      font-weight: 700; margin-bottom: 20px; text-transform: uppercase;
+      letter-spacing: 0.1em; border: 1px solid var(--lime-300);
+    }
+    .section-header h2 { font-size: 42px; font-weight: 800; color: var(--charcoal-900); margin-bottom: 16px; line-height: 1.1; }
+    .section-header p { color: var(--text-secondary); font-size: 17px; line-height: 1.7; font-weight: 400; }
+
+    .services { background: var(--off-white); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 40px 32px;
+      transition: var(--transition); text-align: center; border: 1px solid var(--border-light);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: var(--lime-500); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .service-icon {
+      width: 80px; height: 80px; background: var(--off-white); border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+      font-size: 32px; color: var(--charcoal-900); transition: var(--transition-bounce);
+      border: 1px solid var(--border-light);
+    }
+    .service-card:hover .service-icon { transform: scale(1.08) rotate(-4deg); background: var(--lime-500); color: var(--charcoal-900); border-color: var(--lime-500); }
+    .service-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--charcoal-900); font-weight: 700; }
+    .service-card p { color: var(--text-secondary); margin-bottom: 24px; font-size: 14px; line-height: 1.7; }
+
+    .marketplace { background: var(--white); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
+    .product-card {
+      background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid var(--border-light);
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .product-image { height: 190px; overflow: hidden; position: relative; background: var(--off-white); }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .product-card:hover .product-image img { transform: scale(1.1); }
+    .product-header { padding: 24px 24px 10px; text-align: center; }
+    .product-card h3 { font-size: 18px; margin-bottom: 8px; color: var(--charcoal-900); font-weight: 700; }
+    .product-price { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: var(--charcoal-900); letter-spacing: -0.02em; }
+    .product-body { padding: 0 24px 24px; text-align: center; }
+
+    /* ======================= AUTH PAGES ======================= */
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 60px;
+      position: relative;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+    .auth-page::before {
+      content: ''; position: fixed; top: -20%; right: -15%; width: 60%; height: 90%;
+      background: radial-gradient(circle at center, rgba(196, 240, 0, 0.12) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .auth-page::after {
+      content: ''; position: fixed; bottom: -20%; left: -15%; width: 50%; height: 80%;
+      background: radial-gradient(circle at center, rgba(13, 13, 13, 0.04) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .auth-page .auth-page-inner {
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      z-index: 2;
+    }
+    .auth-page.signup .auth-page-inner { max-width: 480px; }
+
+    .auth-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: var(--lime-500);
+    }
+
+    .brand-home { display: flex; justify-content: center; margin-bottom: 28px; }
+
+    .auth-header { text-align: center; margin-bottom: 24px; }
+    .auth-header .logo-circle {
+      width: 68px; height: 68px; background: var(--charcoal-900);
+      border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
+    }
+    .auth-header .logo-circle i { font-size: 28px; color: var(--lime-500); position: relative; z-index: 2; }
+    .auth-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: var(--charcoal-900); margin-bottom: 6px; }
+    .auth-subtitle { font-size: 14px; color: var(--text-muted); }
+
+    .auth-form .form-group { margin-bottom: 18px; }
+    .auth-form .form-label {
+      display: block; margin-bottom: 6px; color: var(--text-primary);
+      font-size: 12px; font-weight: 600; font-family: 'Syne', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .input-wrapper {
+      position: relative; border-radius: var(--radius-md);
+      border: 2px solid var(--border-light); transition: var(--transition);
+      background: var(--white);
+    }
+    .input-wrapper:hover { border-color: var(--charcoal-300); }
+    .input-wrapper:focus-within {
+      border-color: var(--lime-500);
+      box-shadow: 0 0 0 4px rgba(196, 240, 0, 0.12);
+    }
+    .input-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 14px; transition: var(--transition);
+    }
+    .input-wrapper:focus-within .input-icon { color: var(--lime-600); }
+    .form-control {
+      width: 100%; padding: 13px 14px 13px 44px; border: none;
+      background: transparent; font-size: 14px; color: var(--text-primary);
+      outline: none; border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+    }
+    .form-control::placeholder { color: var(--text-muted); opacity: 0.7; }
+    
+    .btn-auth {
+      width: 100%; padding: 16px; background: var(--charcoal-900);
+      color: var(--off-white); border: none; border-radius: var(--radius-md);
+      font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif;
+      cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-md);
+      letter-spacing: 0.02em; margin-top: 8px;
+    }
+    .btn-auth:hover { background: var(--charcoal-700); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+    .auth-switch {
+      text-align: center; margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid var(--border-light);
+      font-size: 13px; color: var(--text-secondary);
+    }
+    .auth-switch a { color: var(--lime-600); font-weight: 700; text-decoration: none; margin-left: 4px; transition: var(--transition); cursor: pointer; }
+    .auth-switch a:hover { color: var(--lime-500); }
+
+    .security-badge {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 18px; padding: 12px 14px; background: var(--lime-100);
+      border-radius: var(--radius-md); border: 1px solid var(--lime-300);
+      font-size: 11px; color: var(--text-secondary);
+    }
+    .security-badge i { color: var(--lime-600); font-size: 13px; }
+
+    .back-home { text-align: center; margin-top: 24px; }
+    .back-home a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-secondary); font-size: 13px; font-weight: 600;
+      padding: 10px 18px; border-radius: var(--radius-full);
+      background: var(--white); border: 1px solid var(--border-light);
+      transition: var(--transition); cursor: pointer;
+    }
+    .back-home a:hover { color: var(--charcoal-900); border-color: var(--lime-500); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ======================= DASHBOARD ======================= */
+    .dashboard-page { display: flex; min-height: 100vh; background: var(--off-white); }
+    .sidebar {
+      width: 260px; background: var(--charcoal-900); color: var(--off-white);
+      padding: 28px 20px; display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: var(--transition);
+    }
+    .sidebar-brand {
+      display: flex; align-items: center; font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 22px; color: var(--off-white);
+      letter-spacing: -0.04em; padding: 0 8px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 24px; cursor: pointer;
+    }
+    .sidebar-brand span { color: var(--lime-400); }
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      border-radius: var(--radius-sm); color: rgba(247, 245, 240, 0.6);
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
+      transition: var(--transition); cursor: pointer;
+    }
+    .sidebar-nav li a:hover, .sidebar-nav li a.active { background: rgba(196, 240, 0, 0.12); color: var(--lime-400); }
+    .sidebar-user {
+      padding: 16px; background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sidebar-user .avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--lime-500);
+      color: var(--charcoal-900); display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; flex-shrink: 0;
+    }
+    .sidebar-user .user-info { flex: 1; min-width: 0; }
+    .sidebar-user .user-info .name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; color: var(--off-white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-user .user-info .plan { font-size: 11px; color: var(--lime-400); font-weight: 500; }
+    .sidebar-user .logout-btn {
+      background: none; border: none; color: rgba(247, 245, 240, 0.5);
+      cursor: pointer; font-size: 14px; padding: 4px; transition: var(--transition);
+    }
+    .sidebar-user .logout-btn:hover { color: var(--lime-400); }
+    
+    .dashboard-main { flex: 1; margin-left: 260px; padding: 32px 40px 60px; min-height: 100vh; }
+    .dashboard-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .dashboard-topbar h1 { font-size: 30px; font-weight: 800; color: var(--charcoal-900); }
+    .dashboard-topbar h1 span { color: var(--lime-600); }
+    
+    .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 32px; }
+    .dash-stat-card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 24px;
+      border: 1px solid var(--border-light); transition: var(--transition);
+    }
+    .dash-stat-card .stat-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-md);
+      background: var(--lime-100); color: var(--lime-600);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px;
+    }
+    .dash-stat-card .stat-value { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--charcoal-900); line-height: 1; margin-bottom: 6px; }
+    .dash-stat-card .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    
+    .dash-panel { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 28px; margin-bottom: 32px; }
+    .dash-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .dash-panel-header h2 { font-size: 20px; font-weight: 700; color: var(--charcoal-900); }
+    .dash-table { width: 100%; border-collapse: collapse; }
+    .dash-table th { text-align: left; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
+    .dash-table td { padding: 14px 12px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border-light); }
+    .dash-table .badge { display: inline-block; padding: 4px 12px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; }
+    .badge-completed { background: var(--lime-100); color: var(--lime-600); }
+
+    /* ======================= RESPONSIVE ======================= */
+    @media (max-width: 1100px) {
+      .hero-grid { gap: 50px; } .hero-content h1 { font-size: 52px; } .section-header h2 { font-size: 38px; }
+    }
+    @media (max-width: 900px) {
+      .hero { padding: 150px 0 100px; } .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .hero-content { text-align: center; } .hero-content h1 { font-size: 44px; }
+      .hero-content p { margin-left: auto; margin-right: auto; } .hero-btns { justify-content: center; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 0 auto; }
+      .hero-badge { top: -10px; right: -10px; padding: 12px 20px; font-size: 11px; }
+      .sidebar { transform: translateX(-100%); width: 260px; }
+      .sidebar.open { transform: translateX(0); }
+      .dashboard-main { margin-left: 0; padding: 20px; }
+    }
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: block; } .nav-links, .nav-btns { display: none; }
+      .section-header h2 { font-size: 32px; } section { padding: 80px 0; }
+      .services-grid, .products-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 36px; } .hero-content p { font-size: 16px; }
+      .stat-number { font-size: 30px; }
+      .form-grid { grid-template-columns: 1fr; gap: 0; }
+      .auth-card { padding: 36px 24px; }
+    }
+    @media (max-width: 520px) {
+      .container { padding: 0 20px; } .hero { padding: 130px 0 80px; } .hero-content h1 { font-size: 30px; }
+      .hero-btns { flex-direction: column; align-items: stretch; } .hero-btns .btn { width: 100%; }
+      .hero-stats { grid-template-columns: 1fr; gap: 14px; } .stat-item { padding-left: 14px; }
+      .section-header h2 { font-size: 26px; } .section-header p { font-size: 15px; }
+      .auth-card { padding: 32px 22px; border-radius: var(--radius-lg); } .auth-title { font-size: 22px; }
+    }
+  </style>
 </head>
-<body class="bg-slate-50 dark:bg-dark-bg text-slate-800 dark:text-slate-100 transition-colors duration-200 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            
-            <!-- Brand Logo -->
-            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white text-lg shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <span class="font-heading font-bold text-xl tracking-tight text-slate-900 dark:text-white">
-                    Easy<span class="text-brand-500">Stores</span>
-                </span>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-800/50 p-1.5 rounded-full border border-slate-200/60 dark:border-slate-700/50">
-                <a href="#home" onclick="navigateTo('home'); scrollToSection('home')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Home</a>
-                <a href="#services" onclick="navigateTo('home'); scrollToSection('services')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Logs Services</a>
-                <a href="#solutions" onclick="navigateTo('home'); scrollToSection('solutions')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Solutions</a>
-                <a href="#marketplace" onclick="navigateTo('home'); scrollToSection('marketplace')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Marketplace</a>
-                <a href="#footer" onclick="navigateTo('home'); scrollToSection('footer')" class="nav-link px-4 py-2 text-xs font-semibold rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">Contact</a>
-            </nav>
-
-            <!-- Nav Action Buttons -->
-            <div class="hidden md:flex items-center gap-3">
-                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 flex items-center justify-center transition-colors">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
-                </button>
-                <button onclick="navigateTo('login')" class="px-5 py-2.5 text-xs font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
-                    Sign In
-                </button>
-                <button onclick="navigateTo('signup')" class="px-5 py-2.5 text-xs font-bold rounded-xl text-white bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
-                    <span>Get Started</span>
-                    <i class="fas fa-arrow-right text-[10px]"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <div class="flex items-center gap-2 md:hidden">
-                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
-                </button>
-                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 flex items-center justify-center">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
-            </div>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a class="logo" data-page="home">Easy<span>Stores</span><span class="logo-dot">.</span></a>
+        <ul class="nav-links">
+          <li><a data-page="home" data-scroll="#home">Home</a></li>
+          <li><a data-page="home" data-scroll="#services">Services</a></li>
+          <li><a data-page="home" data-scroll="#marketplace">Marketplace</a></li>
+        </ul>
+        <div class="nav-btns">
+          <a class="btn btn-outline btn-sm" data-page="login">Login</a>
+          <a class="btn btn-lime btn-sm" data-page="signup">Get Started</a>
         </div>
-
-        <!-- Mobile Drawer Menu -->
-        <div id="mobileNav" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3">
-            <a href="#home" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
-            <a href="#services" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Logs Services</a>
-            <a href="#solutions" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Solutions</a>
-            <a href="#marketplace" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Marketplace</a>
-            <a href="#footer" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
-                <button onclick="navigateTo('login'); toggleMobileMenu();" class="w-full py-3 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800">Sign In</button>
-                <button onclick="navigateTo('signup'); toggleMobileMenu();" class="w-full py-3 text-sm font-bold rounded-xl text-white bg-brand-600">Get Started</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTAINER -->
-    <main class="flex-grow">
-
-        <!-- PAGE: HOME -->
-        <div id="page-home" class="page-view block transition-opacity duration-300">
-            
-            <!-- Hero Section -->
-            <section id="home" class="relative pt-12 pb-20 md:py-28 overflow-hidden">
-                <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute top-1/2 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                            
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/50 border border-brand-200 dark:border-brand-800/60 text-brand-700 dark:text-brand-300 text-xs font-bold tracking-wide">
-                                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                                <span>#1 Verified Social Account Provider</span>
-                            </div>
-
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-                                Premium <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-400">Social Account Logs</span> for Growth
-                            </h1>
-
-                            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                                Access aged, fully-verified social media logs across top platforms. Instant automated delivery, 100% replacement warranty, and enterprise-grade reliability for marketers worldwide.
-                            </p>
-
-                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
-                                <button onclick="navigateTo('signup')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold text-sm shadow-xl shadow-brand-500/30 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3">
-                                    <i class="fas fa-rocket"></i>
-                                    <span>Explore Inventory</span>
-                                </button>
-                                <button onclick="scrollToSection('services')" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-sm transition-all flex items-center justify-center gap-2">
-                                    <span>Learn More</span>
-                                    <i class="fas fa-chevron-down text-xs opacity-70"></i>
-                                </button>
-                            </div>
-
-                            <!-- Trust Badges -->
-                            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80 dark:border-slate-800/80 max-w-lg mx-auto lg:mx-0">
-                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
-                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">50K+</span>
-                                    <span class="text-xs text-slate-500 font-medium">Active Logs</span>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
-                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">99.9%</span>
-                                    <span class="text-xs text-slate-500 font-medium">Uptime Guarantee</span>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white dark:bg-dark-card border border-slate-100 dark:border-slate-800/80 text-center shadow-sm">
-                                    <span class="block text-2xl font-bold font-heading text-slate-900 dark:text-white">24/7</span>
-                                    <span class="text-xs text-slate-500 font-medium">Instant Support</span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Hero Graphic / Card -->
-                        <div class="lg:col-span-5 relative">
-                            <div class="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-dark-card shadow-2xl p-3">
-                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="EasyStores Digital Platform" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
-                                
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white rounded-2xl">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <span class="px-2.5 py-1 rounded-md bg-brand-500 text-white text-[10px] font-extrabold tracking-wider uppercase">Verified Stock</span>
-                                            <h3 class="text-lg font-bold font-heading mt-1">High-Authority Logs</h3>
-                                        </div>
-                                        <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-                                            <i class="fas fa-shield-check text-brand-400 text-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Floating Floating Card -->
-                            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xl flex items-center gap-4 animate-float">
-                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
-                                    <i class="fas fa-circle-check"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Automated Delivery</div>
-                                    <div class="text-sm font-bold text-slate-900 dark:text-white">Instant CSV Access</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- SERVICES SECTION -->
-            <section id="services" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-16">
-                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Premium Selection</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Verified Account Collections</h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">High-trust, aged logs carefully tested for maximum stability and instant deployment.</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <!-- Card 1 -->
-                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Gmail & Google Logs</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Fully phone-verified Gmail accounts with recovery email included. Ideal for cold outreach and SaaS automation.</p>
-                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
-                                <span>View Category</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-facebook"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Facebook / Meta Ads</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Aged personal profiles, high-limit Business Managers, and active ad accounts ready for ad scaling.</p>
-                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
-                                <span>View Category</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-8 hover:border-brand-500/50 hover:shadow-xl transition-all duration-300">
-                            <div class="w-14 h-14 rounded-2xl bg-pink-500/10 text-pink-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Instagram & TikTok</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Established social logs with authentic history, suitable for organic growth, branding, and influencer networks.</p>
-                            <button onclick="navigateTo('signup')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 group-hover:gap-3 transition-all">
-                                <span>View Category</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SOLUTIONS SECTION -->
-            <section id="solutions" class="py-20 bg-dark-bg text-white relative overflow-hidden">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center max-w-2xl mx-auto mb-16">
-                        <span class="px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold uppercase tracking-wider">Enterprise Tools</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Built for High-Scale Digital Operations</h2>
-                        <p class="text-slate-400 text-sm sm:text-base mt-3">We provide the technical backbone for marketers, agencies, and automation experts.</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
-                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2">Bulk API & CSV Exports</h3>
-                            <p class="text-slate-400 text-sm">Download large inventory batches instantly with standard cookie formats, 2FA tokens, and recovery keys.</p>
-                        </div>
-
-                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
-                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
-                                <i class="fas fa-heart-pulse"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2">Pre-Check Health Assurance</h3>
-                            <p class="text-slate-400 text-sm">Automated ping verification ensures session validity right before delivery so you never get dead logs.</p>
-                        </div>
-
-                        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md">
-                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-6">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2">Anti-Detect Compatibility</h3>
-                            <p class="text-slate-400 text-sm">Fully compatible with Dolphin Anty, AdsPower, Multilogin, and standard browser proxy setups.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- HOW IT WORKS -->
-            <section class="py-20">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-16">
-                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Simple Workflow</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Get Started in 3 Easy Steps</h2>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg">1</div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Create Account</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">Sign up for free in under 30 seconds to access our live inventory catalog.</p>
-                        </div>
-
-                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-500/30">2</div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Select & Pay</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">Choose desired logs, select quantity, and pay securely via instant wallet funding.</p>
-                        </div>
-
-                        <div class="relative bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-8 rounded-2xl text-center">
-                            <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-lg">3</div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Instant Access</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">Credentials & cookies are unlocked immediately on your dashboard for download.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- MARKETPLACE SECTION -->
-            <section id="marketplace" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-                        <div>
-                            <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Live Inventory</span>
-                            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Explore Marketplace</h2>
-                        </div>
-
-                        <!-- Category Filters -->
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button onclick="filterMarketplace('all', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md">All Logs</button>
-                            <button onclick="filterMarketplace('gmail', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Gmail</button>
-                            <button onclick="filterMarketplace('facebook', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Facebook</button>
-                            <button onclick="filterMarketplace('instagram', this)" class="chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200">Instagram</button>
-                        </div>
-                    </div>
-
-                    <!-- Marketplace Grid -->
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="homeMarketplaceGrid">
-                        <!-- Item 1 -->
-                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="facebook">
-                            <div class="relative h-48 overflow-hidden bg-slate-900">
-                                <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="FB Ads Account" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                                <span class="absolute top-3 right-3 bg-brand-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Verified</span>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Facebook Ads Account</h3>
-                                <p class="text-slate-500 text-xs mb-4">Aged 2021+ Account, High limit BM ready with cookie logs.</p>
-                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
-                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦2,500</div>
-                                    <button onclick="openBuyModal('Facebook Ads Account', '₦2,500')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span>Buy Now</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="instagram">
-                            <div class="relative h-48 overflow-hidden bg-slate-900">
-                                <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="IG Aged Logs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                                <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Hot Deal</span>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Instagram Aged Logs</h3>
-                                <p class="text-slate-500 text-xs mb-4">500+ Organic Followers, Aged 2+ Years with Original Mail.</p>
-                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
-                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦2,200</div>
-                                    <button onclick="openBuyModal('Instagram Aged Logs', '₦2,200')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span>Buy Now</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="product-item group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all" data-category="gmail">
-                            <div class="relative h-48 overflow-hidden bg-slate-900">
-                                <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bulk Gmail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                                <span class="absolute top-3 right-3 bg-blue-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">Bulk Pack</span>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Bulk Gmail (10 Pack)</h3>
-                                <p class="text-slate-500 text-xs mb-4">Phone verified, recovery added, immediate CSV download.</p>
-                                <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-4">
-                                    <div class="text-xl font-bold font-heading text-slate-900 dark:text-white">₦12,000</div>
-                                    <button onclick="openBuyModal('Bulk Gmail (10 Pack)', '₦12,000')" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span>Buy Now</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-12">
-                        <button onclick="navigateTo('signup')" class="px-8 py-3.5 bg-slate-900 dark:bg-slate-800 hover:bg-black text-white text-xs font-bold rounded-xl transition-all">
-                            View Full Inventory Marketplace →
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TESTIMONIALS -->
-            <section class="py-20">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-16">
-                        <span class="text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">Social Proof</span>
-                        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Trusted by 10,000+ Marketers</h2>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl shadow-sm">
-                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-4">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">"EasyStores provided top-tier Gmail and Instagram logs that exceeded my expectations. The accounts are stable, support is instant, and it boosted my outreach campaigns massively."</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Daniel" class="w-12 h-12 rounded-full object-cover">
-                                <div>
-                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Daniel Okoro</h4>
-                                    <span class="text-xs text-slate-500">Digital Strategist</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl shadow-sm">
-                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-4">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm italic mb-6">"Best decision for my agency! EasyStores saved us countless hours with their aged Instagram logs. Our client engagement skyrocketed, and the quality is consistently excellent."</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael" class="w-12 h-12 rounded-full object-cover">
-                                <div>
-                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Michael Okafor</h4>
-                                    <span class="text-xs text-slate-500">Social Media Manager</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA SECTION -->
-            <section class="py-20 bg-gradient-to-br from-slate-900 via-dark-bg to-slate-950 text-white relative overflow-hidden">
-                <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Ready to Scale Your Digital Reach?</h2>
-                    <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-8">Join thousands of businesses relying on EasyStores for verified account logs and social infrastructure.</p>
-                    <button onclick="navigateTo('signup')" class="px-8 py-4 bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm rounded-xl shadow-xl shadow-brand-500/25 transition-all">
-                        Create Free Account Now
-                    </button>
-                </div>
-            </section>
-
-        </div>
-
-        <!-- PAGE: LOGIN -->
-        <div id="page-login" class="page-view hidden py-16 px-4">
-            <div class="max-w-md mx-auto bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl">
-                <div class="text-center mb-8">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fas fa-user-lock"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h2>
-                    <p class="text-xs text-slate-500 mt-1">Sign in to your EasyStores dashboard</p>
-                </div>
-
-                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email or Username</label>
-                        <div class="relative">
-                            <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input type="email" required placeholder="name@example.com" class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Password</label>
-                        <div class="relative">
-                            <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input type="password" required id="loginPass" placeholder="••••••••" class="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                            <button type="button" onclick="togglePass('loginPass')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs p-1">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs">
-                        <label class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-400">
-                            <input type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
-                            <span>Remember me</span>
-                        </label>
-                        <a href="javascript:void(0)" class="text-brand-600 dark:text-brand-400 font-bold">Forgot password?</a>
-                    </div>
-
-                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all">
-                        Sign In to Account
-                    </button>
-                </form>
-
-                <div class="mt-6 text-center text-xs text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4">
-                    Don't have an account? <a href="javascript:void(0)" onclick="navigateTo('signup')" class="text-brand-600 dark:text-brand-400 font-bold">Create one</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE: SIGNUP -->
-        <div id="page-signup" class="page-view hidden py-16 px-4">
-            <div class="max-w-lg mx-auto bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl">
-                <div class="text-center mb-8">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Create EasyStores Account</h2>
-                    <p class="text-xs text-slate-500 mt-1">Join over 10,000 active members</p>
-                </div>
-
-                <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4">
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name *</label>
-                            <input type="text" id="regFullName" required placeholder="John Doe" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">WhatsApp Phone *</label>
-                            <input type="tel" required placeholder="+234 800 000 0000" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                        </div>
-                    </div>
-
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Username *</label>
-                            <input type="text" required placeholder="johndoe" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address *</label>
-                            <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Password *</label>
-                        <div class="relative">
-                            <input type="password" required id="regPass" oninput="checkStrength(this.value)" placeholder="••••••••" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 dark:text-white">
-                            <button type="button" onclick="togglePass('regPass')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs p-1">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                        <!-- Strength Meter -->
-                        <div class="h-1 bg-slate-200 dark:bg-slate-800 rounded-full mt-2 overflow-hidden">
-                            <div id="strengthBar" class="h-full w-0 bg-brand-500 transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <div class="text-xs text-slate-500">
-                        <label class="flex items-start gap-2 cursor-pointer">
-                            <input type="checkbox" required class="mt-0.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
-                            <span>I agree to the Terms of Service & Privacy Policy. I am at least 18 years old.</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all">
-                        Register Account
-                    </button>
-                </form>
-
-                <div class="mt-6 text-center text-xs text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4">
-                    Already have an account? <a href="javascript:void(0)" onclick="navigateTo('login')" class="text-brand-600 dark:text-brand-400 font-bold">Sign In</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE: DASHBOARD -->
-        <div id="page-dashboard" class="page-view hidden">
-            <div class="flex min-h-[calc(100vh-80px)]">
-                
-                <!-- Sidebar Nav -->
-                <aside id="dashSidebar" class="w-64 bg-white dark:bg-dark-card border-r border-slate-200 dark:border-slate-800 p-6 flex-col justify-between hidden md:flex">
-                    <div class="space-y-6">
-                        <div class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Navigation</div>
-                        <nav class="space-y-1.5">
-                            <button onclick="switchDashTab('overview', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400">
-                                <i class="fas fa-chart-pie"></i>
-                                <span>Overview</span>
-                            </button>
-                            <button onclick="switchDashTab('marketplace', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-                                <i class="fas fa-store"></i>
-                                <span>Marketplace</span>
-                            </button>
-                            <button onclick="switchDashTab('orders', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-                                <i class="fas fa-receipt"></i>
-                                <span>My Orders</span>
-                                <span class="ml-auto bg-brand-500 text-white text-[10px] px-2 py-0.5 rounded-full">3</span>
-                            </button>
-                            <button onclick="switchDashTab('wallet', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-                                <i class="fas fa-wallet"></i>
-                                <span>Wallet</span>
-                            </button>
-                            <button onclick="switchDashTab('settings', this)" class="dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-                                <i class="fas fa-gear"></i>
-                                <span>Settings</span>
-                            </button>
-                        </nav>
-                    </div>
-
-                    <!-- User Footer Box -->
-                    <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-brand-500 text-white font-bold text-xs flex items-center justify-center">JD</div>
-                            <div class="text-left">
-                                <div id="dashUserDisplay" class="text-xs font-bold text-slate-900 dark:text-white">John Doe</div>
-                                <div class="text-[10px] text-brand-500 font-semibold">Verified Member</div>
-                            </div>
-                        </div>
-                        <button onclick="navigateTo('login')" class="text-slate-400 hover:text-red-500 transition-colors">
-                            <i class="fas fa-right-from-bracket text-sm"></i>
-                        </button>
-                    </div>
-                </aside>
-
-                <!-- Dashboard Content Main -->
-                <div class="flex-1 p-6 md:p-10 bg-slate-50 dark:bg-dark-bg">
-                    
-                    <!-- Top Bar -->
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-                        <div>
-                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome, <span id="dashGreeting" class="text-brand-500">John</span> 👋</h1>
-                            <p class="text-xs text-slate-500">Here is what's happening with your inventory today.</p>
-                        </div>
-                        <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <button onclick="openWalletModal()" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-2">
-                                <i class="fas fa-[#+] fa-plus"></i>
-                                <span>Fund Wallet</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- TAB: OVERVIEW -->
-                    <div id="dash-tab-overview" class="dash-content-tab space-y-8">
-                        
-                        <!-- Metric Cards Grid -->
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
-                                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-base mb-4">
-                                    <i class="fas fa-bag-shopping"></i>
-                                </div>
-                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">24</div>
-                                <div class="text-xs text-slate-500 mt-1">Total Purchases</div>
-                            </div>
-
-                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
-                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-base mb-4">
-                                    <i class="fas fa-wallet"></i>
-                                </div>
-                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">₦48,500</div>
-                                <div class="text-xs text-slate-500 mt-1">Wallet Balance</div>
-                            </div>
-
-                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
-                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-base mb-4">
-                                    <i class="fas fa-key"></i>
-                                </div>
-                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">18</div>
-                                <div class="text-xs text-slate-500 mt-1">Active Logs</div>
-                            </div>
-
-                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl shadow-sm">
-                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-base mb-4">
-                                    <i class="fas fa-shield-halved"></i>
-                                </div>
-                                <div class="text-2xl font-bold font-heading text-slate-900 dark:text-white">100%</div>
-                                <div class="text-xs text-slate-500 mt-1">Warranty Active</div>
-                            </div>
-                        </div>
-
-                        <!-- Orders Table & Quick Panel Grid -->
-                        <div class="grid lg:grid-cols-3 gap-8">
-                            
-                            <!-- Table -->
-                            <div class="lg:col-span-2 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm">
-                                <h3 class="font-bold text-base text-slate-900 dark:text-white mb-4">Recent Transactions</h3>
-                                <div class="overflow-x-auto">
-                                    <table class="w-full text-left text-xs">
-                                        <thead class="border-b border-slate-100 dark:border-slate-800 text-slate-400 uppercase font-semibold">
-                                            <tr>
-                                                <th class="py-3 px-2">Order ID</th>
-                                                <th class="py-3 px-2">Item</th>
-                                                <th class="py-3 px-2">Amount</th>
-                                                <th class="py-3 px-2">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
-                                            <tr>
-                                                <td class="py-3.5 px-2 font-mono">#ES-1042</td>
-                                                <td class="py-3.5 px-2">Instagram Aged Logs</td>
-                                                <td class="py-3.5 px-2 font-bold">₦2,200</td>
-                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold">Completed</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-3.5 px-2 font-mono">#ES-1038</td>
-                                                <td class="py-3.5 px-2">Bulk Gmail (10 Pack)</td>
-                                                <td class="py-3.5 px-2 font-bold">₦12,000</td>
-                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold">Completed</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-3.5 px-2 font-mono">#ES-1021</td>
-                                                <td class="py-3.5 px-2">Facebook Ads Account</td>
-                                                <td class="py-3.5 px-2 font-bold">₦2,500</td>
-                                                <td class="py-3.5 px-2"><span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 font-bold">Pending</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <!-- Action Quick List -->
-                            <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm space-y-3">
-                                <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2">Quick Shortcuts</h3>
-                                <button onclick="switchDashTab('marketplace')" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                                    <span>Browse All Marketplace</span>
-                                    <i class="fas fa-arrow-right text-brand-500"></i>
-                                </button>
-                                <button onclick="openWalletModal()" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                                    <span>Top-up Account Wallet</span>
-                                    <i class="fas fa-plus text-brand-500"></i>
-                                </button>
-                                <button onclick="switchDashTab('orders')" class="w-full text-left p-3 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500/10 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                                    <span>Download Purchased Credentials</span>
-                                    <i class="fas fa-download text-brand-500"></i>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- TAB: MARKETPLACE -->
-                    <div id="dash-tab-marketplace" class="dash-content-tab hidden space-y-6">
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Internal Marketplace</h3>
-                            <p class="text-xs text-slate-500">Full access to verified logs inventory.</p>
-                        </div>
-                    </div>
-
-                    <!-- TAB: ORDERS -->
-                    <div id="dash-tab-orders" class="dash-content-tab hidden space-y-6">
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">My Purchased Orders</h3>
-                            <p class="text-xs text-slate-500">View logs history and export format credentials anytime.</p>
-                        </div>
-                    </div>
-
-                    <!-- TAB: WALLET -->
-                    <div id="dash-tab-wallet" class="dash-content-tab hidden space-y-6">
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Wallet Management</h3>
-                            <p class="text-xs text-slate-500">Instant deposit via card or crypto.</p>
-                        </div>
-                    </div>
-
-                    <!-- TAB: SETTINGS -->
-                    <div id="dash-tab-settings" class="dash-content-tab hidden space-y-6">
-                        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Account Settings</h3>
-                            <p class="text-xs text-slate-500">Update security parameters and personal information.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="bg-dark-bg text-white border-t border-slate-800 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                
-                <div class="col-span-2 md:col-span-1 space-y-4">
-                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white text-sm font-bold">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <span class="font-heading font-bold text-lg text-white">EasyStores</span>
-                    </a>
-                    <p class="text-xs text-slate-400 leading-relaxed">The premier destination for high-authority social account logs and digital marketing assets.</p>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Categories</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Gmail Accounts</a></li>
-                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Facebook Business</a></li>
-                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">Instagram Aged</a></li>
-                        <li><a href="#marketplace" onclick="navigateTo('home')" class="hover:text-brand-400">TikTok Growth</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Support</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Documentation</a></li>
-                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Terms of Service</a></li>
-                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Privacy Guarantee</a></li>
-                        <li><a href="javascript:void(0)" class="hover:text-brand-400">Replacement Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Contact Direct</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        <li><i class="fas fa-envelope mr-2 text-brand-400"></i>support@easystores.com</li>
-                        <li><i class="fab fa-whatsapp mr-2 text-brand-400"></i>+234 707 582 0202</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
-                © 2026 <strong>EasyStores</strong>. All rights reserved. Powered by AP Technologies.
-            </div>
-        </div>
-    </footer>
-
-    <!-- BUY MODAL -->
-    <div id="buyModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
-            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1" id="modalTitle">Item Checkout</h3>
-            <p class="text-xs text-slate-500 mb-4">Price: <span id="modalPrice" class="font-bold text-brand-500"></span></p>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Quantity</label>
-                    <input type="number" min="1" value="1" class="w-full px-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white">
-                </div>
-                <button onclick="confirmPurchase()" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl shadow-md">
-                    Confirm & Complete Purchase
-                </button>
-                <button onclick="closeBuyModal()" class="w-full py-2 text-xs font-semibold text-slate-400">Cancel</button>
-            </div>
-        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      </nav>
     </div>
+  </header>
 
-    <!-- WALLET MODAL -->
-    <div id="walletModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
-            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Fund Wallet Balance</h3>
-            <p class="text-xs text-slate-500 mb-4">Enter amount to top-up instantly.</p>
+  <div class="mobile-nav" id="mobileNav">
+    <a data-page="home" data-scroll="#home">Home</a>
+    <a data-page="home" data-scroll="#services">Services</a>
+    <a data-page="home" data-scroll="#marketplace">Marketplace</a>
+    <a class="btn btn-outline" data-page="login">Login</a>
+    <a class="btn btn-lime" data-page="signup">Get Started</a>
+  </div>
 
-            <div class="space-y-4">
-                <input type="number" placeholder="Enter Amount (₦)" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white">
-                <button onclick="closeWalletModal()" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl">Proceed to Payment</button>
-                <button onclick="closeWalletModal()" class="w-full py-2 text-xs font-semibold text-slate-400">Cancel</button>
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page-view active">
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1>Premium <span>Social Logs</span> for Digital Growth</h1>
+            <p>Access high-quality verified account logs for all major platforms. Secure, instant delivery, and perfect for marketing and business expansion.</p>
+            <div class="hero-btns">
+              <a class="btn btn-lime" data-page="signup">Explore Logs</a>
+              <a class="btn btn-outline" data-scroll="#services">Learn More</a>
             </div>
+            <div class="hero-stats">
+              <div class="stat-item"><div class="stat-number">50K+</div><div class="stat-text">Active Logs</div></div>
+              <div class="stat-item"><div class="stat-number">99.9%</div><div class="stat-text">Uptime</div></div>
+              <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-text">Support</div></div>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="hero-image-wrapper">
+              <div class="hero-badge"><i class="fas fa-shield-check"></i> 100% Verified</div>
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team" />
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Our Services</div>
+          <h2>Premium Logs Collection</h2>
+          <p>High-quality social account logs for all major platforms.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fab fa-google"></i></div>
+            <h3>Gmail & Google Logs</h3>
+            <p>Verified Gmail accounts with complete recovery details.</p>
+            <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fab fa-facebook"></i></div>
+            <h3>Facebook / Meta Logs</h3>
+            <p>Business & personal profiles with ad accounts ready to use.</p>
+            <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fab fa-instagram"></i></div>
+            <h3>Instagram & TikTok Logs</h3>
+            <p>Aged accounts with authentic engagement.</p>
+            <a class="btn btn-outline btn-sm" data-page="signup">View Logs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="marketplace" class="marketplace">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Marketplace</div>
+          <h2>Live Logs Marketplace</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Facebook" /></div>
+            <div class="product-header"><h3>Facebook Ads Account</h3><div class="product-price">₦2,500</div></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
+          </div>
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Instagram" /></div>
+            <div class="product-header"><h3>Instagram Aged Logs</h3><div class="product-price">₦2,200</div></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
+          </div>
+          <div class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gmail" /></div>
+            <div class="product-header"><h3>Bulk Gmail (10pcs)</h3><div class="product-price">₦12,000</div></div>
+            <div class="product-body"><a class="btn btn-lime btn-sm" data-page="signup" style="width: 100%;">Buy Now</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div id="page-login" class="page-view">
+    <div class="auth-page">
+      <div class="auth-page-inner">
+        <div class="auth-card">
+          <div class="brand-home"><a class="logo" data-page="home">Easy<span>Stores</span>.</a></div>
+          <div class="auth-header">
+            <div class="logo-circle"><i class="fas fa-user-lock"></i></div>
+            <div class="auth-title">Welcome Back</div>
+            <p class="auth-subtitle">Sign in to access your dashboard</p>
+          </div>
+          <form class="auth-form" id="loginForm">
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="loginEmail" class="form-control" required placeholder="Enter your email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="loginPassword" class="form-control" required placeholder="Enter your password" />
+              </div>
+            </div>
+            <button type="submit" class="btn-auth" id="loginSubmitBtn">Sign In</button>
+          </form>
+          <div class="auth-switch">Don't have an account? <a data-page="signup">Create Account</a></div>
+          <div class="security-badge"><i class="fas fa-shield-alt"></i><span>Secured with 256-bit SSL</span></div>
+        </div>
+        <!-- Back to Home Button -->
+        <div class="back-home"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
+      </div>
     </div>
+  </div>
 
-    <!-- JAVASCRIPT APP LOGIC -->
-    <script>
-        // DARK MODE TOGGLE
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
+  <!-- SIGNUP PAGE -->
+  <div id="page-signup" class="page-view">
+    <div class="auth-page signup">
+      <div class="auth-page-inner">
+        <div class="auth-card">
+          <div class="brand-home"><a class="logo" data-page="home">Easy<span>Stores</span>.</a></div>
+          <div class="auth-header">
+            <div class="logo-circle"><i class="fas fa-user-plus"></i></div>
+            <div class="auth-title">Create Account</div>
+            <p class="auth-subtitle">Join thousands of users today</p>
+          </div>
+          <form class="auth-form" id="registerForm">
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="regEmail" class="form-control" required placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="regPassword" class="form-control" required minlength="8" placeholder="Create strong password" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="confirmPassword" class="form-control" required minlength="8" placeholder="Re-enter password" />
+              </div>
+            </div>
+            <button type="submit" class="btn-auth" id="registerSubmitBtn">Create Account</button>
+          </form>
+          <div class="auth-switch">Already have an account? <a data-page="login">Sign In</a></div>
+          <div class="security-badge"><i class="fas fa-shield-alt"></i><span>Protected with 256-bit SSL</span></div>
+        </div>
+        <!-- Back to Home Button -->
+        <div class="back-home"><a data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div id="page-dashboard" class="page-view">
+    <div class="dashboard-page">
+      <aside class="sidebar">
+        <div class="sidebar-brand" data-page="home">Easy<span>Stores</span>.</div>
+        <ul class="sidebar-nav">
+          <li><a class="active"><i class="fas fa-grid-2"></i> Overview</a></li>
+          <li><a><i class="fas fa-store"></i> Marketplace</a></li>
+          <li><a><i class="fas fa-receipt"></i> My Orders</a></li>
+        </ul>
+        <div class="sidebar-user">
+          <div class="avatar" id="userAvatar">U</div>
+          <div class="user-info"><div class="name" id="userNameDisplay">User</div><div class="plan">Premium</div></div>
+          <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      </aside>
+      <main class="dashboard-main">
+        <div class="dashboard-topbar">
+          <h1>Welcome back, <span id="userFirstName">User</span> 👋</h1>
+        </div>
+        <div class="dash-stats">
+          <div class="dash-stat-card">
+            <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+            <div class="stat-value">24</div>
+            <div class="stat-label">Total Orders</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+            <div class="stat-value">₦48,500</div>
+            <div class="stat-label">Wallet Balance</div>
+          </div>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-header"><h2>Recent Orders</h2></div>
+          <table class="dash-table">
+            <thead><tr><th>Order ID</th><th>Item</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#ES-1042</td><td>Instagram Aged Logs</td><td><span class="badge badge-completed">Completed</span></td></tr>
+              <tr><td>#ES-1038</td><td>Bulk Gmail (10pcs)</td><td><span class="badge badge-completed">Completed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- FIREBASE SCRIPTS -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqBR_52bRD3JCe2b5YVMvbiYTnY44DxaE",
+      authDomain: "easystores0.firebaseapp.com",
+      projectId: "easystores0",
+      storageBucket: "easystores0.firebasestorage.app",
+      messagingSenderId: "272577987630",
+      appId: "1:272577987630:web:ed21cedf7488588e13cbbf"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    (function() {
+      'use strict';
+
+      // --- Page Router ---
+      const pages = {
+        home: document.getElementById('page-home'),
+        login: document.getElementById('page-login'),
+        signup: document.getElementById('page-signup'),
+        dashboard: document.getElementById('page-dashboard')
+      };
+
+      function showPage(pageName) {
+        Object.values(pages).forEach(p => p.classList.remove('active'));
+        if (pages[pageName]) {
+          pages[pageName].classList.add('active');
+          window.scrollTo(0, 0);
+          const header = document.getElementById('header');
+          header.style.display = (pageName === 'home') ? 'block' : 'none';
+        }
+      }
+
+      document.addEventListener('click', function(e) {
+        const pageEl = e.target.closest('[data-page]');
+        const scrollEl = e.target.closest('[data-scroll]');
+        
+        if (scrollEl) {
+          e.preventDefault();
+          showPage('home');
+          setTimeout(() => {
+            const el = document.querySelector(scrollEl.dataset.scroll);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+          return;
         }
 
-        // MOBILE DRAWER MENU TOGGLE
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            nav.classList.toggle('hidden');
+        if (pageEl) {
+          e.preventDefault();
+          showPage(pageEl.dataset.page);
         }
+      });
 
-        // SINGLE PAGE ROUTING NAVIGATION
-        function navigateTo(pageId) {
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(page => {
-                page.classList.add('hidden');
-                page.classList.remove('block');
+      // --- Auth: Login ---
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('loginEmail').value.trim();
+          const password = document.getElementById('loginPassword').value.trim();
+          const btn = document.getElementById('loginSubmitBtn');
+          
+          btn.innerText = "Signing In...";
+          btn.disabled = true;
+
+          auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+              showPage('dashboard');
+              btn.innerText = "Sign In";
+              btn.disabled = false;
+            })
+            .catch((error) => {
+              alert("Login failed: " + error.message);
+              btn.innerText = "Sign In";
+              btn.disabled = false;
             });
+        });
+      }
 
-            const activePage = document.getElementById('page-' + pageId);
-            if (activePage) {
-                activePage.classList.remove('hidden');
-                activePage.classList.add('block');
-            }
+      // --- Auth: Register ---
+      const registerForm = document.getElementById('registerForm');
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('regEmail').value.trim();
+          const password = document.getElementById('regPassword').value;
+          const confirm = document.getElementById('confirmPassword').value;
+          const btn = document.getElementById('registerSubmitBtn');
+          
+          if (password !== confirm) {
+            alert("Passwords do not match.");
+            return;
+          }
+          if (password.length < 8) {
+            alert("Password must be at least 8 characters.");
+            return;
+          }
+          
+          btn.innerText = "Creating...";
+          btn.disabled = true;
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // SMOOTH SCROLL FOR HOME SECTIONS
-        function scrollToSection(id) {
-            const section = document.getElementById(id);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // MARKETPLACE CATEGORY FILTERING
-        function filterMarketplace(category, btn) {
-            const buttons = document.querySelectorAll('.chip-btn');
-            buttons.forEach(b => {
-                b.className = "chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200";
+          auth.createUserWithEmailAndPassword(email, password)
+            .then(() => {
+              showPage('dashboard');
+              btn.innerText = "Create Account";
+              btn.disabled = false;
+            })
+            .catch((error) => {
+              alert("Registration failed: " + error.message);
+              btn.innerText = "Create Account";
+              btn.disabled = false;
             });
-            btn.className = "chip-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md";
+        });
+      }
 
-            const items = document.querySelectorAll('#homeMarketplaceGrid .product-item');
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+      // --- Auth: Logout ---
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        auth.signOut().then(() => showPage('home'));
+      });
+
+      // --- Auth State Listener ---
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const name = user.email.split('@')[0];
+          document.getElementById('userNameDisplay').innerText = name;
+          document.getElementById('userFirstName').innerText = name;
+          document.getElementById('userAvatar').innerText = name.charAt(0).toUpperCase();
+          
+          if (window.location.hash === '#login' || window.location.hash === '#signup' || window.location.hash === '') {
+            showPage('dashboard');
+          }
+        } else {
+          if (window.location.hash === '#dashboard') {
+            showPage('login');
+          }
         }
+      });
 
-        // PASSWORD STRENGTH CHECKER
-        function checkStrength(val) {
-            const bar = document.getElementById('strengthBar');
-            let strength = 0;
-            if (val.length > 5) strength += 33;
-            if (val.length > 8) strength += 33;
-            if (/[A-Z]/.test(val) && /[0-9]/.test(val)) strength += 34;
-            
-            bar.style.width = strength + '%';
-        }
+      // Init
+      showPage('home');
 
-        // SHOW/HIDE PASSWORD
-        function togglePass(id) {
-            const input = document.getElementById(id);
-            if (input.type === 'password') {
-                input.type = 'text';
-            } else {
-                input.type = 'password';
-            }
-        }
-
-        // HANDLERS FOR LOGIN & REGISTER
-        function handleLogin(e) {
-            e.preventDefault();
-            navigateTo('dashboard');
-        }
-
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('regFullName').value || 'John Doe';
-            document.getElementById('dashGreeting').innerText = name.split(' ')[0];
-            document.getElementById('dashUserDisplay').innerText = name;
-            navigateTo('dashboard');
-        }
-
-        // DASHBOARD TABS SWITCHING
-        function switchDashTab(tabId, btn) {
-            const tabs = document.querySelectorAll('.dash-content-tab');
-            tabs.forEach(tab => tab.classList.add('hidden'));
-
-            const targetTab = document.getElementById('dash-tab-' + tabId);
-            if (targetTab) targetTab.classList.remove('hidden');
-
-            if (btn) {
-                const navBtns = document.querySelectorAll('.dash-tab-btn');
-                navBtns.forEach(b => {
-                    b.className = "dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800";
-                });
-                btn.className = "dash-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400";
-            }
-        }
-
-        // BUY MODAL LOGIC
-        function openBuyModal(title, price) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('buyModal').classList.remove('hidden');
-        }
-
-        function closeBuyModal() {
-            document.getElementById('buyModal').classList.add('hidden');
-        }
-
-        function confirmPurchase() {
-            closeBuyModal();
-            navigateTo('dashboard');
-        }
-
-        // WALLET MODAL LOGIC
-        function openWalletModal() {
-            document.getElementById('walletModal').classList.remove('hidden');
-        }
-
-        function closeWalletModal() {
-            document.getElementById('walletModal').classList.add('hidden');
-        }
-    </script>
+    })();
+  </script>
 </body>
 </html>
